@@ -12,43 +12,43 @@ const baseConfig = {
         rules: [
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.(ico|png|svg|jpe?g|gif)$/,
                 use: {
-                    loader: 'file-loader'
-                }
+                    loader: 'file-loader',
+                },
             },
             {
                 test: /\.[tj]s$/,
                 use: 'ts-loader',
-                exclude: /node_modules/
-            }
-        ]
+                exclude: /node_modules/,
+            },
+        ],
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
     },
     output: {
         filename: 'index.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'styles.css'
+            filename: 'styles.css',
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
-            filename: 'index.html'
+            filename: 'index.html',
         }),
         new CleanWebpackPlugin(),
-        new EslingPlugin({ extensions: 'ts' })
-    ]
+        new EslingPlugin({ extensions: 'ts' }),
+    ],
 };
 
 module.exports = ({
-    mode
+    mode,
 }) => {
     const isProductionMode = mode === 'prod';
     const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');

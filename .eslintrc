@@ -2,7 +2,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [ "import", "@typescript-eslint"],
   "extends": [
-    "airbnb-base/legacy",
+    "airbnb-base",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
   ],
