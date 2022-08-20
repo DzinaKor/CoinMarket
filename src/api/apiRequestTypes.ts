@@ -59,7 +59,7 @@ export type Nft = {
 export type SearchCoinsData = {
     coins: Coin[];
     exchanges: Exchange[];
-    icons: any[];                  // пустой массив
+    icons: any[];
     categories: Category[];
     nft: Nft[];
 }
@@ -90,7 +90,7 @@ export interface TrendCoin {
 
 export interface TrendCoins {
     coins: TrendCoin[];
-    exchanges: any[];     //пустой массив
+    exchanges: any[];
 }
 
 //
