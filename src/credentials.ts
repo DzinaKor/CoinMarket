@@ -1,4 +1,4 @@
-const NEWS_API_KEY = '';
+const NEWS_API_KEY = "";
 
 export default NEWS_API_KEY;
 
