@@ -141,3 +141,18 @@ export type Articles = {
 export interface NewsData {
     articles: Articles;
 }
+
+export type ExchangeBtcCoin = {
+    name: string;
+    unit: string;
+    value: number;
+    type: string;
+}
+
+export type ExchangeCoinData = {
+    [key: string]: ExchangeBtcCoin;
+}
+
+export type ExchangeRates = {
+    rates: ExchangeCoinData;
+}
