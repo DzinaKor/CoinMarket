@@ -13,6 +13,7 @@ export default class CalculatorView {
     }
 
     viewCalculator() {
+        this.calculatorHTML.innerHTML = '';
         const calcHeader = createNewElement('h2', ['calc-h2'], this.calculatorHTML);
         calcHeader.textContent = 'Калькулятор и конвертер криптовалют';
         const calcWrapper = createNewElement('div', ['calc-wrapper'], this.calculatorHTML);
