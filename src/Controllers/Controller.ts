@@ -71,20 +71,7 @@ export default class Controller {
         this.mainPageRedraw();
     }
 
-    createNewElement(type:string, classes:Array<string>, parent: HTMLElement | null = null): HTMLElement {
-        const element: HTMLElement = document.createElement(type);
-        if (classes.length > 0) {
-            classes.forEach((cls:string) => {
-                element.classList.add(cls);
-            });
-        }
-        if (parent !== null) {
-            parent.appendChild(element);
-        }
-        return element;
-    }
-
-    changePage(com:string) {
+    changePage(com: string) {
         if (com === 'calc') {
             this.calculatorView.viewCalculator();
         } else if (com === 'news') {

@@ -1,17 +1,18 @@
 import Controller from '../Controllers/Controller';
+import { createNewElement } from './BasicView';
 
 export default class CoinsListView {
-    public conttroller: Controller;
+    public controller: Controller;
 
     public coinsListHTML: HTMLElement;
 
     constructor(controller: Controller) {
-        this.conttroller = controller;
-        this.coinsListHTML = this.conttroller.createNewElement('div', ['coins_list_container']);
+        this.controller = controller;
+        this.coinsListHTML = createNewElement('div', ['coins_list_container']);
     }
 
     viewCoinsList() {
-        const mainPage: HTMLElement|null = document.querySelector('.main_page_container');
+        const mainPage: HTMLElement | null = document.querySelector('.main_page_container');
         if (mainPage) {
             this.coinsListHTML.innerHTML = 'this is Coins List';
             mainPage.appendChild(this.coinsListHTML);
