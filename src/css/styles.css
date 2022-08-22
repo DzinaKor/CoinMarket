@@ -1,0 +1,87 @@
+
+body {
+    max-width: 100vw;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(60, 60, 60);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 50px;
+    margin-bottom: 30px;
+}
+.main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 999;
+}
+.footer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 50px;
+    margin-bottom: 30px;
+}
+.tabs_container {
+    background-color:#babd9a;
+}
+.pages_container {
+    background-color:darkgreen;
+    flex-grow: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+}
+.mainpage_container {
+    background-color: darkolivegreen;
+    flex-grow: 999;
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 'list list gr' 
+    'list list news';
+}
+.newsmain_container {
+    background-color: #a37eb9;
+    grid-area: news;
+}
+.news_container {
+    background-color:chocolate;
+    flex-grow: 999;
+}
+.calculator_container {
+    background-color:tomato;
+    flex-grow: 999;
+}
+.chart_container {
+    background-color:darkmagenta;
+    flex-grow: 999;
+}
+.chart_main_container {
+    background-color:darkslateblue;
+    grid-area: gr;
+}
+.coins_list_container {
+    background-color:dodgerblue;
+    grid-area: list;
+    overflow-y: auto;
+    max-height: calc(100vh - 260px);
+}
+.one_coin_container {
+    display: flex;
+    justify-content: space-between;
+}
+.coin_description {
+    display: flex;
+}
