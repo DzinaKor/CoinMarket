@@ -11,7 +11,7 @@ export default class NewsMainView {
     }
 
     viewNewsMain() {
-        const mainPage: HTMLElement|null = document.querySelector('.main_page_container');
+        const mainPage: HTMLElement|null = document.querySelector('.mainpage_container');
         if (mainPage) {
             this.newsMainHTML.innerHTML = 'this is Main Page News';
             mainPage.appendChild(this.newsMainHTML);

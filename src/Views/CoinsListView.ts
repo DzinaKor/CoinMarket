@@ -11,7 +11,7 @@ export default class CoinsListView {
     }
 
     viewCoinsList() {
-        const mainPage: HTMLElement|null = document.querySelector('.main_page_container');
+        const mainPage: HTMLElement|null = document.querySelector('.mainpage_container');
         if (mainPage) {
             this.coinsListHTML.innerHTML = 'this is Coins List';
             mainPage.appendChild(this.coinsListHTML);

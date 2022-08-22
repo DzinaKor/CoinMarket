@@ -18,7 +18,7 @@ export default class ChartView {
     }
 
     viewMainPageChart() {
-        const mainPage: HTMLElement|null = document.querySelector('.main_page_container');
+        const mainPage: HTMLElement | null = document.querySelector('.mainpage_container');
         this.chartHTML.classList.remove('chart_main_container');
         if (mainPage) {
             this.chartHTML.innerHTML = 'this is Main Page Chart';
