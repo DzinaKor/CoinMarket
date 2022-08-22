@@ -13,11 +13,11 @@ export default class CoinsListView {
         this.controller = controller;
         this.coinsListHTML = createNewElement('div', ['coins_list_container']);
 
-        this.coinsList = undefined;
+        this.coinsList = [];
     }
 
     viewCoinsList() {
-        const mainPage: HTMLElement | null = document.querySelector('.mainpage_container');
+        const mainPage: HTMLElement = document.querySelector('.mainpage_container') as HTMLElement;
         if (mainPage) {
             mainPage.appendChild(this.coinsListHTML);
 
