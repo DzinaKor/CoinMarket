@@ -88,7 +88,7 @@ export default class Controller {
 
     mainPageRedraw() {
         this.pagesContainerHTML.innerHTML = ''; // this is Pages Container
-        const mainPageHTML: HTMLElement = createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
+        createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
         this.coinsListView.viewCoinsList();
         this.chartView.viewMainPageChart();
         this.newsMainPageView.viewNewsMain();
@@ -114,6 +114,16 @@ export default class Controller {
             originalCurrency.value = receivedCurrency.value;
             receivedCurrency.value = bubbleString;
             this.calculate();
+        });
+        (document.querySelector('.calc-exchange-block') as HTMLElement).addEventListener('click', (event) => {
+            const element = event.target as HTMLElement;
+            if (element.classList.contains('exchange-pair')) {
+                const originalCurrency = document.querySelector('#select-original-currency') as HTMLSelectElement;
+                originalCurrency.value = element.getAttribute('crypto') as string;
+                const receivedCurrency = document.querySelector('#select-received-currency') as HTMLSelectElement;
+                receivedCurrency.value = element.getAttribute('fiat') as string;
+                this.calculate();
+            }
         });
     }
 

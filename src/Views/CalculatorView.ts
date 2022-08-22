@@ -50,5 +50,24 @@ export default class CalculatorView {
         textExchangeDescription.id = 'calc-result';
         this.controller.pagesContainerHTML.innerHTML = '';
         this.controller.pagesContainerHTML.appendChild(this.calculatorHTML);
+
+        const calcExchangeBlock = createNewElement('div', ['calc-exchange-block'], this.calculatorHTML);
+        const calcExchangeBlockHeader = createNewElement('h2', [], calcExchangeBlock);
+        calcExchangeBlockHeader.textContent = 'Популярные варианты конвертации криптовалют';
+        const calcExchangeContent = createNewElement('div', ['calc-exchange-content'], calcExchangeBlock);
+
+        this.controller.calculatorModel.cryptoList.forEach(crypto => {
+            const calcColumn = createNewElement('div', ['calc-column'], calcExchangeContent);
+            this.controller.calculatorModel.featList.forEach(fiat => {
+                const element = document.createElement('div');
+                element.classList.add('exchange-pair');
+                element.setAttribute('crypto', crypto);
+                element.setAttribute('fiat', fiat);
+                element.textContent = `${crypto.toUpperCase()} to ${fiat.toUpperCase()}`;
+                calcColumn.appendChild(element);
+            });
+            calcExchangeContent.appendChild(calcColumn);
+        });
+
     }
 }

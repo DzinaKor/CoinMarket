@@ -5,6 +5,10 @@ export default class Calculator {
 
     public currencyList: string[];
 
+    public cryptoList: string[] = ['btc', 'eth', 'ltc', 'bch', 'bnb', 'eos'];
+
+    public featList: string[] = ['usd', 'eur', 'cny', 'cad', 'rub', 'uah', 'gbp', 'thb', 'try', 'sar'];
+
     constructor() {
         this.exchangeData = {
             '': {
