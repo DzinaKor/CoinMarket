@@ -1,18 +1,19 @@
 import Controller from '../Controllers/Controller';
+import { createNewElement } from './BasicView';
 
 export default class NewsView {
-    public conttroller: Controller;
+    public controller: Controller;
 
     public newsHTML: HTMLElement;
 
     constructor(controller: Controller) {
-        this.conttroller = controller;
-        this.newsHTML = this.conttroller.createNewElement('div', ['news_container']);
+        this.controller = controller;
+        this.newsHTML = createNewElement('div', ['news_container']);
     }
 
     viewNews() {
         this.newsHTML.innerHTML = 'this is News';
-        this.conttroller.pagesContainerHTML.innerHTML = '';
-        this.conttroller.pagesContainerHTML.appendChild(this.newsHTML);
+        this.controller.pagesContainerHTML.innerHTML = '';
+        this.controller.pagesContainerHTML.appendChild(this.newsHTML);
     }
 }

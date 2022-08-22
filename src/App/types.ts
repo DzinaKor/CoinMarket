@@ -1,5 +1,4 @@
-
-export type coinInfo = {
+export type CoinInfo = {
     name: string;
     value: number;
 };
