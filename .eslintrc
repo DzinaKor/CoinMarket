@@ -33,5 +33,6 @@
         "node": true
     },
     "rules": {
+        "import/no-cycle": 0
     }
 }

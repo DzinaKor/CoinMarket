@@ -1,14 +1,15 @@
 import Controller from '../Controllers/Controller';
+import { createNewElement } from './BasicView';
 
 export default class TabsView {
-    public conttroller: Controller;
+    public controller: Controller;
 
     public tabsContainerHTML: HTMLElement;
 
     constructor(controller: Controller) {
-        this.conttroller = controller;
-        const mainHTML: HTMLElement = this.conttroller.mainView.mainHTML as HTMLElement;
-        this.tabsContainerHTML = this.conttroller.createNewElement('div', ['tabs_container'], mainHTML);
+        this.controller = controller;
+        const mainHTML: HTMLElement = this.controller.mainView.mainHTML as HTMLElement;
+        this.tabsContainerHTML = createNewElement('div', ['tabs_container'], mainHTML);
         this.tabsContainerHTML.innerHTML = 'this is Tabs';
         this.createButtons();
     }
@@ -21,10 +22,10 @@ export default class TabsView {
     }
 
     addButton(name: string, com: string): HTMLButtonElement {
-        const button:HTMLButtonElement = this.conttroller.createNewElement('button', ['tab_button']) as HTMLButtonElement;
+        const button: HTMLButtonElement = createNewElement('button', ['tab_button']) as HTMLButtonElement;
         button.innerText = name;
         button.addEventListener('click', () => {
-            this.conttroller.changePage(com);
+            this.controller.changePage(com);
         });
         return button;
     }

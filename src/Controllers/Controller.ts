@@ -12,6 +12,9 @@ import MainView from '../Views/MainView';
 import NewsMainView from '../Views/NewsMainView';
 import NewsView from '../Views/NewsView';
 import TabsView from '../Views/TabsView';
+import { createNewElement } from '../Views/BasicView';
+import { getExchangeData } from '../api/apiRequest';
+import { CRYPTO_ROUND, FIAT_ROUND } from '../constants';
 
 export default class Controller {
     //  Models
@@ -71,22 +74,9 @@ export default class Controller {
         this.mainPageRedraw();
     }
 
-    createNewElement(type:string, classes:Array<string>, parent: HTMLElement | null = null): HTMLElement {
-        const element: HTMLElement = document.createElement(type);
-        if (classes.length > 0) {
-            classes.forEach((cls:string) => {
-                element.classList.add(cls);
-            });
-        }
-        if (parent !== null) {
-            parent.appendChild(element);
-        }
-        return element;
-    }
-
-    changePage(com:string) {
+    changePage(com: string) {
         if (com === 'calc') {
-            this.calculatorView.viewCalculator();
+            this.drawCalculator();
         } else if (com === 'news') {
             this.newsView.viewNews();
         } else if (com === 'chart') {
@@ -98,9 +88,49 @@ export default class Controller {
 
     mainPageRedraw() {
         this.pagesContainerHTML.innerHTML = ''; // this is Pages Container
-        const mainPageHTML: HTMLElement = this.createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
+        const mainPageHTML: HTMLElement = createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
         this.coinsListView.viewCoinsList();
         this.chartView.viewMainPageChart();
         this.newsMainPageView.viewNewsMain();
+    }
+
+    async drawCalculator() {
+        this.calculatorModel.setData(await getExchangeData());
+        this.calculatorView.viewCalculator();
+        this.calculate();
+        this.setCalcListener();
+    }
+
+    setCalcListener() {
+        document.querySelectorAll('.calc-control').forEach((element) => {
+            element.addEventListener('change', () => {
+                this.calculate();
+            });
+        });
+        (document.querySelector('.calc-exchange-btn') as HTMLElement).addEventListener('click', () => {
+            const originalCurrency = document.querySelector('#select-original-currency') as HTMLSelectElement;
+            const receivedCurrency = document.querySelector('#select-received-currency') as HTMLSelectElement;
+            const bubbleString = originalCurrency.value;
+            originalCurrency.value = receivedCurrency.value;
+            receivedCurrency.value = bubbleString;
+            this.calculate();
+        });
+    }
+
+    calculate() {
+        const amount = parseFloat((document.querySelector('.calc-amount') as HTMLInputElement).value);
+        if (Number.isNaN(amount)) return;
+
+        const originalCurrency = (document.querySelector('#select-original-currency') as HTMLSelectElement).value;
+        const receivedCurrency = (document.querySelector('#select-received-currency') as HTMLSelectElement).value;
+
+        const exchangeRate = this.calculatorModel.getExchangeRate(originalCurrency, receivedCurrency);
+        const receivedAmount = (this.calculatorModel.exchangeData[receivedCurrency].type !== 'fiat')
+            ? parseFloat((exchangeRate * amount).toFixed(CRYPTO_ROUND))
+            : parseFloat((exchangeRate * amount).toFixed(FIAT_ROUND));
+
+        (document.querySelector('#calc-result') as HTMLElement).textContent =
+            `${amount} ${this.calculatorModel.exchangeData[originalCurrency].unit} = ` +
+            `${receivedAmount} ${this.calculatorModel.exchangeData[receivedCurrency].unit}`;
     }
 }

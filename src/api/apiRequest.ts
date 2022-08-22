@@ -1,11 +1,11 @@
 import {
-    SearchCoinsData, CoinMarketData, MarketChartData, TrendCoins, NewsData
-} from "./apiRequestTypes";
-import { CoinData } from "./coinDataType";
+    SearchCoinsData, CoinMarketData, MarketChartData, TrendCoins, NewsData, ExchangeRates
+} from './apiRequestTypes';
+import { CoinData } from './coinDataType';
 import {
     CoinOrder, URL_COIN_DATA, URL_NEWS_DATA
-} from "../constants";
-import NEWS_API_KEY from "../credentials";
+} from '../constants';
+import NEWS_API_KEY from '../credentials';
 
 const makeRequest = async (
     url: string,
@@ -17,7 +17,7 @@ const makeRequest = async (
         headers
     });
     if (!res.ok) {
-        return new Error(`${res.status} - ${res.statusText}`)
+        return new Error(`${res.status} - ${res.statusText}`);
     }
     return res.json();
 };
@@ -30,9 +30,9 @@ export const getCoinMarketData = async (
 ): Promise<CoinMarketData> => {
     const url = `${URL_COIN_DATA}/coins/markets?vs_currency=${vsCurrency}&order=${order}&per_page=${count}&page=${page}`;
     const headers: HeadersInit = {
-        accept: "application/json"
+        accept: 'application/json'
     };
-    return await makeRequest(url, "GET", headers) as CoinMarketData;
+    return await makeRequest(url, 'GET', headers) as CoinMarketData;
 };
 
 export const searchCoins = async (
@@ -40,9 +40,9 @@ export const searchCoins = async (
 ): Promise<SearchCoinsData> => {
     const url = `${URL_COIN_DATA}/search?query=${coin}`;
     const headers: HeadersInit = {
-        accept: "application/json"
+        accept: 'application/json'
     };
-    return await makeRequest(url, "GET", headers) as SearchCoinsData;
+    return await makeRequest(url, 'GET', headers) as SearchCoinsData;
 };
 
 export const getCoinData = async (
@@ -52,36 +52,44 @@ export const getCoinData = async (
 ): Promise<CoinData> => {
     const url = `${URL_COIN_DATA}/coins/${coinId}?localization=${localization}&tickers=${tickers}`;
     const headers: HeadersInit = {
-        accept: "application/json"
+        accept: 'application/json'
     };
-    return await makeRequest(url, "GET", headers) as CoinData;
+    return await makeRequest(url, 'GET', headers) as CoinData;
 };
 
 export const getMarketChart = async (
     coinId: string,
-    vsCurrency = "usd",
+    vsCurrency = 'usd',
     days = 1,
-    interval = "daily"
+    interval = 'daily'
 ): Promise<MarketChartData> => {
     const url = `${URL_COIN_DATA}/coins/${coinId}/market_chart?vs_currency=${vsCurrency}&days=${days}&interval=${interval}`;
     const headers: HeadersInit = {
-        accept: "application/json"
+        accept: 'application/json'
     };
-    return await makeRequest(url, "GET", headers) as MarketChartData;
+    return await makeRequest(url, 'GET', headers) as MarketChartData;
 };
 
 export const getTrendCoins = async (): Promise<TrendCoins> => {
     const url = `${URL_COIN_DATA}/search/trending`;
     const headers: HeadersInit = {
-        accept: "application/json"
+        accept: 'application/json'
     };
-    return await makeRequest(url, "GET", headers) as TrendCoins;
+    return await makeRequest(url, 'GET', headers) as TrendCoins;
+};
+
+export const getExchangeData = async (): Promise<ExchangeRates> => {
+    const url = `${URL_COIN_DATA}/exchange_rates`;
+    const headers: HeadersInit = {
+        accept: 'application/json'
+    };
+    return await makeRequest(url, 'GET', headers) as ExchangeRates;
 };
 
 export const getNewsData = async (): Promise<NewsData> => {
     const url = `${URL_NEWS_DATA}apiKey=${NEWS_API_KEY}&keyword=crypto`;
     const headers: HeadersInit = {
-        accept: "application/json"
+        accept: 'application/json'
     };
-    return await makeRequest(url, "GET", headers) as NewsData;
+    return await makeRequest(url, 'GET', headers) as NewsData;
 };

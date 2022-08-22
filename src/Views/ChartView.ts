@@ -1,20 +1,21 @@
 import Controller from '../Controllers/Controller';
+import { createNewElement } from './BasicView';
 
 export default class ChartView {
-    public conttroller: Controller;
+    public controller: Controller;
 
     public chartHTML: HTMLElement;
 
     constructor(controller: Controller) {
-        this.conttroller = controller;
-        this.chartHTML = this.conttroller.createNewElement('div', ['chart_container']);
+        this.controller = controller;
+        this.chartHTML = createNewElement('div', ['chart_container']);
     }
 
     viewChart() {
         this.chartHTML.innerHTML = 'this is Chart';
         this.chartHTML.classList.add('chart_main_container');
-        this.conttroller.pagesContainerHTML.innerHTML = '';
-        this.conttroller.pagesContainerHTML.appendChild(this.chartHTML);
+        this.controller.pagesContainerHTML.innerHTML = '';
+        this.controller.pagesContainerHTML.appendChild(this.chartHTML);
     }
 
     viewMainPageChart() {
