@@ -1,5 +1,5 @@
-import { CoinMarketData } from "../api/apiRequestTypes";
-import { getCoinMarketData } from "../api/apiRequest";
+import { CoinMarketData } from '../api/apiRequestTypes';
+import { getCoinMarketData } from '../api/apiRequest';
 
 export default class CoinsList {
 
@@ -13,8 +13,8 @@ export default class CoinsList {
     }
 
     async apiReqArray() {
-        const tempGetApi = await getCoinMarketData(this.currency);
-        return tempGetApi;
+        this.coinsListFromApi = await getCoinMarketData(this.currency);
+        return this.coinsListFromApi;
     }
 
 }

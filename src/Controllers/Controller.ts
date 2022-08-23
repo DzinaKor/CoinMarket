@@ -87,11 +87,13 @@ export default class Controller {
     }
 
     mainPageRedraw() {
-        this.pagesContainerHTML.innerHTML = ''; // this is Pages Container
-        createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
-        this.coinsListView.viewCoinsList();
-        this.chartView.viewMainPageChart();
-        this.newsMainPageView.viewNewsMain();
+        this.coinsList.apiReqArray().then(() => {
+            this.pagesContainerHTML.innerHTML = '';
+            createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
+            this.coinsListView.viewCoinsList();
+            this.chartView.viewMainPageChart();
+            this.newsMainPageView.viewNewsMain();
+        });
     }
 
     async drawCalculator() {
