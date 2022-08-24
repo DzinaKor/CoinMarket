@@ -27,12 +27,12 @@ export const getCoinMarketData = async (
     order = CoinOrder.MARKET_CAP_DESC,
     count = 100,
     page = 1
-): Promise<CoinMarketData> => {
+): Promise<Array<CoinMarketData>> => {
     const url = `${URL_COIN_DATA}/coins/markets?vs_currency=${vsCurrency}&order=${order}&per_page=${count}&page=${page}`;
     const headers: HeadersInit = {
         accept: 'application/json'
     };
-    return await makeRequest(url, 'GET', headers) as CoinMarketData;
+    return await makeRequest(url, 'GET', headers) as CoinMarketData[];
 };
 
 export const searchCoins = async (
