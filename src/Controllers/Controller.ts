@@ -14,7 +14,8 @@ import NewsView from '../Views/NewsView';
 import TabsView from '../Views/TabsView';
 import { createNewElement } from '../Views/BasicView';
 import { getExchangeData } from '../api/apiRequest';
-import { CRYPTO_ROUND, FIAT_ROUND } from '../constants';
+import { CoinOrder, CRYPTO_ROUND, FIAT_ROUND, SortOrder } from '../constants';
+import Search from '../Models/Search';
 
 export default class Controller {
     //  Models
@@ -49,6 +50,8 @@ export default class Controller {
 
     public coinsListView: CoinsListView;
 
+    public search: Search;
+
     constructor() {
         this.coin = new Coin('Bitcoin');
         this.newsModel = new News();
@@ -59,7 +62,7 @@ export default class Controller {
         this.mainView = new MainView(this);
         this.header = new Header(this);
         this.footer = new Footer(this);
-
+        this.search = new Search(this);
         this.tabsView = new TabsView(this);
         this.pagesContainerHTML = this.mainView.addPagesContainer();
 
@@ -91,9 +94,61 @@ export default class Controller {
             this.pagesContainerHTML.innerHTML = '';
             createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
             this.coinsListView.viewCoinsList();
+            this.setCoinsListListeners();
             this.chartView.viewMainPageChart();
             this.newsMainPageView.viewNewsMain();
         });
+    }
+
+    coinsUpdate() {
+        this.coinsList.apiReqArray().then(() => {
+            this.coinsListView.viewAllCoins();
+        });
+    }
+
+    setCoinsListListeners() {
+        (document.querySelector('.panel-block') as HTMLElement).addEventListener('click', (event) => {
+            const element = event.target as HTMLElement;
+            if (element.id === 'coins-prev' && this.coinsList.currentPage !== 1) {
+                this.coinsList.currentPage -= 1;
+                this.coinsUpdate();
+            } else if (element.id === 'coins-next' && this.coinsList.coinsListFromApi.length === this.coinsList.coinsPerPage) {
+                this.coinsList.currentPage += 1;
+                this.coinsUpdate();
+            }
+            (document.querySelector('.current-page') as HTMLElement).textContent = this.coinsList.currentPage.toString();
+        });
+        const coinsCount = document.querySelector('#coins-count') as HTMLSelectElement;
+        coinsCount.addEventListener('change', () => {
+            this.coinsList.coinsPerPage = parseInt(coinsCount.value, 10);
+            this.coinsUpdate();
+        });
+        (document.querySelector('.header_container') as HTMLElement).addEventListener('click', (event) => {
+            const element = event.target as HTMLElement;
+            if (element.id === 'market-cap') {
+                this.setSortAndOrder(CoinOrder.MARKET_CAP);
+                this.coinsUpdate();
+            } else if (element.id === 'coin-id') {
+                this.setSortAndOrder(CoinOrder.ID);
+                this.coinsUpdate();
+            } else if (element.id === 'total-volume-header') {
+                this.setSortAndOrder(CoinOrder.VOLUME);
+                this.coinsUpdate();
+            }
+        });
+    }
+
+    setSortAndOrder(sortOption: CoinOrder) {
+        if (this.coinsList.sortOption === sortOption) {
+            if (this.coinsList.sortOrder === SortOrder.ASC) {
+                this.coinsList.sortOrder = SortOrder.DESC;
+            } else {
+                this.coinsList.sortOrder = SortOrder.ASC;
+            }
+        } else {
+            this.coinsList.sortOption = sortOption;
+            this.coinsList.sortOrder = SortOrder.DESC;
+        }
     }
 
     async drawCalculator() {
@@ -144,5 +199,38 @@ export default class Controller {
         (document.querySelector('#calc-result') as HTMLElement).textContent =
             `${amount} ${this.calculatorModel.exchangeData[originalCurrency].unit} = ` +
             `${receivedAmount} ${this.calculatorModel.exchangeData[receivedCurrency].unit}`;
+    }
+
+    searchAutocomplete() {
+        const autocomplete = document.querySelector('.search-autocomplete') as HTMLElement;
+        const input = document.querySelector('#search-input') as HTMLInputElement;
+        input.addEventListener('input', () => {
+            const inputText = input.value;
+            Controller.closeAllLists();
+            if (inputText) {
+                this.search.getSearchSuggestions(inputText).then((arr) => {
+                    const itemsContainer = createNewElement('div', ['autocomplete-items'], autocomplete);
+                    arr.forEach((suggestion) => {
+                        const element = createNewElement('div', ['suggestion'], itemsContainer);
+                        element.setAttribute('coin-id', suggestion.id);
+                        const coinImage = createNewElement('img', ['coin-logo-img'], element);
+                        coinImage.setAttribute('src', suggestion.thumb);
+                        coinImage.setAttribute('alt', 'coin-logo');
+                        const text = createNewElement('div', [], element);
+                        text.textContent = `${suggestion.name} - ${suggestion.id.toUpperCase()}`;
+                        element.addEventListener('click', () => {
+                            // TODO add link to one coin with coin-id attribute
+                            Controller.closeAllLists();
+                        });
+                    });
+                });
+            }
+        });
+    }
+
+    static closeAllLists() {
+        document.querySelectorAll('.autocomplete-items').forEach(element => {
+            element.remove();
+        });
     }
 }
