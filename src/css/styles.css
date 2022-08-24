@@ -18,6 +18,7 @@ body {
     height: 50px;
     margin-bottom: 30px;
 }
+
 .main {
     width: 100%;
     display: flex;
@@ -25,6 +26,7 @@ body {
     justify-content: flex-start;
     flex-grow: 999;
 }
+
 .footer {
     display: flex;
     flex-direction: row;
@@ -32,9 +34,11 @@ body {
     height: 50px;
     margin-bottom: 30px;
 }
+
 .tabs_container {
     background-color:#babd9a;
 }
+
 .pages_container {
     background-color:darkgreen;
     flex-grow: 999;
@@ -42,6 +46,7 @@ body {
     flex-direction: column;
     justify-content:flex-start;
 }
+
 .mainpage_container {
     background-color: darkolivegreen;
     flex-grow: 999;
@@ -51,26 +56,32 @@ body {
     grid-template-areas: 'list list gr' 
     'list list news';
 }
+
 .newsmain_container {
     background-color: #a37eb9;
     grid-area: news;
 }
+
 .news_container {
     background-color:chocolate;
     flex-grow: 999;
 }
+
 .calculator_container {
     background-color:tomato;
     flex-grow: 999;
 }
+
 .chart_container {
     background-color:darkmagenta;
     flex-grow: 999;
 }
+
 .chart_main_container {
     background-color:darkslateblue;
     grid-area: gr;
 }
+
 .coins_list_container {
     background-color:dodgerblue;
     grid-area: list;
@@ -83,6 +94,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
 }
+
 .coin_description {
     display: flex;
 }

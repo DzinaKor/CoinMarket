@@ -40,6 +40,14 @@ export default class CoinsListView {
         this.controller.coinsList.coinsListFromApi.forEach((oneCoin: CoinMarketData) => {
             const coinRow: HTMLElement = createNewElement('div', ['one_coin_container'], this.coinsListHTML);
 
+            const coinImg: HTMLImageElement = createNewElement('img', ['coin_description', 'coin_image'], coinHTML) as HTMLImageElement;
+            coinImg.src = oneCoin.image;
+            CoinsListView.addCoinDesctiptionHTML(oneCoin.name, coinHTML);
+            CoinsListView.addCoinDesctiptionHTML(oneCoin.current_price, coinHTML);
+            CoinsListView.addCoinDesctiptionHTML(oneCoin.price_change_24h, coinHTML);
+            CoinsListView.addCoinDesctiptionHTML(oneCoin.market_cap, coinHTML);
+            CoinsListView.addCoinDesctiptionHTML(oneCoin.total_volume, coinHTML);
+            CoinsListView.addCoinDesctiptionHTML(oneCoin.circulating_supply, coinHTML);
             CoinsListView.addCoinDescriptionHTML(oneCoin.market_cap_rank, coinRow);
             const coinTitleBlock = createNewElement('div',['coin_description'], coinRow);
             const coinImage = createNewElement('img',['coin-logo-img'],coinTitleBlock);
