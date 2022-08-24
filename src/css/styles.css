@@ -36,15 +36,15 @@ body {
 }
 
 .tabs_container {
-    background-color:#babd9a;
+    background-color: #babd9a;
 }
 
 .pages_container {
-    background-color:darkgreen;
+    background-color: darkgreen;
     flex-grow: 999;
     display: flex;
     flex-direction: column;
-    justify-content:flex-start;
+    justify-content: flex-start;
 }
 
 .mainpage_container {
@@ -53,7 +53,7 @@ body {
     display: grid;
     grid-template-columns: 1.5fr 0.5fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: 'list list gr' 
+    grid-template-areas: 'list list gr'
     'list list news';
 }
 
@@ -63,33 +63,36 @@ body {
 }
 
 .news_container {
-    background-color:chocolate;
+    background-color: chocolate;
     flex-grow: 999;
 }
 
 .calculator_container {
-    background-color:tomato;
+    background-color: tomato;
     flex-grow: 999;
 }
 
 .chart_container {
-    background-color:darkmagenta;
+    background-color: darkmagenta;
     flex-grow: 999;
 }
 
 .chart_main_container {
-    background-color:darkslateblue;
+    background-color: darkslateblue;
     grid-area: gr;
 }
 
 .coins_list_container {
-    background-color:dodgerblue;
+    background-color: dodgerblue;
     grid-area: list;
     overflow-y: auto;
     max-height: calc(100vh - 260px);
 }
+
 .one_coin_container,
-.header_container {
+.header_container,
+.panel-block,
+.pagination-block {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -102,4 +105,10 @@ body {
 .coin-logo-img {
     width: 25px;
     height: 25px;
+}
+
+#market-cap,
+#coin-id,
+#total-volume-header {
+    cursor: pointer;
 }

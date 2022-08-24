@@ -4,12 +4,12 @@ export const FIAT_ROUND = 2;
 export const CRYPTO_ROUND = 8;
 
 export const enum CoinOrder {
-    GECKO_DESC = 'gecko_desc',
-    GESCO_ASC = 'gecko_asc',
-    MARKET_CAP_ASC = 'market_cap_asc',
-    MARKET_CAP_DESC = 'market_cap_desc',
-    VOLUME_ASC = 'volume_asc',
-    VOLUME_DESC = 'volume_desc',
-    ID_ASC = 'id_asc',
-    ID_DESC = 'id_desc'
+    MARKET_CAP = 'market_cap',
+    VOLUME = 'volume',
+    ID = 'id'
+}
+
+export const enum SortOrder {
+    ASC = 'asc',
+    DESC = 'desc'
 }

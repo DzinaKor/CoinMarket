@@ -3,7 +3,7 @@ import {
 } from './apiRequestTypes';
 import { CoinData } from './coinDataType';
 import {
-    CoinOrder, URL_COIN_DATA, URL_NEWS_DATA
+    CoinOrder, SortOrder, URL_COIN_DATA, URL_NEWS_DATA
 } from '../constants';
 import NEWS_API_KEY from '../credentials';
 
@@ -24,11 +24,12 @@ const makeRequest = async (
 
 export const getCoinMarketData = async (
     vsCurrency: string,
-    order = CoinOrder.MARKET_CAP_DESC,
+    sortOption = CoinOrder.MARKET_CAP,
+    sortOrder = SortOrder.DESC,
     count = 100,
     page = 1
 ): Promise<Array<CoinMarketData>> => {
-    const url = `${URL_COIN_DATA}/coins/markets?vs_currency=${vsCurrency}&order=${order}&per_page=${count}&page=${page}`;
+    const url = `${URL_COIN_DATA}/coins/markets?vs_currency=${vsCurrency}&order=${sortOption}_${sortOrder}&per_page=${count}&page=${page}`;
     const headers: HeadersInit = {
         accept: 'application/json'
     };
