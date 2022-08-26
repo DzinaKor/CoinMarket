@@ -1,5 +1,6 @@
 import Controller from '../Controllers/Controller';
 import { createNewElement } from './BasicView';
+import '../css/searchSuggestions.css';
 
 export default class Header {
     public controller: Controller;
