@@ -5,6 +5,7 @@ export default class Header {
     public controller: Controller;
 
     public headerHTML: HTMLElement;
+
     public darkmodeHeader: HTMLElement;
 
     constructor(controller: Controller) {
@@ -45,5 +46,6 @@ export default class Header {
         controlHeader.appendChild(this.darkmodeHeader);
 
         const authHeader: HTMLElement = createNewElement('div', ['auth_header'], controlHeader);
+        authHeader.textContent = 'Authorization'
     }
 }

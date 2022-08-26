@@ -19,6 +19,13 @@ body {
     margin-bottom: 30px;
 }
 
+.header_container {
+    background-color: #a37eb9;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .logoname_container {
     display: flex;
     justify-content: flex-start;
@@ -71,7 +78,7 @@ body {
     cursor: pointer;
 }
 
-/* header ========================================*/
+/* main ========================================*/
 .main {
     width: 100%;
     display: flex;
