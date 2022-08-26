@@ -27,6 +27,14 @@ export default class Header {
 
         const controlHeader: HTMLElement = createNewElement('div', ['control_header'], headerContainer);
 
+        const searchAutocomplete = createNewElement('div', ['search-autocomplete'], controlHeader);
+        const searchInput = createNewElement('input', [], searchAutocomplete);
+        searchInput.id = 'search-input';
+        searchInput.setAttribute('type', 'text');
+        searchInput.setAttribute('name', 'searchField');
+        searchInput.setAttribute('placeholder', 'Search...');
+        this.controller.searchAutocomplete();
+
         const langHeader: HTMLElement = createNewElement('div', ['lang_container'], controlHeader);
         const ulLang: HTMLElement = createNewElement('ul', ['ul_lang'], langHeader);
         const liLangEn: HTMLElement = createNewElement('li', ['lang_li'], ulLang);
