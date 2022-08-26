@@ -18,9 +18,12 @@ export default class CoinsList {
 
     public coinsPerPageList: number[];
 
+    public currencyUnit: string;
+
     constructor() {
         this.coinsListFromApi = [];
         this.currency = 'USD';
+        this.currencyUnit = '$';
         this.sortOption = CoinOrder.MARKET_CAP;
         this.sortOrder = SortOrder.DESC;
         this.currentPage = 1;

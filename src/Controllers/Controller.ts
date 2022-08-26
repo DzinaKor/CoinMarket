@@ -13,9 +13,11 @@ import NewsMainView from '../Views/NewsMainView';
 import NewsView from '../Views/NewsView';
 import TabsView from '../Views/TabsView';
 import { createNewElement } from '../Views/BasicView';
-import { getExchangeData } from '../api/apiRequest';
+import { getExchangeData, getTrendCoins } from '../api/apiRequest';
 import { CoinOrder, CRYPTO_ROUND, FIAT_ROUND, SortOrder } from '../constants';
 import Search from '../Models/Search';
+import RunningLineView from '../Views/RunningLineView';
+import RunningLine from '../Models/RunningLine';
 
 export default class Controller {
     //  Models
@@ -28,6 +30,8 @@ export default class Controller {
     public chart: Chart;
 
     public coinsList: CoinsList;
+
+    public runningLine: RunningLine;
 
     //  Views
     public mainView: MainView;
@@ -52,22 +56,26 @@ export default class Controller {
 
     public search: Search;
 
+    public runningLineView: RunningLineView;
+
     constructor() {
         this.coin = new Coin('Bitcoin');
         this.newsModel = new News();
         this.calculatorModel = new Calculator();
         this.chart = new Chart();
         this.coinsList = new CoinsList();
+        this.runningLine = new RunningLine();
 
         this.mainView = new MainView(this);
         this.header = new Header(this);
+
         this.footer = new Footer(this);
         this.search = new Search(this);
         this.tabsView = new TabsView(this);
         this.pagesContainerHTML = this.mainView.addPagesContainer();
 
         this.newsMainPageView = new NewsMainView(this);
-
+        this.runningLineView = new RunningLineView(this)
         this.newsView = new NewsView(this);
         this.calculatorView = new CalculatorView(this);
         this.chartView = new ChartView(this);
@@ -97,6 +105,7 @@ export default class Controller {
             this.setCoinsListListeners();
             this.chartView.viewMainPageChart();
             this.newsMainPageView.viewNewsMain();
+            this.drawRunningLine();
         });
     }
 
@@ -104,6 +113,12 @@ export default class Controller {
         this.coinsList.apiReqArray().then(() => {
             this.coinsListView.viewAllCoins();
         });
+    }
+
+    drawRunningLine() {
+        getTrendCoins().then(async () => {
+            this.runningLineView.viewRunningLine(await this.runningLine.getTrendCoinsData(this.coinsList.currency), this.runningLine.exchangeRate);
+        })
     }
 
     setCoinsListListeners() {
