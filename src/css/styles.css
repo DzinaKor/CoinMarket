@@ -152,7 +152,8 @@ body {
 .one_coin_container,
 .header_container,
 .panel-block,
-.pagination-block {
+.pagination-block,
+.footer-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -171,4 +172,9 @@ body {
 #coin-id,
 #total-volume-header {
     cursor: pointer;
+}
+
+.footer-git-container {
+    display: flex;
+    flex-direction: column;
 }
