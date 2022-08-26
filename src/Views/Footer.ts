@@ -25,13 +25,13 @@ export default class Footer {
         const footerGitContainer = createNewElement('div', ['footer-git-container'], footerContainer);
         const linkGitDzinaKor = createNewElement('a', ['git-link'], footerGitContainer);
         linkGitDzinaKor.setAttribute('href', 'https://github.com/DzinaKor');
-        linkGitDzinaKor.textContent ='Dzina Kor GitHub';
+        linkGitDzinaKor.textContent ='Dzina Korshunava';
         const linkGitKazus = createNewElement('a', ['git-link'], footerGitContainer);
         linkGitKazus.setAttribute('href', 'https://github.com/AKazus');
-        linkGitKazus.textContent = 'Anastasiia Kazus GitHub';
+        linkGitKazus.textContent = 'Anastasiia Kazus';
         const linkGitKostyaLibertine = createNewElement('a', ['git-link'], footerGitContainer);
         linkGitKostyaLibertine.setAttribute('href', 'https://github.com/KostyaLibertine');
-        linkGitKostyaLibertine.textContent = 'Kostya Libertine GitHub';
+        linkGitKostyaLibertine.textContent = 'Konstantin Glushenkov';
         const yearText = createNewElement('p', ['footer-year-text'], footerContainer);
         yearText.textContent = '2022';
     }
