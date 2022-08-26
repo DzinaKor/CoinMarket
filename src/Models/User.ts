@@ -4,8 +4,10 @@ import Controller from "../Controllers/Controller";
 export default class User {
     public controller: Controller;
 
+    // user variable - include data about current user
     public data: typeUser;
 
+    // use for checking user authorization
     public isAuth: boolean;
 
     constructor(controller: Controller) {
@@ -14,6 +16,7 @@ export default class User {
         this.isAuth = false;
     }
 
+    // set empty user data by default
     setEmptyData(): typeUser {
         this.isAuth = false;
         const newUser: typeUser = {
