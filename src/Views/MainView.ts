@@ -10,14 +10,18 @@ export default class MainView {
 
     public footerHTML: HTMLElement;
 
+    public runningLine: HTMLElement;
+
     constructor(controller: Controller) {
         this.controller = controller;
         this.headerHTML = createNewElement('header', ['header']);
         this.mainHTML = createNewElement('main', ['main']);
+        this.runningLine = createNewElement('div', ['running-line']);
         this.footerHTML = createNewElement('footer', ['footer']);
         const body: HTMLElement = document.querySelector('body') as HTMLElement;
         body.appendChild(this.headerHTML);
         body.appendChild(this.mainHTML);
+        body.appendChild(this.runningLine);
         body.appendChild(this.footerHTML);
     }
 
