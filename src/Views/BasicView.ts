@@ -26,3 +26,10 @@ export function addCoinDescriptionHTML(txt: string | number, parent: HTMLElement
     tempHTML.innerText = String(txt);
     return tempHTML;
 }
+
+export function createPopUp(popUpBody: HTMLElement, popUpParent: HTMLElement): HTMLElement {
+    const popUpView: HTMLElement = createNewElement('div', ['popup_view']);
+    popUpView.appendChild(popUpBody);
+    popUpParent.appendChild(popUpView);
+    return popUpView;
+}

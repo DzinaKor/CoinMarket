@@ -18,8 +18,12 @@ import { CoinOrder, CRYPTO_ROUND, FIAT_ROUND, SortOrder } from '../constants';
 import Search from '../Models/Search';
 import RunningLineView from '../Views/RunningLineView';
 import RunningLine from '../Models/RunningLine';
+import User from '../Models/User';
+import AuthView from '../Views/AuthView';
 
 export default class Controller {
+    public isPopUp: boolean;
+
     //  Models
     public coin: Coin;
 
@@ -32,6 +36,8 @@ export default class Controller {
     public coinsList: CoinsList;
 
     public runningLine: RunningLine;
+
+    public user: User;
 
     //  Views
     public mainView: MainView;
@@ -58,7 +64,12 @@ export default class Controller {
 
     public runningLineView: RunningLineView;
 
+    public authView: AuthView;
+
     constructor() {
+        this.isPopUp = false;
+
+        this.user = new User(this);
         this.coin = new Coin('Bitcoin');
         this.newsModel = new News();
         this.calculatorModel = new Calculator();
@@ -80,9 +91,12 @@ export default class Controller {
         this.calculatorView = new CalculatorView(this);
         this.chartView = new ChartView(this);
         this.coinsListView = new CoinsListView(this);
+        this.authView = new AuthView(this);
 
         // after all
         this.mainPageRedraw();
+
+        this.closePopUpForClick();
     }
 
     changePage(com: string) {
@@ -98,6 +112,7 @@ export default class Controller {
     }
 
     mainPageRedraw() {
+        this.coinsList.currency = this.getCurrentCurrency();
         this.coinsList.apiReqArray().then(() => {
             this.pagesContainerHTML.innerHTML = '';
             createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
@@ -110,6 +125,7 @@ export default class Controller {
     }
 
     coinsUpdate() {
+        this.coinsList.currency = this.getCurrentCurrency();
         this.coinsList.apiReqArray().then(() => {
             this.coinsListView.viewAllCoins();
         });
@@ -246,6 +262,53 @@ export default class Controller {
     static closeAllLists() {
         document.querySelectorAll('.autocomplete-items').forEach(element => {
             element.remove();
+        });
+    }
+
+    getCurrentLang(): string {
+        return this.user.data.lang;
+    }
+
+    setCurrentLang(lang: string) {
+        this.user.setLang(lang).then(() => {
+            this.header.langHeader.innerText = this.getCurrentLang();
+        });
+    }
+
+    getCurrentCurrency(): string {
+        return this.user.data.currency;
+    }
+
+    setCurrentCurrency(currency: string) {
+        this.user.setCurrency(currency).then(() => {
+            this.header.currencyChangeHeader.innerText = this.getCurrentCurrency();
+        });
+    }
+
+    closePopUp() {
+        this.isPopUp = false;
+        const popUpView: HTMLElement | null = document.querySelector('.popup_view');
+        if (popUpView) {
+            popUpView.remove();
+        }
+    }
+
+    closePopUpForClick() {
+        window.addEventListener('click', (event) => {
+            if (this.isPopUp) {
+                const elClick = event.target as HTMLElement;
+                let elParent: HTMLElement = elClick;
+                let closePopUp = true;
+                while (!(elParent.nodeName === 'BODY' || elParent.nodeName === 'body')) {
+                    elParent = elParent.parentElement as HTMLElement;
+                    if (elParent.classList.contains('popup_view')) {
+                        closePopUp = false;
+                    }
+                }
+                if (closePopUp) {
+                    this.closePopUp();
+                }
+            }
         });
     }
 }

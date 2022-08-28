@@ -78,6 +78,12 @@ body {
     cursor: pointer;
 }
 
+/* popup start ======================================== */
+.popup_view {
+    position: absolute;
+    background-color: black;
+}
+
 /* main ========================================*/
 .main {
     width: 100%;
