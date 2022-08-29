@@ -22,7 +22,7 @@ export default class Header {
         const logoNameHeader: HTMLElement = createNewElement('div', ['logoname_container'], headerContainer);
         const logoHeader: HTMLImageElement = createNewElement('img', ['logo_header'], logoNameHeader) as HTMLImageElement;
         logoHeader.alt = 'logo';
-        logoHeader.src = '' /// add logo 
+        logoHeader.src = 'https://img.icons8.com/pastel-glyph/64/000000/coin-flame.png'
         const nameHeader: HTMLElement = createNewElement('h1', ['name_header'], logoNameHeader);
         nameHeader.textContent = 'CoinMarket';
 
@@ -36,21 +36,40 @@ export default class Header {
         searchInput.setAttribute('placeholder', 'Search...');
         this.controller.searchAutocomplete();
 
-        const langHeader: HTMLElement = createNewElement('div', ['lang_container'], controlHeader);
-        const ulLang: HTMLElement = createNewElement('ul', ['ul_lang'], langHeader);
-        const liLangEn: HTMLElement = createNewElement('li', ['lang_li'], ulLang);
-        liLangEn.textContent = 'EN';
-        const liLangBy: HTMLElement = createNewElement('li', ['lang_li'], ulLang);
-        liLangBy.textContent = 'BY';
-        const liLangRu: HTMLElement = createNewElement('li', ['lang_li'], ulLang);
-        liLangRu.textContent = 'RU';
-
-        const currencyChangeHeader: HTMLElement = createNewElement('div', ['currency_header'], controlHeader);
-        const ulCurrency: HTMLElement = createNewElement('ul', ['ul_currency'], currencyChangeHeader);
-        const liCurrUsd: HTMLElement = createNewElement('li', ['currency_li'], ulCurrency);
-        liCurrUsd.textContent = 'USD';
-        const liCurrEur: HTMLElement = createNewElement('li', ['currency_li'], ulCurrency);
-        liCurrEur.textContent = 'EUR';
+        const langContainer: HTMLElement = createNewElement('div', ['lang_container'], controlHeader);
+        const langBtn: HTMLElement = createNewElement('button', ['lang_btn'], langContainer);
+        langBtn.textContent = 'Language';
+        const langDropdownContent: HTMLElement = createNewElement('div', ['lang_dropdown'], langBtn);
+        const aLangEn: HTMLElement = createNewElement('a', [], langDropdownContent);
+        aLangEn.id = 'lang_en';
+        aLangEn.textContent = 'EN';
+        const aLangEnHref = document.getElementById('lang_en') as HTMLAnchorElement;
+        aLangEnHref.href = '#';
+        const aLangBy: HTMLElement = createNewElement('a', [], langDropdownContent);
+        aLangBy.id = 'lang_by';
+        aLangBy.textContent = 'BY';
+        const aLangByHref = document.getElementById('lang_by') as HTMLAnchorElement;
+        aLangByHref.href = '#';
+        const aLangRu: HTMLElement = createNewElement('a', [], langDropdownContent);
+        aLangRu.id = 'lang_ru';
+        aLangRu.textContent = 'RU';
+        const aLangRuHref = document.getElementById('lang_ru') as HTMLAnchorElement;
+        aLangRuHref.href = '#';
+        
+        const currContainer: HTMLElement = createNewElement('div', ['curr_container'], controlHeader);
+        const currBtn: HTMLElement = createNewElement('button', ['curr_btn'], currContainer);
+        currBtn.textContent = 'Currency';
+        const currDropdownContent: HTMLElement = createNewElement('div', ['curr_dropdown'], currBtn);
+        const aCurrUsd: HTMLElement = createNewElement('a', [], currDropdownContent);
+        aCurrUsd.id = 'curr_usd';
+        aCurrUsd.textContent = 'USD';
+        const aCurrUsdHref = document.getElementById('curr_usd') as HTMLAnchorElement;
+        aCurrUsdHref.href = '#';
+        const aCurrEur: HTMLElement = createNewElement('a', [], currDropdownContent);
+        aCurrEur.id = 'curr_eur';
+        aCurrEur.textContent = 'EUR';
+        const aCurrEurHref = document.getElementById('curr_eur') as HTMLAnchorElement;
+        aCurrEurHref.href = '#';
 
         controlHeader.appendChild(this.darkmodeHeader);
 
