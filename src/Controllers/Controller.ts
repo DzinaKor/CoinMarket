@@ -20,6 +20,7 @@ import RunningLineView from '../Views/RunningLineView';
 import RunningLine from '../Models/RunningLine';
 import User from '../Models/User';
 import AuthView from '../Views/AuthView';
+import OneCoinView from '../Views/OneCoinView';
 
 export default class Controller {
     public isPopUp: boolean;
@@ -60,6 +61,8 @@ export default class Controller {
 
     public coinsListView: CoinsListView;
 
+    public oneCoinView: OneCoinView;
+
     public search: Search;
 
     public runningLineView: RunningLineView;
@@ -70,7 +73,7 @@ export default class Controller {
         this.isPopUp = false;
 
         this.user = new User(this);
-        this.coin = new Coin('Bitcoin');
+        this.coin = new Coin();
         this.newsModel = new News();
         this.calculatorModel = new Calculator();
         this.chart = new Chart();
@@ -91,6 +94,7 @@ export default class Controller {
         this.calculatorView = new CalculatorView(this);
         this.chartView = new ChartView(this);
         this.coinsListView = new CoinsListView(this);
+        this.oneCoinView = new OneCoinView(this);
         this.authView = new AuthView(this);
 
         // after all
@@ -106,6 +110,8 @@ export default class Controller {
             this.newsView.viewNews();
         } else if (com === 'chart') {
             this.chartView.viewChart();
+        } else if (com === 'onecoin') {
+            this.oneCoinView.viewOneCoin();
         } else {
             this.mainPageRedraw();
         }
@@ -310,5 +316,9 @@ export default class Controller {
                 }
             }
         });
+    }
+
+    drawOneCoinView(coinId: string) {
+        this.oneCoinView.viewOneCoin(coinId);
     }
 }
