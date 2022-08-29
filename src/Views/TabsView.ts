@@ -16,6 +16,7 @@ export default class TabsView {
 
     createButtons() {
         this.tabsContainerHTML.appendChild(this.addButton('LangJSON.mainPage', 'main'));
+        this.tabsContainerHTML.appendChild(this.addButton('LangJSON.onecoinPage', 'onecoin'));
         this.tabsContainerHTML.appendChild(this.addButton('LangJSON.calcPage', 'calc'));
         this.tabsContainerHTML.appendChild(this.addButton('LangJSON.newsPage', 'news'));
         this.tabsContainerHTML.appendChild(this.addButton('LangJSON.chartPage', 'chart'));
