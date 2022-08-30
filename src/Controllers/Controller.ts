@@ -22,6 +22,7 @@ import User from '../Models/User';
 import AuthView from '../Views/AuthView';
 import OneCoinView from '../Views/OneCoinView';
 import MainData from '../Models/MainData';
+import { NewsData } from '../api/apiRequestTypes';
 
 export default class Controller {
     public mainData: MainData;
@@ -321,5 +322,11 @@ export default class Controller {
 
     drawOneCoinView(coinId: string) {
         this.oneCoinView.viewOneCoin(coinId);
+    }
+
+    drawNewsView() {
+        this.newsModel.apiReqNews().then((news: NewsData) => {
+            this.newsView.drawNewsView(news);
+        })
     }
 }
