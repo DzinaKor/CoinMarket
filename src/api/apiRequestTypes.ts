@@ -93,8 +93,6 @@ export interface TrendCoins {
     exchanges: any[];
 }
 
-//
-
 export type Source = {
     uri: string;
     dataType: string;
@@ -155,4 +153,12 @@ export type ExchangeCoinData = {
 
 export type ExchangeRates = {
     rates: ExchangeCoinData;
+}
+
+export type ChartData = {
+    time: number;
+    open: number;
+    high: number;
+    low: number;
+    close: number
 }

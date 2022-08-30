@@ -21,8 +21,11 @@ import RunningLine from '../Models/RunningLine';
 import User from '../Models/User';
 import AuthView from '../Views/AuthView';
 import OneCoinView from '../Views/OneCoinView';
+import MainData from '../Models/MainData';
 
 export default class Controller {
+    public mainData: MainData;
+
     public isPopUp: boolean;
 
     //  Models
@@ -70,13 +73,13 @@ export default class Controller {
     public authView: AuthView;
 
     constructor() {
+        this.mainData = new MainData();
         this.isPopUp = false;
-
         this.user = new User(this);
         this.coin = new Coin();
         this.newsModel = new News();
         this.calculatorModel = new Calculator();
-        this.chart = new Chart();
+        this.chart = new Chart(this);
         this.coinsList = new CoinsList();
         this.runningLine = new RunningLine();
 
@@ -89,7 +92,7 @@ export default class Controller {
         this.pagesContainerHTML = this.mainView.addPagesContainer();
 
         this.newsMainPageView = new NewsMainView(this);
-        this.runningLineView = new RunningLineView(this)
+        this.runningLineView = new RunningLineView(this);
         this.newsView = new NewsView(this);
         this.calculatorView = new CalculatorView(this);
         this.chartView = new ChartView(this);
@@ -118,8 +121,7 @@ export default class Controller {
     }
 
     mainPageRedraw() {
-        this.coinsList.currency = this.getCurrentCurrency();
-        this.coinsList.apiReqArray().then(() => {
+        this.coinsList.apiReqArray(this.mainData.selectedCurrency.id).then(() => {
             this.pagesContainerHTML.innerHTML = '';
             createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
             this.coinsListView.viewCoinsList();
@@ -131,16 +133,15 @@ export default class Controller {
     }
 
     coinsUpdate() {
-        this.coinsList.currency = this.getCurrentCurrency();
-        this.coinsList.apiReqArray().then(() => {
+        this.coinsList.apiReqArray(this.mainData.selectedCurrency.id).then(() => {
             this.coinsListView.viewAllCoins();
         });
     }
 
     drawRunningLine() {
         getTrendCoins().then(async () => {
-            this.runningLineView.viewRunningLine(await this.runningLine.getTrendCoinsData(this.coinsList.currency), this.runningLine.exchangeRate);
-        })
+            this.runningLineView.viewRunningLine(await this.runningLine.getTrendCoinsData(this.mainData.selectedCurrency.id), this.runningLine.exchangeRate);
+        });
     }
 
     setCoinsListListeners() {

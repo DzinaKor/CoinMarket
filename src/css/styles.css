@@ -69,7 +69,7 @@ body {
 }
 
 .name_header {
-    margin: 0px;
+    margin: 0;
 }
 
 .darkmode_container {
@@ -139,8 +139,9 @@ body {
 }
 
 .chart_container {
-    background-color: darkmagenta;
+    background-color: #d2d0d2;
     flex-grow: 999;
+    color: #2a2929;
 }
 
 .chart_main_container {
