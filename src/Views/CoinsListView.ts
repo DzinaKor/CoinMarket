@@ -27,6 +27,9 @@ export default class CoinsListView {
         document.querySelectorAll('.one_coin_container').forEach(element => element.remove());
         this.controller.coinsList.coinsListFromApi.forEach((oneCoin: CoinMarketData) => {
             const coinRow: HTMLElement = createNewElement('div', ['one_coin_container'], this.coinsListHTML);
+            coinRow.addEventListener('click', () => {
+                this.controller.drawOneCoinView(oneCoin.id);
+            })
             addCoinDescriptionHTML((oneCoin.market_cap_rank) ? oneCoin.market_cap_rank : '-', coinRow);
             const coinTitleBlock = createNewElement('div', ['coin_description'], coinRow);
             const coinImage = createNewElement('img', ['coin-logo-img'], coinTitleBlock);
