@@ -29,7 +29,7 @@ export default class Header {
         const logoNameHeader: HTMLElement = createNewElement('div', ['logoname_container'], headerContainer);
         const logoHeader: HTMLImageElement = createNewElement('img', ['logo_header'], logoNameHeader) as HTMLImageElement;
         logoHeader.alt = 'logo';
-        logoHeader.src = '' /// TODO add logo 
+        logoHeader.src = ''; /// TODO add logo
         const nameHeader: HTMLElement = createNewElement('h1', ['name_header'], logoNameHeader);
         nameHeader.textContent = 'CoinMarket';
 
@@ -60,7 +60,7 @@ export default class Header {
         this.darkmodeHeader.src = DATA_IMAGE;
 
         const authHeader: HTMLElement = createNewElement('div', ['auth_header'], controlHeader);
-        authHeader.textContent = 'Authorization'
+        authHeader.textContent = 'Authorization';
     }
 
     drawPopUpLang(target: HTMLElement) {
@@ -72,16 +72,11 @@ export default class Header {
             this.controller.closePopUp();
         } else {
             const ulLang: HTMLElement = createNewElement('ul', ['ul_lang']);
-            const liLangEn: HTMLElement = createNewElement('li', ['lang_li'], ulLang);
-            liLangEn.textContent = 'EN';
-            liLangEn.setAttribute('data-lang', 'EN');
-            const liLangBy: HTMLElement = createNewElement('li', ['lang_li'], ulLang);
-            liLangBy.textContent = 'BY';
-            liLangBy.setAttribute('data-lang', 'BY');
-            const liLangRu: HTMLElement = createNewElement('li', ['lang_li'], ulLang);
-            liLangRu.textContent = 'RU';
-            liLangRu.setAttribute('data-lang', 'RU');
-
+            this.controller.mainData.langList.forEach(lang => {
+                const liLangEn: HTMLElement = createNewElement('li', ['lang_li'], ulLang);
+                liLangEn.textContent = lang;
+                liLangEn.setAttribute('data-lang', lang);
+            });
             const popUpView: HTMLElement = createPopUp(ulLang, this.langHeader);
             setTimeout(() => {
                 this.controller.isPopUp = true;
@@ -98,12 +93,11 @@ export default class Header {
             this.controller.closePopUp();
         } else {
             const ulCurrency: HTMLElement = createNewElement('ul', ['ul_currency'], this.currencyChangeHeader);
-            const liCurrUsd: HTMLElement = createNewElement('li', ['currency_li'], ulCurrency);
-            liCurrUsd.textContent = 'USD';
-            liCurrUsd.setAttribute('data-curr', 'USD');
-            const liCurrEur: HTMLElement = createNewElement('li', ['currency_li'], ulCurrency);
-            liCurrEur.textContent = 'EUR';
-            liCurrEur.setAttribute('data-curr', 'EUR');
+            this.controller.mainData.currencyList.forEach(currency => {
+                const liCurr: HTMLElement = createNewElement('li', ['currency_li'], ulCurrency);
+                liCurr.textContent = currency.id;
+                liCurr.setAttribute('data-curr', currency.id);
+            });
             const popUpView: HTMLElement = createPopUp(ulCurrency, this.currencyChangeHeader);
             setTimeout(() => {
                 this.controller.isPopUp = true;

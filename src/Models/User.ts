@@ -1,11 +1,11 @@
-import { typeUser } from "../App/types";
-import Controller from "../Controllers/Controller";
+import { TypeUser } from '../App/types';
+import Controller from '../Controllers/Controller';
 
 export default class User {
     public controller: Controller;
 
     // user variable - include data about current user
-    public data: typeUser;
+    public data: TypeUser;
 
     // use for checking user authorization
     public isAuth: boolean;
@@ -17,9 +17,9 @@ export default class User {
     }
 
     // set empty user data by default
-    setEmptyData(): typeUser {
+    setEmptyData(): TypeUser {
         this.isAuth = false;
-        const newUser: typeUser = {
+        const newUser: TypeUser = {
             id: -1,
             name: '',
             pass: '',
