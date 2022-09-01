@@ -32,6 +32,9 @@ export default class ChartView {
     }
 
     drawChart() {
+        const chartButton = createNewElement('button', ['chart-btn'], this.chartHTML);
+        chartButton.id = 'chart-button';
+        chartButton.textContent = 'Line Chart';
         const daysCount = createNewElement('select', ['days-count'], this.chartHTML) as HTMLSelectElement;
         daysCount.setAttribute('id', 'days-count');
         this.controller.chart.days.forEach((item) => {
@@ -39,48 +42,11 @@ export default class ChartView {
         });
         daysCount.value = this.controller.chart.selectedDaysOption;
         this.setChartListeners();
-
         const chartElement = createNewElement('div', [], this.chartHTML);
         chartElement.id = 'chart';
-        this.controller.chart.getData().then((chartData) => {
-            const options = {
-                chart: {
-                    type: 'candlestick'
-                },
-                title: {
-                    text: 'CandleStick Chart',
-                    align: 'left'
-                },
-                series: [{
-                    name: 'sales',
-                    data: chartData
-                }],
-                xaxis: {
-                    type: 'datetime',
-                    tickPlacement: 'on',
-                    borderColor: '#c2c2c2',
-                    fillColor: '#c2c2c2',
-                    opacity: 0.3,
-                    labels: {
-                        hideOverlappingLabels: true,
-                        datetimeFormatter: {
-                            year: 'yyyy',
-                            month: 'MMM \'yy',
-                            day: 'dd MMM',
-                            hour: 'HH:mm'
-                        }
-                    }
-                },
-                yaxis: {
-                    title: {
-                        text: 'Price'
-                    },
-                    tooltip: {
-                        enabled: true
-                    }
-                }
-            };
-            this.chartObject = new ApexCharts(document.querySelector('#chart'), options);
+        this.controller.chart.getData().then(() => {
+            const options = this.controller.chart.getOptions();
+            this.chartObject = new ApexCharts(document.querySelector('#chart'), options.candlestick);
             this.chartObject.render();
         });
     }
@@ -98,6 +64,19 @@ export default class ChartView {
         daysSelector.addEventListener('change', () => {
             this.controller.chart.selectedDaysOption = daysSelector.value;
             this.redrawChart();
+        });
+        const chartViewButton = document.querySelector('#chart-button') as HTMLSelectElement;
+
+        chartViewButton.addEventListener('click', () => {
+            if (this.controller.chart.currentView === 'candlestick') {
+                this.controller.chart.currentView = 'line';
+                this.chartObject?.updateOptions(this.controller.chart.getOptions().line, true);
+                chartViewButton.textContent = 'Candle Chart';
+            } else {
+                this.controller.chart.currentView = 'candlestick';
+                this.chartObject?.updateOptions(this.controller.chart.getOptions().candlestick, true);
+                chartViewButton.textContent = 'Line Chart';
+            }
         });
     }
 }
