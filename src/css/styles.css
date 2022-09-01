@@ -179,6 +179,18 @@ body {
     height: 25px;
 }
 
+.one_news_container {}
+
+.news_image {
+    width: 50%;
+}
+
+.news_title {
+    font-size: larger;
+    font-weight: bold;
+
+}
+
 #market-cap,
 #coin-id,
 #total-volume-header {
