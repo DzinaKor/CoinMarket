@@ -113,8 +113,6 @@ export default class Controller {
             this.newsView.viewNews();
         } else if (com === 'chart') {
             this.chartView.viewChart();
-        } else if (com === 'onecoin') {
-            this.oneCoinView.viewOneCoin();
         } else {
             this.mainPageRedraw();
         }
