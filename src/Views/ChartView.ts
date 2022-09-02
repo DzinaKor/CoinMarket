@@ -56,6 +56,11 @@ export default class ChartView {
             this.chartObject?.updateSeries([{
                 data: chartData
             }], true);
+            const options = this.controller.chart.getOptions();
+            this.chartObject?.updateOptions(
+                (this.controller.chart.currentView === 'candlestick')
+                    ? options.candlestick
+                    : options.line)
         });
     }
 
