@@ -10,4 +10,17 @@ export type typeUser = {
     email: string,
     lang: string,
     currency: string
-}
+};
+
+export type Currency = {
+    id: string,
+    symbol: string
+};
+
+export type BackResponse = {
+    ok: boolean,
+    status: number,
+    body: TypeUser
+};
+
+export type Collect = { [key: string]: string };
