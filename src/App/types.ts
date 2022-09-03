@@ -9,10 +9,26 @@ export type TypeUser = {
     pass: string,
     email: string,
     lang: string,
-    currency: string
+    currency: string,
+    avatar: string
 }
 
 export type Currency = {
     id: string,
     symbol: string
 }
+
+export type BackResponse = {
+    ok: boolean,
+    status: number,
+    body: TypeUser
+}
+
+export type BackResWatch = {
+    ok: boolean,
+    status: number,
+    body: Array<string>
+}
+
+export type Collect = {[key: string]: string};
+export type CollectPlus = {[key: string]: string|Array<string>|Collect};
