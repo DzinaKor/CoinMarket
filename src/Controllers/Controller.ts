@@ -22,6 +22,11 @@ import User from '../Models/User';
 import AuthView from '../Views/AuthView';
 import OneCoinView from '../Views/OneCoinView';
 import MainData from '../Models/MainData';
+import { TypeUser } from '../App/types';
+import WatchList from '../Models/WatchList';
+import Portfolio from '../Models/Portfolio';
+import WatchListView from '../Views/WatchListView';
+import PortfolioView from '../Views/PortfolioView';
 import lang, { LangType } from '../Models/LangData';
 import LangData from '../Models/LangData';
 import langData from '../Models/LangData';
@@ -32,6 +37,12 @@ export default class Controller {
     public isPopUp: boolean;
 
     //  Models
+    public user: User;
+
+    public watchlist: WatchList;
+
+    public portfolio: Portfolio;
+
     public coin: Coin;
 
     public newsModel: News;
@@ -43,8 +54,6 @@ export default class Controller {
     public coinsList: CoinsList;
 
     public runningLine: RunningLine;
-
-    public user: User;
 
     //  Views
     public mainView: MainView;
@@ -75,10 +84,16 @@ export default class Controller {
 
     public authView: AuthView;
 
+    public watchlistViev: WatchListView;
+
+    public portfolioView: PortfolioView;
+
     constructor() {
+        this.user = new User(this);
+        this.watchlist = new WatchList(this);
+        this.portfolio = new Portfolio(this);
         this.mainData = new MainData();
         this.isPopUp = false;
-        this.user = new User(this);
         this.coin = new Coin();
         this.newsModel = new News();
         this.calculatorModel = new Calculator();
@@ -102,11 +117,18 @@ export default class Controller {
         this.coinsListView = new CoinsListView(this);
         this.oneCoinView = new OneCoinView(this);
         this.authView = new AuthView(this);
+        this.watchlistViev = new WatchListView(this);
+        this.portfolioView = new PortfolioView(this);
 
         // after all
         this.mainPageRedraw();
 
         this.closePopUpForClick();
+
+        // run read data for WatchList from DB and redraw mainPage (once at app startup)
+        this.watchlist.getWatchList().then((coinIdArray: Array<string>) => {
+            this.coinsListView.reSetWatchCoinList(coinIdArray);
+        });
     }
 
     changePage(com: string) {
@@ -116,6 +138,10 @@ export default class Controller {
             this.newsView.viewNews();
         } else if (com === 'chart') {
             this.chartView.viewChart();
+        } else if (com === 'watchlist') {
+            this.watchlistViev.viewWatchList();
+        } else if (com === 'portfolio') {
+            this.portfolioView.viewPortfolio();
         } else {
             this.mainPageRedraw();
         }
@@ -130,6 +156,11 @@ export default class Controller {
             this.chartView.viewMainPageChart();
             this.newsMainPageView.viewNewsMain();
             this.drawRunningLine();
+
+            // after all set user name
+            setTimeout(() => {
+                this.setAuth('login', null)
+            }, 2000);
         });
     }
 
@@ -293,11 +324,32 @@ export default class Controller {
         });
     }
 
+    getUserData(): TypeUser {
+        return this.user.data;
+    }
+
+    addToWatchList(coin: string): Array<string> {
+        return this.watchlist.changeWatchList(1, coin);
+    }
+
+    deleteFromWatchList(coin: string): Array<string> {
+        return this.watchlist.changeWatchList(-1, coin);
+    }
+
+    getWatchList(): Array<string> {
+        return this.watchlist.watchArray;
+    }
+
+    checkCoinWatchList(coin: string): boolean {
+        return this.watchlist.checkCoinWatchList(coin);
+    }
+
     closePopUp() {
-        this.isPopUp = false;
         const popUpView: HTMLElement | null = document.querySelector('.popup_view');
-        if (popUpView) {
+        if (popUpView !== null) {
+            popUpView.innerHTML = '';
             popUpView.remove();
+            this.isPopUp = false;
         }
     }
 
@@ -322,6 +374,33 @@ export default class Controller {
 
     drawOneCoinView(coinId: string) {
         this.oneCoinView.viewOneCoin(coinId);
+    }
+
+    setAuth(command: string, userData: TypeUser|null) {
+        if(command === 'signup' && userData !== null) {
+            this.user.data = userData;
+            this.user.signUp().then((isOk: boolean) => {
+                this.authView.setLogin();
+                this.closePopUp();
+            });
+
+        } else if(command === 'signin' && userData !== null) {
+            this.user.signIn(userData).then((isOk: boolean) => {
+                this.authView.setLogin();
+                this.closePopUp();
+            });
+
+        } else if(command === 'login') {
+            this.authView.setLogin();
+
+        } else if(command === 'savedata' && userData !== null) {
+            this.user.saveData(userData).then( (isOk: boolean) => {
+                if(isOk) {
+                    this.authView.setLogin();
+                    this.closePopUp();
+                }
+            });
+        }
     }
 
     getLangValue(key: string): string {

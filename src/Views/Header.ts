@@ -60,7 +60,6 @@ export default class Header {
         this.darkmodeHeader.src = DATA_IMAGE;
 
         const authHeader: HTMLElement = createNewElement('div', ['auth_header'], controlHeader);
-        authHeader.textContent = 'Authorization';
     }
 
     drawPopUpLang(target: HTMLElement) {

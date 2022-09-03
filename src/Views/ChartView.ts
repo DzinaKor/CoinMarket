@@ -53,9 +53,9 @@ export default class ChartView {
 
     redrawChart() {
         this.controller.chart.getData().then((chartData) => {
-            this.chartObject?.updateSeries([{
+            /* this.chartObject?.updateSeries([{
                 data: chartData
-            }], true);
+            }], true); */
             const options = this.controller.chart.getOptions();
             this.chartObject?.updateOptions(
                 (this.controller.chart.currentView === 'candlestick')
