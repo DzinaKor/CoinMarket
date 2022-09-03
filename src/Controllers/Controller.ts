@@ -22,6 +22,9 @@ import User from '../Models/User';
 import AuthView from '../Views/AuthView';
 import OneCoinView from '../Views/OneCoinView';
 import MainData from '../Models/MainData';
+import lang, { LangType } from '../Models/LangData';
+import LangData from '../Models/LangData';
+import langData from '../Models/LangData';
 
 export default class Controller {
     public mainData: MainData;
@@ -319,5 +322,9 @@ export default class Controller {
 
     drawOneCoinView(coinId: string) {
         this.oneCoinView.viewOneCoin(coinId);
+    }
+
+    getLangValue(key: string): string {
+        return (lang[this.mainData.selectedLang.toLowerCase()] as LangType)[key] as string;
     }
 }
