@@ -16,6 +16,7 @@ const lang: LangType = {
         coin_list_marketPercent:'Value (24h %)',
         coin_list_totalVolume: 'Total Volume',
         coin_list_circulatingSupply:'Circulating Supply',
+        placeholder_searchInput: 'Enter currency name...'
 
     },
     'ru': {
@@ -31,6 +32,8 @@ const lang: LangType = {
         coin_list_marketPercent:'Объём (24ч %)',
         coin_list_totalVolume: 'Объём сделок',
         coin_list_circulatingSupply: 'Циркулирующее предложение',
+        placeholder_searchInput: 'Введите название валюты...',
+
 
 
 
@@ -47,6 +50,8 @@ const lang: LangType = {
         coin_list_marketCup: '',
         coin_list_totalVolume: '',
         coin_list_circulatingSupply: '',
+        placeholder_searchInput: '',
+
 
 
     }

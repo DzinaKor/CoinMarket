@@ -40,7 +40,7 @@ export default class Header {
         searchInput.id = 'search-input';
         searchInput.setAttribute('type', 'text');
         searchInput.setAttribute('name', 'searchField');
-        searchInput.setAttribute('placeholder', 'Search...');
+        searchInput.setAttribute('placeholder', this.controller.getLangValue('placeholder_searchInput'));
         this.controller.searchAutocomplete();
 
         controlHeader.appendChild(this.langHeader);
