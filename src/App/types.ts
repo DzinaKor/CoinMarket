@@ -3,7 +3,7 @@ export type CoinInfo = {
     value: number;
 };
 
-export type typeUser = {
+export type TypeUser = {
     id: number,
     name: string,
     pass: string,
