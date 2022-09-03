@@ -24,21 +24,25 @@ export default class CoinsListView {
     }
 
     viewAllCoins() {
+        const { symbol } = this.controller.mainData.selectedCurrency;
         document.querySelectorAll('.one_coin_container').forEach(element => element.remove());
         this.controller.coinsList.coinsListFromApi.forEach((oneCoin: CoinMarketData) => {
             const coinRow: HTMLElement = createNewElement('div', ['one_coin_container'], this.coinsListHTML);
+            coinRow.addEventListener('click', () => {
+                this.controller.drawOneCoinView(oneCoin.id);
+            });
             addCoinDescriptionHTML((oneCoin.market_cap_rank) ? oneCoin.market_cap_rank : '-', coinRow);
             const coinTitleBlock = createNewElement('div', ['coin_description'], coinRow);
             const coinImage = createNewElement('img', ['coin-logo-img'], coinTitleBlock);
             coinImage.setAttribute('src', oneCoin.image);
             coinImage.setAttribute('alt', 'coin-logo');
             addCoinDescriptionHTML(`${oneCoin.name} - ${oneCoin.symbol.toUpperCase()}`, coinTitleBlock);
-            addCoinDescriptionHTML(`$${oneCoin.current_price.toLocaleString()}`, coinRow);
+            addCoinDescriptionHTML(`${symbol} ${oneCoin.current_price.toLocaleString()}`, coinRow);
             addCoinDescriptionHTML((oneCoin.price_change_percentage_24h) ? `${oneCoin.price_change_percentage_24h}%` : '-', coinRow);
-            addCoinDescriptionHTML(`$${oneCoin.market_cap.toLocaleString()}`, coinRow);
+            addCoinDescriptionHTML(`${symbol} ${oneCoin.market_cap.toLocaleString()}`, coinRow);
             addCoinDescriptionHTML((oneCoin.market_cap_change_percentage_24h) ? `${oneCoin.market_cap_change_percentage_24h}%` : '-', coinRow);
-            addCoinDescriptionHTML(`$${oneCoin.total_volume.toLocaleString()}`, coinRow);
-            addCoinDescriptionHTML(`$${oneCoin.circulating_supply.toLocaleString()}`, coinRow);
+            addCoinDescriptionHTML(`${symbol} ${oneCoin.total_volume.toLocaleString()}`, coinRow);
+            addCoinDescriptionHTML(`${symbol} ${oneCoin.circulating_supply.toLocaleString()}`, coinRow);
         });
     }
 

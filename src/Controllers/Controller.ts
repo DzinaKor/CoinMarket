@@ -27,6 +27,8 @@ import { TypeUser } from '../App/types';
 export default class Controller {
     public mainData: MainData;
 
+    public mainData: MainData;
+
     public isPopUp: boolean;
 
     //  Models
@@ -67,6 +69,8 @@ export default class Controller {
 
     public oneCoinView: OneCoinView;
 
+    public oneCoinView: OneCoinView;
+
     public search: Search;
 
     public runningLineView: RunningLineView;
@@ -75,12 +79,13 @@ export default class Controller {
 
     constructor() {
         this.mainData = new MainData();
+        this.mainData = new MainData();
         this.isPopUp = false;
         this.user = new User(this);
         this.coin = new Coin();
         this.newsModel = new News();
         this.calculatorModel = new Calculator();
-        this.chart = new Chart(this);
+        this.chart = new Chart(thisthis);
         this.coinsList = new CoinsList();
         this.runningLine = new RunningLine();
 
@@ -93,11 +98,12 @@ export default class Controller {
         this.pagesContainerHTML = this.mainView.addPagesContainer();
 
         this.newsMainPageView = new NewsMainView(this);
-        this.runningLineView = new RunningLineView(this);
+        this.runningLineView = new RunningLineView(this);;
         this.newsView = new NewsView(this);
         this.calculatorView = new CalculatorView(this);
         this.chartView = new ChartView(this);
         this.coinsListView = new CoinsListView(this);
+        this.oneCoinView = new OneCoinView(this);
         this.oneCoinView = new OneCoinView(this);
         this.authView = new AuthView(this);
 

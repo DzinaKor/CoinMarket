@@ -43,5 +43,9 @@
     "bugs": {
         "url": "https://github.com/DzinaKor/CoinMarket/issues"
     },
-    "homepage": "https://github.com/DzinaKor/CoinMarket#readme"
+    "homepage": "https://github.com/DzinaKor/CoinMarket#readme",
+    "dependencies": {
+        "apexcharts": "^3.35.5",
+        "trading-vue-js": "^1.0.2"
+    }
 }

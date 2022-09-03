@@ -10,20 +10,14 @@ export default class CoinsList {
 
     public sortOrder: SortOrder;
 
-    public currency: string;
-
     public currentPage: number;
 
     public coinsPerPage: number;
 
     public coinsPerPageList: number[];
 
-    public currencyUnit: string;
-
     constructor() {
         this.coinsListFromApi = [];
-        this.currency = 'USD';
-        this.currencyUnit = '$';
         this.sortOption = CoinOrder.MARKET_CAP;
         this.sortOrder = SortOrder.DESC;
         this.currentPage = 1;
@@ -31,8 +25,8 @@ export default class CoinsList {
         this.coinsPerPageList = [25, 50, 100];
     }
 
-    async apiReqArray() {
-        this.coinsListFromApi = await getCoinMarketData(this.currency, this.sortOption, this.sortOrder, this.coinsPerPage, this.currentPage);
+    async apiReqArray(currency: string) {
+        this.coinsListFromApi = await getCoinMarketData(currency, this.sortOption, this.sortOrder, this.coinsPerPage, this.currentPage);
         return this.coinsListFromApi;
     }
 
