@@ -77,7 +77,6 @@ body {
     height: 40px;
     cursor: pointer;
 }
-
 .login_button {
     min-width: 300px;
     text-align: center;
@@ -198,6 +197,23 @@ body {
 
 .avatar_image_select {
     border-color: rgba(127, 255, 127, 0.99);
+}
+
+/* watchlist ===================================*/
+.watchlist_container {
+    background-color: darksalmon;
+    flex-grow: 999;
+}
+
+.coin_list_watch_img {
+    width: 16px;
+    height: 16px;
+}
+
+/* portfolio ===================================*/
+.portfolio_container {
+    background-color: silver;
+    flex-grow: 999;
 }
 
 /* main ========================================*/

@@ -1,6 +1,7 @@
 import Controller from '../Controllers/Controller';
 import { CoinMarketData } from '../api/apiRequestTypes';
 import { addCoinDescriptionHTML, createNewElement, createOptionElement } from './BasicView';
+import { IMG_FAV, IMG_NOFAV } from '../constants';
 
 export default class CoinsListView {
     public controller: Controller;
@@ -32,6 +33,7 @@ export default class CoinsListView {
                 this.controller.drawOneCoinView(oneCoin.id);
             });
             addCoinDescriptionHTML((oneCoin.market_cap_rank) ? oneCoin.market_cap_rank : '-', coinRow);
+            coinRow.appendChild(this.addWatchCoinHTML(oneCoin.id));
             const coinTitleBlock = createNewElement('div', ['coin_description'], coinRow);
             const coinImage = createNewElement('img', ['coin-logo-img'], coinTitleBlock);
             coinImage.setAttribute('src', oneCoin.image);
@@ -51,6 +53,7 @@ export default class CoinsListView {
         const numberCoinHeader = createNewElement('div', ['coin-number-header'], headerRow);
         numberCoinHeader.textContent = '#';
         numberCoinHeader.id = 'market-cap';
+        const watchListCoinHeader = createNewElement('div', ['coin-number-header'], headerRow);
         const nameCoinHeader = createNewElement('div', ['coin-name-header'], headerRow);
         nameCoinHeader.textContent = 'Наименование';
         nameCoinHeader.id = 'coin-id';
@@ -90,5 +93,49 @@ export default class CoinsListView {
             createOptionElement(item.toString(), item.toString(), coinsCount);
         });
         coinsCount.value = this.controller.coinsList.coinsPerPage.toString();
+    }
+
+    addWatchCoinHTML(coinId: string): HTMLImageElement {
+        const coinWatchImg: HTMLImageElement = createNewElement('img', ['coin_list_watch_img']) as HTMLImageElement;
+        coinWatchImg.alt = '';
+        coinWatchImg.setAttribute('data-watch-coin-id', coinId);
+        if(this.controller.checkCoinWatchList(coinId)) {
+            coinWatchImg.setAttribute('data-watch', '1');
+            coinWatchImg.src = IMG_FAV;
+        } else {
+            coinWatchImg.setAttribute('data-watch', '-1');
+            coinWatchImg.src = IMG_NOFAV;
+        }
+        coinWatchImg.addEventListener('click', (event) => {
+            event.stopPropagation();
+            this.toggleWatchCoinHTML(coinWatchImg, coinId);
+        })
+
+        return coinWatchImg;
+    }
+
+    toggleWatchCoinHTML(coinWatchImg: HTMLImageElement, coinId: string) {
+        if(coinWatchImg.getAttribute('data-watch') === '-1') {
+            coinWatchImg.setAttribute('data-watch', '1');
+            coinWatchImg.setAttribute('src', IMG_FAV);
+            this.controller.addToWatchList(coinId);
+        } else {
+            coinWatchImg.setAttribute('data-watch', '-1');
+            coinWatchImg.setAttribute('src', IMG_NOFAV);
+            this.controller.deleteFromWatchList(coinId);
+        }
+    }
+
+    reSetWatchCoinList(watchCoinArray: Array<string>) {
+        // document.querySelectorAll('[data-watch]').forEach((coinWatchImg: HTMLImageElement) => {
+        if(this.controller !== undefined) {
+            watchCoinArray.forEach((coinId: string) => {
+                const coinWatchImg: HTMLImageElement|null = document.querySelector(`[data-watch-coin-id=${coinId}]`);
+                if(coinWatchImg !== null) {
+                    coinWatchImg.setAttribute('data-watch', '1');
+                    coinWatchImg.setAttribute('src', IMG_FAV);
+                }
+            });
+        }
     }
 }

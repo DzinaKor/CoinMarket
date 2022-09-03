@@ -111,16 +111,6 @@ export default class Header {
                     this.controller.drawRunningLine();
                 }
             });
-
-            popUpView.addEventListener('click', (event) => {
-                const element = event.target as HTMLElement;
-                if (element.hasAttribute('data-curr')) {
-                    this.controller.mainData.setSelectedCurrency(element.getAttribute('data-curr') as string);
-                    this.controller.coinsUpdate();
-                    this.controller.chartView.redrawChart();
-                    this.controller.drawRunningLine();
-                }
-            });
         }
     }
 }

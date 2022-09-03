@@ -24,3 +24,11 @@ export type BackResponse = {
     body: TypeUser
 }
 
+export type BackResWatch = {
+    ok: boolean,
+    status: number,
+    body: Array<string>
+}
+
+export type Collect = {[key: string]: string};
+export type CollectPlus = {[key: string]: string|Array<string>|Collect};
