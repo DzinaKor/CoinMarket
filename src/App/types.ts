@@ -9,10 +9,18 @@ export type TypeUser = {
     pass: string,
     email: string,
     lang: string,
-    currency: string
+    currency: string,
+    avatar: string
 }
 
 export type Currency = {
     id: string,
     symbol: string
 }
+
+export type BackResponse = {
+    ok: boolean,
+    status: number,
+    body: TypeUser
+}
+

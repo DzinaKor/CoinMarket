@@ -22,8 +22,11 @@ import User from '../Models/User';
 import AuthView from '../Views/AuthView';
 import OneCoinView from '../Views/OneCoinView';
 import MainData from '../Models/MainData';
+import { TypeUser } from '../App/types';
 
 export default class Controller {
+    public mainData: MainData;
+
     public mainData: MainData;
 
     public isPopUp: boolean;
@@ -66,6 +69,8 @@ export default class Controller {
 
     public oneCoinView: OneCoinView;
 
+    public oneCoinView: OneCoinView;
+
     public search: Search;
 
     public runningLineView: RunningLineView;
@@ -74,12 +79,13 @@ export default class Controller {
 
     constructor() {
         this.mainData = new MainData();
+        this.mainData = new MainData();
         this.isPopUp = false;
         this.user = new User(this);
         this.coin = new Coin();
         this.newsModel = new News();
         this.calculatorModel = new Calculator();
-        this.chart = new Chart(this);
+        this.chart = new Chart(thisthis);
         this.coinsList = new CoinsList();
         this.runningLine = new RunningLine();
 
@@ -92,11 +98,12 @@ export default class Controller {
         this.pagesContainerHTML = this.mainView.addPagesContainer();
 
         this.newsMainPageView = new NewsMainView(this);
-        this.runningLineView = new RunningLineView(this);
+        this.runningLineView = new RunningLineView(this);;
         this.newsView = new NewsView(this);
         this.calculatorView = new CalculatorView(this);
         this.chartView = new ChartView(this);
         this.coinsListView = new CoinsListView(this);
+        this.oneCoinView = new OneCoinView(this);
         this.oneCoinView = new OneCoinView(this);
         this.authView = new AuthView(this);
 
@@ -127,6 +134,11 @@ export default class Controller {
             this.chartView.viewMainPageChart();
             this.newsMainPageView.viewNewsMain();
             this.drawRunningLine();
+
+            // after all set user name
+            setTimeout(() => {
+                this.setAuth('login', null)
+            }, 2000);
         });
     }
 
@@ -290,11 +302,16 @@ export default class Controller {
         });
     }
 
+    getUserData(): TypeUser {
+        return this.user.data;
+    }
+
     closePopUp() {
-        this.isPopUp = false;
         const popUpView: HTMLElement | null = document.querySelector('.popup_view');
-        if (popUpView) {
+        if (popUpView !== null) {
+            popUpView.innerHTML = '';
             popUpView.remove();
+            this.isPopUp = false;
         }
     }
 
@@ -319,5 +336,32 @@ export default class Controller {
 
     drawOneCoinView(coinId: string) {
         this.oneCoinView.viewOneCoin(coinId);
+    }
+
+    setAuth(command: string, userData: TypeUser | null) {
+        if (command === 'signup' && userData !== null) {
+            this.user.data = userData;
+            this.user.signUp().then((isOk: boolean) => {
+                this.authView.setLogin();
+                this.closePopUp();
+            });
+
+        } else if (command === 'signin' && userData !== null) {
+            this.user.signIn(userData).then((isOk: boolean) => {
+                this.authView.setLogin();
+                this.closePopUp();
+            });
+
+        } else if (command === 'login') {
+            this.authView.setLogin();
+
+        } else if (command === 'savedata' && userData !== null) {
+            this.user.saveData(userData).then((isOk: boolean) => {
+                if (isOk) {
+                    this.authView.setLogin();
+                    this.closePopUp();
+                }
+            });
+        }
     }
 }

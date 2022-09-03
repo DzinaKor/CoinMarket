@@ -60,7 +60,6 @@ export default class Header {
         this.darkmodeHeader.src = DATA_IMAGE;
 
         const authHeader: HTMLElement = createNewElement('div', ['auth_header'], controlHeader);
-        authHeader.textContent = 'Authorization';
     }
 
     drawPopUpLang(target: HTMLElement) {
@@ -102,6 +101,16 @@ export default class Header {
             setTimeout(() => {
                 this.controller.isPopUp = true;
             }, 100);
+
+            popUpView.addEventListener('click', (event) => {
+                const element = event.target as HTMLElement;
+                if (element.hasAttribute('data-curr')) {
+                    this.controller.mainData.setSelectedCurrency(element.getAttribute('data-curr') as string);
+                    this.controller.coinsUpdate();
+                    this.controller.chartView.redrawChart();
+                    this.controller.drawRunningLine();
+                }
+            });
 
             popUpView.addEventListener('click', (event) => {
                 const element = event.target as HTMLElement;
