@@ -36,7 +36,7 @@ export default class Chart {
                     width: 1
                 },
                 title: {
-                    text: `Candlestick ${this.cryptoCurrency.toUpperCase()}/${this.controller.mainData.selectedCurrency.id}`,
+                    text: `${this.controller.getLangValue('chart_candle_chart')} ${this.cryptoCurrency.toUpperCase()}/${this.controller.mainData.selectedCurrency.id}`,
                     align: 'left'
                 },
                 series: [{
@@ -61,7 +61,7 @@ export default class Chart {
                 },
                 yaxis: {
                     title: {
-                        text: `Price, ${this.controller.mainData.selectedCurrency.symbol}`
+                        text: `${this.controller.getLangValue('chart_price')}, ${this.controller.mainData.selectedCurrency.symbol}`
                     },
                     tooltip: {
                         enabled: true
@@ -102,7 +102,7 @@ export default class Chart {
                     type: 'gradient'
                 },
                 title: {
-                    text: `Line chart ${this.cryptoCurrency.toUpperCase()}/${this.controller.mainData.selectedCurrency.id}`,
+                    text: `${this.controller.getLangValue('chart_line_chart')} ${this.cryptoCurrency.toUpperCase()}/${this.controller.mainData.selectedCurrency.id}`,
                     align: 'left'
                 },
                 series: [{
@@ -127,7 +127,7 @@ export default class Chart {
                 },
                 yaxis: {
                     title: {
-                        text: `Price, ${this.controller.mainData.selectedCurrency.symbol}`
+                        text: `${this.controller.getLangValue('chart_price')}, ${this.controller.mainData.selectedCurrency.symbol}`
                     },
                     tooltip: {
                         enabled: true
