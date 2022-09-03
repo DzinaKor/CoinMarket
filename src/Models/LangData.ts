@@ -18,6 +18,13 @@ const lang: LangType = {
         coin_list_circulatingSupply:'Circulating Supply',
         placeholder_searchInput: 'Enter currency name...',
         marketCup_rank: 'Rank:',
+        tab_mainPage: 'Main Page',
+        tab_calcPage: 'Calculator',
+        tab_newsPage: 'News Page',
+        tab_chartPage: 'Chart Page',
+        tab_watchPage: 'Watch Page',
+        tab_portfolioPage: 'Portfolio',
+
 
     },
     'ru': {
@@ -34,7 +41,14 @@ const lang: LangType = {
         coin_list_totalVolume: 'Объём сделок',
         coin_list_circulatingSupply: 'Циркулирующее предложение',
         placeholder_searchInput: 'Введите название валюты...',
-        marketCup_rank: 'Ранг:'
+        marketCup_rank: 'Ранг:',
+        tab_mainPage: 'Главная',
+        tab_calcPage: 'Калькулятор валют',
+        tab_newsPage: 'Новости',
+        tab_chartPage: 'График',
+        tab_watchPage: 'Просмотренные валюты',
+        tab_portfolioPage: 'Портфолио',
+
 
 
 
@@ -53,7 +67,13 @@ const lang: LangType = {
         coin_list_totalVolume: '',
         coin_list_circulatingSupply: '',
         placeholder_searchInput: '',
-        marketCup_rank: ''
+        marketCup_rank: '',
+        tab_mainPage: '',
+        tab_calcPage: '',
+        tab_newsPage: '',
+        tab_chartPage: '',
+        tab_watchPage: '',
+        tab_portfolioPage: '',
 
 
 
