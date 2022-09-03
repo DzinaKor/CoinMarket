@@ -77,7 +77,6 @@ export default class ChartView {
                 this.controller.chart.currentView = 'line';
                 this.chartObject?.updateOptions(this.controller.chart.getOptions().line, true);
                 chartViewButton.textContent = this.controller.getLangValue('chart_candle_chart');
-                'Candle Chart';
             } else {
                 this.controller.chart.currentView = 'candlestick';
                 this.chartObject?.updateOptions(this.controller.chart.getOptions().candlestick, true);

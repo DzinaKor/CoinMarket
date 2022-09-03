@@ -28,8 +28,6 @@ import Portfolio from '../Models/Portfolio';
 import WatchListView from '../Views/WatchListView';
 import PortfolioView from '../Views/PortfolioView';
 import lang, { LangType } from '../Models/LangData';
-import LangData from '../Models/LangData';
-import langData from '../Models/LangData';
 
 export default class Controller {
     public mainData: MainData;
@@ -308,8 +306,8 @@ export default class Controller {
         return this.user.data.lang;
     }
 
-    setCurrentLang(lang: string) {
-        this.user.setLang(lang).then(() => {
+    setCurrentLang(language: string) {
+        this.user.setLang(language).then(() => {
             this.header.langHeader.innerText = this.getCurrentLang();
         });
     }
