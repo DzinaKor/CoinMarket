@@ -29,9 +29,6 @@ export default class Footer {
         const linkGitKazus = createNewElement('a', ['git-link'], footerGitContainer);
         linkGitKazus.setAttribute('href', 'https://github.com/AKazus');
         linkGitKazus.textContent = 'Anastasiia Kazus';
-        const linkGitKostyaLibertine = createNewElement('a', ['git-link'], footerGitContainer);
-        linkGitKostyaLibertine.setAttribute('href', 'https://github.com/KostyaLibertine');
-        linkGitKostyaLibertine.textContent = 'Konstantin Glushenkov';
         const yearText = createNewElement('p', ['footer-year-text'], footerContainer);
         yearText.textContent = '2022';
     }
