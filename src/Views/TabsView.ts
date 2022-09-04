@@ -8,24 +8,24 @@ export default class TabsView {
 
     constructor(controller: Controller) {
         this.controller = controller;
-        const mainHTML: HTMLElement = this.controller.mainView.mainHTML as HTMLElement;
+        const {mainHTML} = this.controller.mainView;
         this.tabsContainerHTML = createNewElement('div', ['tabs_container'], mainHTML);
-        // this.tabsContainerHTML.innerHTML = 'this is Tabs';
+        this.tabsContainerHTML.innerHTML = '';
         this.createButtons();
     }
 
     createButtons() {
-        this.tabsContainerHTML.appendChild(this.addButton('LangJSON.mainPage', 'main'));
-        this.tabsContainerHTML.appendChild(this.addButton('LangJSON.calcPage', 'calc'));
-        this.tabsContainerHTML.appendChild(this.addButton('LangJSON.newsPage', 'news'));
-        this.tabsContainerHTML.appendChild(this.addButton('LangJSON.chartPage', 'chart'));
-        this.tabsContainerHTML.appendChild(this.addButton('LangJSON.watchPage', 'watchlist'));
-        this.tabsContainerHTML.appendChild(this.addButton('LangJSON.portfolioPage', 'portfolio'));
+        this.tabsContainerHTML.appendChild(this.addButton('tab_mainPage', 'main'));
+        this.tabsContainerHTML.appendChild(this.addButton('tab_calcPage', 'calc'));
+        this.tabsContainerHTML.appendChild(this.addButton('tab_newsPage', 'news'));
+        this.tabsContainerHTML.appendChild(this.addButton('tab_chartPage', 'chart'));
+        this.tabsContainerHTML.appendChild(this.addButton('tab_watchPage', 'watchlist'));
+        this.tabsContainerHTML.appendChild(this.addButton('tab_portfolioPage', 'portfolio'));
     }
 
     addButton(name: string, com: string): HTMLButtonElement {
         const button: HTMLButtonElement = createNewElement('button', ['tab_button']) as HTMLButtonElement;
-        button.innerText = name;
+        button.innerText = this.controller.getLangValue(name);
         button.addEventListener('click', () => {
             this.controller.changePage(com);
         });
