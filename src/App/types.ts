@@ -30,5 +30,11 @@ export type BackResWatch = {
     body: Array<string>
 }
 
-export type Collect = {[key: string]: string};
-export type CollectPlus = {[key: string]: string|Array<string>|Collect};
+export type BackResPort = {
+    ok: boolean,
+    status: number,
+    body: Map<string, number>
+}
+
+export type Collect = { [key: string]: string };
+export type CollectPlus = { [key: string]: string | Array<string> | Collect };
