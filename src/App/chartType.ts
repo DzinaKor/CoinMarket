@@ -1,5 +1,7 @@
 import { ChartData } from '../api/apiRequestTypes';
 
+export type ChartDataRow = (number | number[])[]
+
 export type ChartOption = {
     candlestick: {
         plotOptions: {
@@ -70,6 +72,9 @@ export type ChartOption = {
                     day: string;
                 };
                 hideOverlappingLabels: boolean;
+            }
+            tooltip: {
+                enabled: boolean;
             }
         };
         series: [{

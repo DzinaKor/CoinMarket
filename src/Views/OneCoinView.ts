@@ -37,7 +37,7 @@ export default class OneCoinView {
             const coinHTML: HTMLElement = createNewElement('div', ['single_coin_container'], this.onecoinHTML);
             OneCoinView.addOneCoinDescHTML(coinData.name, coinHTML);
             OneCoinView.addOneCoinDescHTML(coinData.market_cap_rank, coinHTML);
-            OneCoinView.addOneCoinDescHTML(String(coinData.market_data.current_price['usd']), coinHTML);
+            OneCoinView.addOneCoinDescHTML(String(coinData.market_data.current_price[this.controller.mainData.selectedCurrency.id]), coinHTML);
             OneCoinView.addOneCoinDescHTML(String(coinData.market_data.market_cap_change_24h), coinHTML);
             OneCoinView.addOneCoinDescHTML(coinData.description.en, coinHTML);
             OneCoinView.addOneCoinDescHTML(coinData.country_origin, coinHTML);

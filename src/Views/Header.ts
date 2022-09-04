@@ -85,10 +85,8 @@ export default class Header {
             popUpView.addEventListener('click', (event) => {
                 const element = event.target as HTMLElement;
                 if (element.hasAttribute('data-lang')) {
-                    this.controller.mainData.setSelectedLang(element.getAttribute('data-lang') as string);
-                    this.controller.chartView.redrawChart();
-                    this.controller.drawRunningLine();
-                    this.viewHeader();
+                    this.controller.setCurrentLang(element.getAttribute('data-lang') as string);
+                    this.controller.changePage(this.controller.mainData.currentPage);
                 }
             });
         }
@@ -116,9 +114,8 @@ export default class Header {
             popUpView.addEventListener('click', (event) => {
                 const element = event.target as HTMLElement;
                 if (element.hasAttribute('data-curr')) {
-                    this.controller.mainData.setSelectedCurrency(element.getAttribute('data-curr') as string);
-                    this.controller.coinsUpdate();
-                    this.controller.drawRunningLine();
+                    this.controller.setCurrentCurrency(element.getAttribute('data-curr') as string);
+                    this.controller.changePage(this.controller.mainData.currentPage);
                 }
             });
         }
