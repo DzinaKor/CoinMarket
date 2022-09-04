@@ -1,6 +1,6 @@
 export const URL_COIN_DATA = 'https://api.coingecko.com/api/v3';
 export const URL_NEWS_DATA = 'https://eventregistry.org/api/v1/article/getArticles?';
-export const URL_BACKEND = 'http://127.0.0.1:8000';
+export const URL_BACKEND = 'https://git.heroku.com/deploy-coinmarket.git';
 export const IMG_FAV = '../assets/images/fav.png';
 export const IMG_NOFAV = '../assets/images/nofav.png';
 export const FIAT_ROUND = 2;
