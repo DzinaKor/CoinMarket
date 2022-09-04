@@ -10,9 +10,12 @@ export default class MainData {
 
     public selectedLang: string;
 
+    public currentPage: string;
+
     constructor() {
         this.selectedCurrency = { id: 'USD', symbol: '$' };
         this.selectedLang = 'EN';
+        this.currentPage = 'main';
     }
 
     setSelectedCurrency(currency: string) {
