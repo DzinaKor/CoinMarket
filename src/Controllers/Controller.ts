@@ -27,6 +27,7 @@ import WatchList from '../Models/WatchList';
 import Portfolio from '../Models/Portfolio';
 import WatchListView from '../Views/WatchListView';
 import PortfolioView from '../Views/PortfolioView';
+import { NewsData } from '../api/apiRequestTypes';
 import lang, { LangType } from '../Models/LangData';
 
 export default class Controller {
@@ -372,6 +373,12 @@ export default class Controller {
 
     drawOneCoinView(coinId: string) {
         this.oneCoinView.viewOneCoin(coinId);
+    }
+
+    drawNewsView() {
+        this.newsModel.apiReqNews().then((news: NewsData) => {
+            this.newsView.drawNewsView(news);
+        })
     }
 
     setAuth(command: string, userData: TypeUser|null) {
