@@ -55,12 +55,12 @@ const lang: LangType = {
 
     },
     'by': {
-        calc_header: '',
-        calc_placeholder: '',
-        calc_popular_exchanges: '',
-        chart_line_chart: '',
-        chart_candle_chart: '',
-        chart_price: '',
+        calc_header: 'Калькулятар і канвэртар крыптавалют',
+        calc_placeholder: 'Увядзіце суму для канвертавання',
+        calc_popular_exchanges: 'Папулярныя варыянты канвертавання крыптавалют',
+        chart_line_chart: 'Лінейны графік',
+        chart_candle_chart: 'Свячны графік',
+        chart_price: 'Кошт',
         coin_list_name: '',
         coin_list_price: '',
         coin_list_marketCup: '',
