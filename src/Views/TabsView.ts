@@ -8,13 +8,15 @@ export default class TabsView {
 
     constructor(controller: Controller) {
         this.controller = controller;
-        const {mainHTML} = this.controller.mainView;
+        const mainHTML: HTMLElement = this.controller.mainView.mainHTML as HTMLElement;
         this.tabsContainerHTML = createNewElement('div', ['tabs_container'], mainHTML);
-        this.tabsContainerHTML.innerHTML = '';
         this.createButtons();
     }
 
     createButtons() {
+        const mainButton: HTMLButtonElement = this.addButton('LangJSON.mainPage', 'main');
+        mainButton.classList.add('tab_button_secect');
+        this.tabsContainerHTML.appendChild(mainButton);
         this.tabsContainerHTML.appendChild(this.addButton('tab_mainPage', 'main'));
         this.tabsContainerHTML.appendChild(this.addButton('tab_calcPage', 'calc'));
         this.tabsContainerHTML.appendChild(this.addButton('tab_newsPage', 'news'));
@@ -25,10 +27,21 @@ export default class TabsView {
 
     addButton(name: string, com: string): HTMLButtonElement {
         const button: HTMLButtonElement = createNewElement('button', ['tab_button']) as HTMLButtonElement;
-        button.innerText = this.controller.getLangValue(name);
+        button.innerText = name;
         button.addEventListener('click', () => {
             this.controller.changePage(com);
+            this.reSetTabCSS();
+            button.classList.add('tab_button_secect');
         });
         return button;
     }
+
+    reSetTabCSS() {
+        if (this.controller !== null) {
+            document.querySelectorAll('.tab_button').forEach((tab) => {
+                tab.classList.remove('tab_button_secect');
+            });
+        }
+    }
+
 }

@@ -238,6 +238,78 @@ h1 {
     flex-grow: 999;
 }
 
+/* portfolio ===================================*/
+.portfolio_container {
+    background-color: silver;
+    flex-grow: 999;
+}
+
+.portfolio_main_container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: antiquewhite;
+}
+
+.portfolio_coin_add {
+    cursor: pointer;
+    width: 210px;
+}
+
+.portfolio_coin_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    column-gap: 10px;
+}
+
+.portfolio_coin_container>* {
+    flex-grow: 1;
+}
+
+.portfolio_coin_edit {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 10px;
+}
+
+.portfolio_coin_buy {
+    width: 90px;
+}
+
+.portfolio_coin_sell {
+    width: 90px;
+}
+
+.portfolio_coin_delete {
+    width: 90px;
+}
+
+.portfolio_coin_edit {
+    flex-grow: 7;
+    min-width: 320px;
+}
+
+.portfolio_edit {
+    display: flex;
+    justify-content: space-around;
+    row-gap: 50px;
+    background-color: aquamarine;
+}
+
+.portfolio_value {
+    width: 110px;
+}
+
+.portfolio_save {
+    cursor: pointer;
+    width: 60px;
+}
+
+.portfolio_coin_select {
+    width: 210px;
+}
+
 /* main ========================================*/
 .main {
     width: 100%;
