@@ -22,6 +22,8 @@ export default class Chart {
 
     public chartObject: ApexCharts | undefined;
 
+    public chartModalObject: ApexCharts | undefined;
+
     constructor(controller: Controller, cryptoCurrency = 'bitcoin') {
         this.controller = controller;
         this.cryptoCurrency = cryptoCurrency;
@@ -169,5 +171,13 @@ export default class Chart {
 
     setChartObject(chartObject: ApexCharts) {
         this.chartObject = chartObject;
+    }
+
+    setCryptoCurrency(cryptoCurrency: string) {
+        this.cryptoCurrency = cryptoCurrency;
+    }
+
+    setChartModalObject(chartObject: ApexCharts) {
+        this.chartModalObject = chartObject;
     }
 }

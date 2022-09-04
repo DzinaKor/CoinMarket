@@ -50,6 +50,8 @@ export default class Controller {
 
     public mainChart: Chart;
 
+    public oneCoinChart: Chart;
+
     public coinsList: CoinsList;
 
     public runningLine: RunningLine;
@@ -97,6 +99,7 @@ export default class Controller {
         this.newsModel = new News();
         this.calculatorModel = new Calculator();
         this.mainChart = new Chart(this);
+        this.oneCoinChart = new Chart(this);
         this.coinsList = new CoinsList();
         this.runningLine = new RunningLine();
 
@@ -418,7 +421,7 @@ export default class Controller {
     }
 
     drawChart(rootElement: HTMLElement, chartModel: Chart) {
-        this.mainChart.getData().then(() => {
+        chartModel.getData().then(() => {
                 this.chartView.drawChart(rootElement, chartModel);
                 this.setChartListeners(chartModel);
             }
@@ -437,10 +440,12 @@ export default class Controller {
             if (chartModel.currentView === 'candlestick') {
                 chartModel.setCurrentView('line');
                 chartModel.chartObject!.updateOptions(chartModel.getOptions().line, true);
+                chartModel.chartModalObject!.updateOptions(chartModel.getOptions().line, true);
                 chartViewButton.textContent = this.getLangValue('chart_candle_chart');
             } else {
                 chartModel.setCurrentView('candlestick');
                 chartModel.chartObject!.updateOptions(chartModel.getOptions().candlestick, true);
+                chartModel.chartModalObject!.updateOptions(chartModel.getOptions().candlestick, true);
                 chartViewButton.textContent = this.getLangValue('chart_line_chart');
             }
         });

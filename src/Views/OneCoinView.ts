@@ -1,6 +1,6 @@
-import Controller from "../Controllers/Controller";
-import { createNewElement } from "./BasicView";
-import { CoinData } from "../api/coinDataType";
+import Controller from '../Controllers/Controller';
+import { createNewElement } from './BasicView';
+import { CoinData } from '../api/coinDataType';
 
 export default class OneCoinView {
     public controller: Controller;
@@ -20,6 +20,7 @@ export default class OneCoinView {
 
     viewOneCoin(coinId: string) {
         this.coinIdKeeper = coinId;
+        this.controller.oneCoinChart.setCryptoCurrency(coinId);
         const coinPage: HTMLElement = document.querySelector('.pages_container') as HTMLElement;
         if (coinPage) {
             coinPage.innerHTML = '';
@@ -38,6 +39,10 @@ export default class OneCoinView {
             OneCoinView.addOneCoinDescHTML(coinData.symbol, coinHTML);
             OneCoinView.addOneCoinDescHTML(coinData.country_origin, coinHTML);
             OneCoinView.addOneCoinDescHTML(coinData.market_cap_rank, coinHTML);
+
+            const chartHTML: HTMLElement = createNewElement('div', ['one_coin_chart'], coinHTML);
+            this.controller.drawChart(chartHTML, this.controller.oneCoinChart);
+
             const coinLinkHTML: HTMLElement = createNewElement('div', ['one_coin_desc'], coinHTML);
             coinData.links.homepage.forEach((link: string) => {
                 if (link !== '') {
@@ -45,7 +50,8 @@ export default class OneCoinView {
                     aElement.href = link;
                     aElement.textContent = link;
                 }
-            })
+            });
+
         });
     }
 
