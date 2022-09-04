@@ -97,7 +97,9 @@ export default class CoinsListView {
     }
 
     addWatchCoinHTML(coinId: string): HTMLImageElement {
-        const coinWatchImg: HTMLImageElement = createNewElement('img', ['coin_list_watch_img']) as HTMLImageElement;
+        const imageBox: HTMLImageElement = createNewElement('div', ['coin_list_watch']) as HTMLImageElement;
+
+        const coinWatchImg: HTMLImageElement = createNewElement('img', ['coin_list_watch_img'], imageBox) as HTMLImageElement;
         coinWatchImg.alt = '';
         coinWatchImg.setAttribute('data-watch-coin-id', coinId);
         if(this.controller.checkCoinWatchList(coinId)) {
@@ -112,7 +114,7 @@ export default class CoinsListView {
             this.toggleWatchCoinHTML(coinWatchImg, coinId);
         })
 
-        return coinWatchImg;
+        return imageBox;
     }
 
     toggleWatchCoinHTML(coinWatchImg: HTMLImageElement, coinId: string) {

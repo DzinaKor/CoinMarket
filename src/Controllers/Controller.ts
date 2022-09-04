@@ -140,8 +140,6 @@ export default class Controller {
         } else if (com === 'news') {
             this.mainData.currentPage = 'news';
             this.newsView.viewNews();
-        } else if (com === 'chart') {
-            //  this.chartView.viewChart();
         } else if (com === 'watchlist') {
             this.mainData.currentPage = 'watchlist';
             this.watchlistViev.viewWatchList();
@@ -151,6 +149,9 @@ export default class Controller {
         } else if (com === 'main'){
             this.mainData.currentPage = 'main';
             this.mainPageRedraw();
+        } else if (com === 'oneCoin') {
+            this.mainData.currentPage = 'oneCoin';
+            this.drawOneCoinView(this.mainData.currentOneCoin);
         }
     }
 
@@ -322,7 +323,7 @@ export default class Controller {
 
     setCurrentLang(language: string) {
         this.mainData.setSelectedLang(language);
-        this.changePage(language);
+        this.changePage(this.mainData.currentPage);
         this.user.setLang(language).then(() => {
             this.header.langHeader.innerText = this.getCurrentLang();
         });
@@ -334,7 +335,7 @@ export default class Controller {
 
     setCurrentCurrency(currency: string) {
         this.mainData.setSelectedCurrency(currency);
-        this.changePage(this.mainData.selectedLang);
+        this.changePage(this.mainData.currentPage);
         this.user.setCurrency(currency).then(() => {
             this.header.currencyChangeHeader.innerText = this.getCurrentCurrency();
         });
@@ -390,6 +391,7 @@ export default class Controller {
     }
 
     drawOneCoinView(coinId: string) {
+        this.mainData.currentPage = 'oneCoin'
         this.oneCoinView.viewOneCoin(coinId);
     }
 

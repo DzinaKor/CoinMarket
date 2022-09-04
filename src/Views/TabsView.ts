@@ -18,7 +18,6 @@ export default class TabsView {
         this.tabsContainerHTML.appendChild(this.addButton('tab_mainPage', 'main'));
         this.tabsContainerHTML.appendChild(this.addButton('tab_calcPage', 'calc'));
         this.tabsContainerHTML.appendChild(this.addButton('tab_newsPage', 'news'));
-        this.tabsContainerHTML.appendChild(this.addButton('tab_chartPage', 'chart'));
         this.tabsContainerHTML.appendChild(this.addButton('tab_watchPage', 'watchlist'));
         this.tabsContainerHTML.appendChild(this.addButton('tab_portfolioPage', 'portfolio'));
     }
