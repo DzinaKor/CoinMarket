@@ -10,7 +10,7 @@ export default class TabsView {
         this.controller = controller;
         const mainHTML: HTMLElement = this.controller.mainView.mainHTML as HTMLElement;
         this.tabsContainerHTML = createNewElement('div', ['tabs_container'], mainHTML);
-        this.tabsContainerHTML.innerHTML = 'this is Tabs';
+        // this.tabsContainerHTML.innerHTML = 'this is Tabs';
         this.createButtons();
     }
 
