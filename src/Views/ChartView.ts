@@ -1,88 +1,83 @@
 import ApexCharts from 'apexcharts';
 import Controller from '../Controllers/Controller';
 import { createNewElement, createOptionElement } from './BasicView';
+import Chart from '../Models/Chart';
+import '../css/modalWindowChart.css';
 
 export default class ChartView {
     public controller: Controller;
 
-    public chartObject: ApexCharts | undefined;
-
-    public chartHTML: HTMLElement;
-
     constructor(controller: Controller) {
         this.controller = controller;
-        this.chartHTML = createNewElement('div', ['chart_container']);
     }
 
-    viewChart() {
-        this.chartHTML.innerHTML = '';
-        this.chartHTML.classList.add('chart_main_container');
-        this.controller.pagesContainerHTML.innerHTML = '';
-        this.controller.pagesContainerHTML.appendChild(this.chartHTML);
-    }
-
-    viewMainPageChart() {
-        const mainPage: HTMLElement | null = document.querySelector('.mainpage_container');
-        this.chartHTML.classList.remove('chart_main_container');
-        if (mainPage) {
-            this.chartHTML.innerHTML = '';
-            mainPage.appendChild(this.chartHTML);
-            this.drawChart();
-        }
-    }
-
-    drawChart() {
-        const chartButton = createNewElement('button', ['chart-btn'], this.chartHTML);
+    drawChart(rootElement: HTMLElement, chartModel: Chart) {
+        const chartButton = createNewElement('button', ['chart-btn'], rootElement);
         chartButton.id = 'chart-button';
         chartButton.textContent = this.controller.getLangValue('chart_line_chart');
-        const daysCount = createNewElement('select', ['days-count'], this.chartHTML) as HTMLSelectElement;
+        const daysCount = createNewElement('select', ['days-count'], rootElement) as HTMLSelectElement;
         daysCount.setAttribute('id', 'days-count');
-        this.controller.chart.days.forEach((item) => {
+        chartModel.days.forEach((item) => {
             createOptionElement(item.toString(), item.toString(), daysCount);
         });
-        daysCount.value = this.controller.chart.selectedDaysOption;
-        this.setChartListeners();
-        const chartElement = createNewElement('div', [], this.chartHTML);
+        daysCount.value = chartModel.selectedDaysOption;
+        const modalBtn = createNewElement('button', ['btn-modal-window'], rootElement);
+        modalBtn.id = 'btn_modal-window';
+        modalBtn.textContent = 'Fullscreen mode';
+        const chartElement = createNewElement('div', [], rootElement);
         chartElement.id = 'chart';
-        this.controller.chart.getData().then(() => {
-            const options = this.controller.chart.getOptions();
-            this.chartObject = new ApexCharts(document.querySelector('#chart'), options.candlestick);
-            this.chartObject.render();
-        });
+        chartModel.setChartObject(new ApexCharts(document.querySelector('#chart'), chartModel.getOptions().candlestick));
+        chartModel.chartObject!.render();
+
+        const chartModalRoot = createNewElement('div', ['modal-chart'], rootElement);
+        chartModalRoot.id = 'chart_modal';
+        ChartView.createChartModalWindow(modalBtn, chartModel);
     }
 
-    redrawChart() {
-        this.controller.chart.getData().then((chartData) => {
-            /* this.chartObject?.updateSeries([{
-                data: chartData
-            }], true); */
-            const options = this.controller.chart.getOptions();
-            this.chartObject?.updateOptions(
-                (this.controller.chart.currentView === 'candlestick')
-                    ? options.candlestick
-                    : options.line);
-        });
-    }
+    static redrawChart(chartModel: Chart) {
+        chartModel.getData().then(() => {
+            if (chartModel.currentView === 'candlestick') {
+                chartModel.chartObject?.destroy();
+                chartModel.setChartObject(new ApexCharts(document.querySelector('#chart'), chartModel.getOptions().candlestick));
+                chartModel.chartObject?.render();
 
-    setChartListeners() {
-        const daysSelector = document.querySelector('#days-count') as HTMLSelectElement;
-        daysSelector.addEventListener('change', () => {
-            this.controller.chart.selectedDaysOption = daysSelector.value;
-            this.redrawChart();
-        });
-        const chartViewButton = document.querySelector('#chart-button') as HTMLSelectElement;
-
-        chartViewButton.addEventListener('click', () => {
-            if (this.controller.chart.currentView === 'candlestick') {
-                this.controller.chart.currentView = 'line';
-                this.chartObject?.updateOptions(this.controller.chart.getOptions().line, true);
-                chartViewButton.textContent = this.controller.getLangValue('chart_candle_chart');
+                chartModel.chartModalObject?.destroy();
+                chartModel.setChartModalObject(new ApexCharts(document.querySelector('#modal_chart'), chartModel.getOptions().candlestick));
+                chartModel.chartModalObject?.render();
             } else {
-                this.controller.chart.currentView = 'candlestick';
-                this.chartObject?.updateOptions(this.controller.chart.getOptions().candlestick, true);
-                chartViewButton.textContent = this.controller.getLangValue('chart_line_chart');
+                chartModel.chartObject?.destroy();
+                chartModel.setChartObject(new ApexCharts(document.querySelector('#chart'), chartModel.getOptions().line));
+                chartModel.chartObject?.render();
+
+                chartModel.chartModalObject?.destroy();
+                chartModel.setChartModalObject(new ApexCharts(document.querySelector('#modal_chart'), chartModel.getOptions().line));
+                chartModel.chartModalObject?.render();
             }
         });
     }
+
+    static createChartModalWindow(modalBtn: HTMLElement, chartModel: Chart) {
+        const chartModal = document.querySelector('#chart_modal') as HTMLElement;
+        const modalContent = createNewElement('div', ['modal-content'], chartModal);
+        const closeBtnModal = createNewElement('button', ['close-modal-window'], modalContent);
+        closeBtnModal.textContent = 'X';
+        const modalChart = createNewElement('div', [], modalContent);
+        modalChart.id = 'modal_chart';
+
+        chartModel.setChartModalObject(new ApexCharts(document.querySelector('#modal_chart'), chartModel.getOptions().candlestick));
+        chartModel.chartModalObject!.render();
+        modalBtn.addEventListener('click', () => {
+            chartModal.style.display = 'block';
+        });
+        closeBtnModal.addEventListener('click', () => {
+            chartModal.style.display = 'none';
+        });
+        window.addEventListener('click', (event) => {
+            if (event.target === chartModal) {
+                chartModal.style.display = 'none';
+            }
+        });
+    }
+
 }
 

@@ -48,7 +48,9 @@ export default class Controller {
 
     public calculatorModel: Calculator;
 
-    public chart: Chart;
+    public mainChart: Chart;
+
+    public oneCoinChart: Chart;
 
     public coinsList: CoinsList;
 
@@ -96,7 +98,8 @@ export default class Controller {
         this.coin = new Coin();
         this.newsModel = new News();
         this.calculatorModel = new Calculator();
-        this.chart = new Chart(this);
+        this.mainChart = new Chart(this);
+        this.oneCoinChart = new Chart(this);
         this.coinsList = new CoinsList();
         this.runningLine = new RunningLine();
 
@@ -132,16 +135,21 @@ export default class Controller {
 
     changePage(com: string) {
         if (com === 'calc') {
+            this.mainData.currentPage = 'calc';
             this.drawCalculator();
         } else if (com === 'news') {
+            this.mainData.currentPage = 'news';
             this.newsView.viewNews();
         } else if (com === 'chart') {
-            this.chartView.viewChart();
+            //  this.chartView.viewChart();
         } else if (com === 'watchlist') {
+            this.mainData.currentPage = 'watchlist';
             this.watchlistViev.viewWatchList();
         } else if (com === 'portfolio') {
+            this.mainData.currentPage = 'portfolio';
             this.portfolioView.viewPortfolio();
-        } else {
+        } else if (com === 'main'){
+            this.mainData.currentPage = 'main';
             this.mainPageRedraw();
         }
     }
@@ -149,16 +157,21 @@ export default class Controller {
     mainPageRedraw() {
         this.coinsList.apiReqArray(this.mainData.selectedCurrency.id).then(() => {
             this.pagesContainerHTML.innerHTML = '';
-            createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
+            const mainPageContainer = createNewElement('div', ['mainpage_container'], this.pagesContainerHTML);
             this.coinsListView.viewCoinsList();
             this.setCoinsListListeners();
-            this.chartView.viewMainPageChart();
+
+            const chartHTML = createNewElement('div', ['chart_container']);
+            chartHTML.classList.add('chart_main_container');
+            mainPageContainer.appendChild(chartHTML);
+            this.drawChart(chartHTML, this.mainChart);
+
             this.newsMainPageView.viewNewsMain();
             this.drawRunningLine();
 
             // after all set user name
             setTimeout(() => {
-                this.setAuth('login', null)
+                this.setAuth('login', null);
             }, 2000);
         });
     }
@@ -308,6 +321,8 @@ export default class Controller {
     }
 
     setCurrentLang(language: string) {
+        this.mainData.setSelectedLang(language);
+        this.changePage(language);
         this.user.setLang(language).then(() => {
             this.header.langHeader.innerText = this.getCurrentLang();
         });
@@ -318,6 +333,8 @@ export default class Controller {
     }
 
     setCurrentCurrency(currency: string) {
+        this.mainData.setSelectedCurrency(currency);
+        this.changePage(this.mainData.selectedLang);
         this.user.setCurrency(currency).then(() => {
             this.header.currencyChangeHeader.innerText = this.getCurrentCurrency();
         });
@@ -362,6 +379,7 @@ export default class Controller {
                     elParent = elParent.parentElement as HTMLElement;
                     if (elParent.classList.contains('popup_view')) {
                         closePopUp = false;
+                        break;
                     }
                 }
                 if (closePopUp) {
@@ -378,29 +396,29 @@ export default class Controller {
     drawNewsView() {
         this.newsModel.apiReqNews().then((news: NewsData) => {
             this.newsView.drawNewsView(news);
-        })
+        });
     }
 
-    setAuth(command: string, userData: TypeUser|null) {
-        if(command === 'signup' && userData !== null) {
+    setAuth(command: string, userData: TypeUser | null) {
+        if (command === 'signup' && userData !== null) {
             this.user.data = userData;
             this.user.signUp().then((isOk: boolean) => {
                 this.authView.setLogin();
                 this.closePopUp();
             });
 
-        } else if(command === 'signin' && userData !== null) {
+        } else if (command === 'signin' && userData !== null) {
             this.user.signIn(userData).then((isOk: boolean) => {
                 this.authView.setLogin();
                 this.closePopUp();
             });
 
-        } else if(command === 'login') {
+        } else if (command === 'login') {
             this.authView.setLogin();
 
-        } else if(command === 'savedata' && userData !== null) {
-            this.user.saveData(userData).then( (isOk: boolean) => {
-                if(isOk) {
+        } else if (command === 'savedata' && userData !== null) {
+            this.user.saveData(userData).then((isOk: boolean) => {
+                if (isOk) {
                     this.authView.setLogin();
                     this.closePopUp();
                 }
@@ -410,5 +428,34 @@ export default class Controller {
 
     getLangValue(key: string): string {
         return (lang[this.mainData.selectedLang.toLowerCase()] as LangType)[key] as string;
+    }
+
+    drawChart(rootElement: HTMLElement, chartModel: Chart) {
+        chartModel.getData().then(() => {
+                this.chartView.drawChart(rootElement, chartModel);
+                this.setChartListeners(chartModel);
+            }
+        );
+    }
+
+    setChartListeners(chartModel: Chart) {
+        const daysSelector = document.querySelector('#days-count') as HTMLSelectElement;
+        daysSelector.addEventListener('change', () => {
+            chartModel.setSelectedDaysOption(daysSelector.value);
+            ChartView.redrawChart(chartModel);
+        });
+        const chartViewButton = document.querySelector('#chart-button') as HTMLSelectElement;
+
+        chartViewButton.addEventListener('click', () => {
+            if (chartModel.currentView === 'candlestick') {
+                chartModel.setCurrentView('line');
+                ChartView.redrawChart(chartModel);
+                chartViewButton.textContent = this.getLangValue('chart_candle_chart');
+            } else {
+                chartModel.setCurrentView('candlestick');
+                ChartView.redrawChart(chartModel);
+                chartViewButton.textContent = this.getLangValue('chart_line_chart');
+            }
+        });
     }
 }

@@ -54,23 +54,23 @@ export default class CoinsListView {
         const numberCoinHeader = createNewElement('div', ['coin-number-header'], headerRow);
         numberCoinHeader.textContent = '#';
         numberCoinHeader.id = 'market-cap';
-        const watchListCoinHeader = createNewElement('div', ['coin-number-header'], headerRow);
+        const watchListCoinHeader = createNewElement('div', ['coin-watchlist-header'], headerRow);
         const nameCoinHeader = createNewElement('div', ['coin-name-header'], headerRow);
-        nameCoinHeader.textContent = 'Наименование';
+        nameCoinHeader.textContent = this.controller.getLangValue('coin_list_name');
         nameCoinHeader.id = 'coin-id';
         const currentPriceHeader = createNewElement('div', ['coin-price-header'], headerRow);
-        currentPriceHeader.textContent = 'Текущая цена';
+        currentPriceHeader.textContent = this.controller.getLangValue('coin_list_price');
         const changePriceHeader = createNewElement('div', ['coin-change-price-header'], headerRow);
         changePriceHeader.textContent = '24h %';
         const marketCupHeader = createNewElement('div', ['coin-market-cup-header'], headerRow);
-        marketCupHeader.textContent = 'Рыночная капитализация';
+        marketCupHeader.textContent = this.controller.getLangValue('coin_list_marketCup');
         const changeMarketCupHeader = createNewElement('div', ['coin-change-market-cup-header'], headerRow);
-        changeMarketCupHeader.textContent = 'Объём 24h %';
+        changeMarketCupHeader.textContent = this.controller.getLangValue('coin_list_marketPercent');
         const totalVolumeHeader = createNewElement('div', ['coin-total-volume-header'], headerRow);
-        totalVolumeHeader.textContent = 'Объём сделок';
+        totalVolumeHeader.textContent = this.controller.getLangValue('coin_list_totalVolume');
         totalVolumeHeader.id = 'total-volume-header';
         const circulatingSupplyHeader = createNewElement('div', ['coin-circulating-supply-header'], headerRow);
-        circulatingSupplyHeader.textContent = 'Циркулирующее предложение';
+        circulatingSupplyHeader.textContent = this.controller.getLangValue('coin_list_circulatingSupply');
     }
 
     drawControlPanel() {

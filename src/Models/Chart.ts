@@ -1,6 +1,8 @@
+import ApexCharts from 'apexcharts';
 import Controller from '../Controllers/Controller';
 import { getChartData } from '../api/apiRequest';
 import { ChartData } from '../api/apiRequestTypes';
+import { ChartOption } from '../App/chartType';
 
 export default class Chart {
 
@@ -18,15 +20,19 @@ export default class Chart {
 
     public chartData: ChartData[];
 
-    constructor(controller: Controller) {
+    public chartObject: ApexCharts | undefined;
+
+    public chartModalObject: ApexCharts | undefined;
+
+    constructor(controller: Controller, cryptoCurrency = 'bitcoin') {
         this.controller = controller;
-        this.cryptoCurrency = 'bitcoin';
+        this.cryptoCurrency = cryptoCurrency;
         this.selectedDaysOption = '7';
         this.chartData = [];
         this.currentView = 'candlestick';
     }
 
-    getOptions() {
+    getOptions(): ChartOption {
         return {
             candlestick: {
                 chart: {
@@ -84,7 +90,7 @@ export default class Chart {
             },
             line: {
                 chart: {
-                    type: 'line',
+                    type: 'area',
                     zoom: {
                         autoScaleYaxis: true
                     }
@@ -123,6 +129,9 @@ export default class Chart {
                             day: 'dd MMM',
                             hour: 'HH:mm'
                         }
+                    },
+                    tooltip: {
+                        enabled: true
                     }
                 },
                 yaxis: {
@@ -155,5 +164,23 @@ export default class Chart {
         return this.chartData;
     }
 
+    setSelectedDaysOption(selectedOption: string) {
+        this.selectedDaysOption = selectedOption;
+    }
 
+    setCurrentView(currentView: string) {
+        this.currentView = currentView;
+    }
+
+    setChartObject(chartObject: ApexCharts) {
+        this.chartObject = chartObject;
+    }
+
+    setCryptoCurrency(cryptoCurrency: string) {
+        this.cryptoCurrency = cryptoCurrency;
+    }
+
+    setChartModalObject(chartObject: ApexCharts) {
+        this.chartModalObject = chartObject;
+    }
 }

@@ -3,8 +3,8 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 10px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(60, 60, 60);
+    color: rgb(51, 51, 51);
+    background-color: rgb(251, 249, 246);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -17,19 +17,24 @@ body {
     gap: 20px;
     height: 50px;
     margin-bottom: 30px;
+    color: rgb(51, 51, 51);
+    background-color: rgb(252, 250, 247);
 }
 
 .header_container {
-    background-color: #a37eb9;
+    color: rgb(51, 51, 51);
+    background-color: rgb(252, 250, 247);
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding: 20px;
 }
 
 .logoname_container {
     display: flex;
     justify-content: flex-start;
     flex-grow: 2;
+    column-gap: 20px;
 }
 
 .control_header {
@@ -40,7 +45,6 @@ body {
 }
 
 .logo_header {
-    background-color: blue;
     width: 30px;
     height: 30px;
 }
@@ -68,6 +72,11 @@ body {
     color: red;
 }
 
+h1 {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
 .name_header {
     margin: 0;
 }
@@ -80,11 +89,23 @@ body {
 
 .login_button {
     min-width: 300px;
+    transition: all .5s ease;
+    color: rgb(51, 51, 51);
+    border: 1px solid white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
     text-align: center;
+    line-height: 1;
+    font-size: 17px;
+    background-color: transparent;
+    padding: 10px;
+    outline: none;
+    border-radius: 4px;
 }
 
 .login_button:hover {
-    color: blue;
+    color: rgb(255, 139, 52);
+    background-color: rgb(241, 233, 228);
 }
 
 /* popup start ======================================== */
@@ -235,7 +256,7 @@ body {
 }
 
 .tabs_container {
-    background-color: #babd9a;
+    background-color: rgb(251, 249, 246);
 }
 
 .pages_container {
@@ -374,6 +395,40 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+}
+
+button {
+    transition: all .5s ease;
+    color: rgb(51, 51, 51);
+    border: 1px solid white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 17px;
+    background-color: transparent;
+    padding: 10px;
+    outline: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    color: rgb(255, 139, 52);
+    background-color: rgb(241, 233, 228);
+}
+
+.tab_button {
+    width: 200px;
+    height: 80px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    background-color: rgb(241, 233, 228);
+    color: rgb(181, 153, 136)
+}
+
+.tab_button:hover {
+    color: rgb(255, 139, 52);
+    background-color: rgb(255, 255, 255);
 }
 
 .footer-git-container {
