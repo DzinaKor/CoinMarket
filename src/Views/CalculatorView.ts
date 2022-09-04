@@ -15,13 +15,13 @@ export default class CalculatorView {
     viewCalculator() {
         this.calculatorHTML.innerHTML = '';
         const calcHeader = createNewElement('h2', ['calc-h2'], this.calculatorHTML);
-        calcHeader.textContent = 'Калькулятор и конвертер криптовалют';
+        calcHeader.textContent = this.controller.getLangValue('calc_header');
         const calcWrapper = createNewElement('div', ['calc-wrapper'], this.calculatorHTML);
         const currentAmountWrapper = createNewElement('div', ['calc-flex-row'], calcWrapper);
         const currentAmount = createNewElement('input', ['calc-amount', 'calc-control'], currentAmountWrapper);
 
         currentAmount.setAttribute('type', 'number');
-        currentAmount.setAttribute('placeholder', 'введите сумму для конвертации');
+        currentAmount.setAttribute('placeholder', this.controller.getLangValue('calc_placeholder'));
         currentAmount.setAttribute('min', '0');
 
         const currencyBlock = createNewElement('div', ['calc-flex-row'], calcWrapper);
@@ -53,7 +53,7 @@ export default class CalculatorView {
 
         const calcExchangeBlock = createNewElement('div', ['calc-exchange-block'], this.calculatorHTML);
         const calcExchangeBlockHeader = createNewElement('h2', [], calcExchangeBlock);
-        calcExchangeBlockHeader.textContent = 'Популярные варианты конвертации криптовалют';
+        calcExchangeBlockHeader.textContent = this.controller.getLangValue('calc_popular_exchanges');
         const calcExchangeContent = createNewElement('div', ['calc-exchange-content'], calcExchangeBlock);
 
         this.controller.calculatorModel.cryptoList.forEach(crypto => {
@@ -63,7 +63,7 @@ export default class CalculatorView {
                 element.classList.add('exchange-pair');
                 element.setAttribute('crypto', crypto);
                 element.setAttribute('fiat', fiat);
-                element.textContent = `${crypto.toUpperCase()} to ${fiat.toUpperCase()}`;
+                element.textContent = `${crypto.toUpperCase()} ➞ ${fiat.toUpperCase()}`;
                 calcColumn.appendChild(element);
             });
             calcExchangeContent.appendChild(calcColumn);

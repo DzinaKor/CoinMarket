@@ -27,6 +27,8 @@ import WatchList from '../Models/WatchList';
 import Portfolio from '../Models/Portfolio';
 import WatchListView from '../Views/WatchListView';
 import PortfolioView from '../Views/PortfolioView';
+import { NewsData } from '../api/apiRequestTypes';
+import lang, { LangType } from '../Models/LangData';
 
 export default class Controller {
     public mainData: MainData;
@@ -305,8 +307,8 @@ export default class Controller {
         return this.user.data.lang;
     }
 
-    setCurrentLang(lang: string) {
-        this.user.setLang(lang).then(() => {
+    setCurrentLang(language: string) {
+        this.user.setLang(language).then(() => {
             this.header.langHeader.innerText = this.getCurrentLang();
         });
     }
@@ -330,7 +332,7 @@ export default class Controller {
     }
 
     deleteFromWatchList(coin: string): Array<string> {
-        return this.watchlist.changeWatchList(-1, coin);    
+        return this.watchlist.changeWatchList(-1, coin);
     }
 
     getWatchList(): Array<string> {
@@ -373,6 +375,12 @@ export default class Controller {
         this.oneCoinView.viewOneCoin(coinId);
     }
 
+    drawNewsView() {
+        this.newsModel.apiReqNews().then((news: NewsData) => {
+            this.newsView.drawNewsView(news);
+        })
+    }
+
     setAuth(command: string, userData: TypeUser|null) {
         if(command === 'signup' && userData !== null) {
             this.user.data = userData;
@@ -398,5 +406,9 @@ export default class Controller {
                 }
             });
         }
+    }
+
+    getLangValue(key: string): string {
+        return (lang[this.mainData.selectedLang.toLowerCase()] as LangType)[key] as string;
     }
 }

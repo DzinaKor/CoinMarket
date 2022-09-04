@@ -15,7 +15,7 @@ export default class ChartView {
     }
 
     viewChart() {
-        this.chartHTML.innerHTML = 'this is Chart';
+        this.chartHTML.innerHTML = '';
         this.chartHTML.classList.add('chart_main_container');
         this.controller.pagesContainerHTML.innerHTML = '';
         this.controller.pagesContainerHTML.appendChild(this.chartHTML);
@@ -34,7 +34,7 @@ export default class ChartView {
     drawChart() {
         const chartButton = createNewElement('button', ['chart-btn'], this.chartHTML);
         chartButton.id = 'chart-button';
-        chartButton.textContent = 'Line Chart';
+        chartButton.textContent = this.controller.getLangValue('chart_line_chart');
         const daysCount = createNewElement('select', ['days-count'], this.chartHTML) as HTMLSelectElement;
         daysCount.setAttribute('id', 'days-count');
         this.controller.chart.days.forEach((item) => {
@@ -60,7 +60,7 @@ export default class ChartView {
             this.chartObject?.updateOptions(
                 (this.controller.chart.currentView === 'candlestick')
                     ? options.candlestick
-                    : options.line)
+                    : options.line);
         });
     }
 
@@ -76,11 +76,11 @@ export default class ChartView {
             if (this.controller.chart.currentView === 'candlestick') {
                 this.controller.chart.currentView = 'line';
                 this.chartObject?.updateOptions(this.controller.chart.getOptions().line, true);
-                chartViewButton.textContent = 'Candle Chart';
+                chartViewButton.textContent = this.controller.getLangValue('chart_candle_chart');
             } else {
                 this.controller.chart.currentView = 'candlestick';
                 this.chartObject?.updateOptions(this.controller.chart.getOptions().candlestick, true);
-                chartViewButton.textContent = 'Line Chart';
+                chartViewButton.textContent = this.controller.getLangValue('chart_line_chart');
             }
         });
     }

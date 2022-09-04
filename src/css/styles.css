@@ -77,6 +77,7 @@ body {
     height: 40px;
     cursor: pointer;
 }
+
 .login_button {
     min-width: 300px;
     text-align: center;
@@ -255,14 +256,59 @@ body {
         'list list news';
 }
 
+/* news ======================================== */
 .newsmain_container {
-    background-color: #a37eb9;
+    background-color: rgb(252, 250, 247);
     grid-area: news;
 }
 
 .news_container {
-    background-color: chocolate;
+    background-color: rgb(255, 255, 255);
     flex-grow: 999;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    row-gap: 25px;
+}
+
+.one_news_container {
+    width: 65%;
+    color: rgb(29, 29, 29);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    padding: 25px;
+    align-self: center;
+}
+
+.news_image {
+    align-self: center;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.news_title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    width: 50%;
+    width: auto;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.news_body {
+    width: auto;
+    text-align: justify;
+
+}
+
+.news_date {
+    font-style: italic;
+    margin-top: 30px;
+    width: auto;
 }
 
 .calculator_container {
@@ -285,6 +331,7 @@ body {
     background-color: dodgerblue;
     grid-area: list;
     overflow-y: auto;
+    max-height: calc(100vh - 260px);
 }
 
 .one_coin_container,
@@ -306,6 +353,22 @@ body {
 }
 
 
+.one_news_container {}
+
+.news_image {
+    width: 50%;
+}
+
+.news_title {
+    font-size: larger;
+    font-weight: bold;
+
+}
+
+.coin_image {
+    width: 25px;
+    height: 25px;
+}
 
 .single_coin_container {
     display: flex;
