@@ -1,0 +1,60 @@
+.coins_list_container {
+    padding: 5px;
+    background-color: dodgerblue;
+    grid-area: list;
+    overflow-y: auto;
+}
+
+.panel-block {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pagination-block {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.pagination-btn-prev,
+.pagination-btn-next {
+    height: 40px;
+    width: 40px;
+}
+
+.current-page {
+
+}
+
+.header_container {
+    height: 40px;
+    text-align: center;
+}
+
+.coins-count {
+    height: 40px;
+    width: 60px;
+}
+
+
+.coin-logo-img {
+    width: 25px;
+    height: 25px;
+}
+
+#market-cap,
+#coin-id,
+#total-volume-header {
+    cursor: pointer;
+}
+
+.coin_image {
+    width: 25px;
+    height: 25px;
+}

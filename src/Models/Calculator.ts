@@ -1,4 +1,5 @@
 import { ExchangeBtcCoin, ExchangeCoinData, ExchangeRates } from '../api/apiRequestTypes';
+import '../css/calculator.css';
 
 export default class Calculator {
     public exchangeData: ExchangeCoinData;

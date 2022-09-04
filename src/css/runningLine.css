@@ -18,7 +18,7 @@
 }
 
 .running-line {
-    width: 800px;
+    width: 1200px;
     height: 75px;
     margin: 0 auto;
     white-space: nowrap;
@@ -32,7 +32,7 @@
     flex-direction: row;
     gap: 100px;
     padding-left: 100%;
-    animation: running-line 15s linear infinite;
+    animation: running-line 40s linear infinite;
 }
 
 .marquee-line:hover {

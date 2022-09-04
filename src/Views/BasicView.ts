@@ -21,8 +21,8 @@ export function createOptionElement(value: string, texContent: string, parent: H
     return element;
 }
 
-export function addCoinDescriptionHTML(txt: string | number, parent: HTMLElement, cls = 'coin_description'): HTMLElement {
-    const tempHTML: HTMLElement = createNewElement('div', [cls], parent);
+export function addCoinDescriptionHTML(txt: string | number, parent: HTMLElement, cls: string): HTMLElement {
+    const tempHTML: HTMLElement = createNewElement('div', ['coin_description', cls], parent);
     tempHTML.innerText = String(txt);
     return tempHTML;
 }

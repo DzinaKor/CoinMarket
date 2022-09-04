@@ -2,6 +2,7 @@ import Controller from '../Controllers/Controller';
 import { CoinMarketData } from '../api/apiRequestTypes';
 import { addCoinDescriptionHTML, createNewElement, createOptionElement } from './BasicView';
 import { IMG_FAV, IMG_NOFAV } from '../constants';
+import '../css/coinList.css';
 
 export default class CoinsListView {
     public controller: Controller;
@@ -32,19 +33,19 @@ export default class CoinsListView {
             coinRow.addEventListener('click', () => {
                 this.controller.drawOneCoinView(oneCoin.id);
             });
-            addCoinDescriptionHTML((oneCoin.market_cap_rank) ? oneCoin.market_cap_rank : '-', coinRow);
+            addCoinDescriptionHTML((oneCoin.market_cap_rank) ? oneCoin.market_cap_rank : '-', coinRow, 'market_cap_rank');
             coinRow.appendChild(this.addWatchCoinHTML(oneCoin.id));
-            const coinTitleBlock = createNewElement('div', ['coin_description'], coinRow);
+            const coinTitleBlock = createNewElement('div', ['coin_description', 'coin-list_header'], coinRow);
             const coinImage = createNewElement('img', ['coin-logo-img'], coinTitleBlock);
             coinImage.setAttribute('src', oneCoin.image);
             coinImage.setAttribute('alt', 'coin-logo');
-            addCoinDescriptionHTML(`${oneCoin.name} - ${oneCoin.symbol.toUpperCase()}`, coinTitleBlock);
-            addCoinDescriptionHTML(`${symbol} ${oneCoin.current_price.toLocaleString()}`, coinRow);
-            addCoinDescriptionHTML((oneCoin.price_change_percentage_24h) ? `${oneCoin.price_change_percentage_24h}%` : '-', coinRow);
-            addCoinDescriptionHTML(`${symbol} ${oneCoin.market_cap.toLocaleString()}`, coinRow);
-            addCoinDescriptionHTML((oneCoin.market_cap_change_percentage_24h) ? `${oneCoin.market_cap_change_percentage_24h}%` : '-', coinRow);
-            addCoinDescriptionHTML(`${symbol} ${oneCoin.total_volume.toLocaleString()}`, coinRow);
-            addCoinDescriptionHTML(`${symbol} ${oneCoin.circulating_supply.toLocaleString()}`, coinRow);
+            addCoinDescriptionHTML(`${oneCoin.name} - ${oneCoin.symbol.toUpperCase()}`, coinTitleBlock, 'coin-list_coin-name');
+            addCoinDescriptionHTML(`${symbol} ${oneCoin.current_price.toLocaleString()}`, coinRow, 'coin-list_current-price');
+            addCoinDescriptionHTML((oneCoin.price_change_percentage_24h) ? `${oneCoin.price_change_percentage_24h}%` : '-', coinRow, 'coin-list_percentage');
+            addCoinDescriptionHTML(`${symbol} ${oneCoin.market_cap.toLocaleString()}`, coinRow, 'coin-list_market-cup');
+            addCoinDescriptionHTML((oneCoin.market_cap_change_percentage_24h) ? `${oneCoin.market_cap_change_percentage_24h}%` : '-', coinRow, 'coin-list_percentage24h');
+            addCoinDescriptionHTML(`${symbol} ${oneCoin.total_volume.toLocaleString()}`, coinRow, 'coin-list_volume');
+            addCoinDescriptionHTML(`${symbol} ${oneCoin.circulating_supply.toLocaleString()}`, coinRow, 'coin-list_supply');
         });
     }
 
