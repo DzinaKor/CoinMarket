@@ -24,6 +24,7 @@ export default class Header {
     }
 
     viewHeader() {
+        this.headerHTML.innerHTML = '';
         const headerContainer: HTMLElement = createNewElement('div', ['header_container'], this.headerHTML);
 
         const logoNameHeader: HTMLElement = createNewElement('div', ['logoname_container'], headerContainer);
@@ -40,7 +41,7 @@ export default class Header {
         searchInput.id = 'search-input';
         searchInput.setAttribute('type', 'text');
         searchInput.setAttribute('name', 'searchField');
-        searchInput.setAttribute('placeholder', 'Search...');
+        searchInput.setAttribute('placeholder', this.controller.getLangValue('placeholder_searchInput'));
         this.controller.searchAutocomplete();
 
         controlHeader.appendChild(this.langHeader);
@@ -80,6 +81,16 @@ export default class Header {
             setTimeout(() => {
                 this.controller.isPopUp = true;
             }, 100);
+
+            popUpView.addEventListener('click', (event) => {
+                const element = event.target as HTMLElement;
+                if (element.hasAttribute('data-lang')) {
+                    this.controller.mainData.setSelectedLang(element.getAttribute('data-lang') as string);
+                    this.controller.chartView.redrawChart();
+                    this.controller.drawRunningLine();
+                    this.viewHeader();
+                }
+            });
         }
     }
 
