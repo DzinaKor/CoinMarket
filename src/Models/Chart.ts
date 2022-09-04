@@ -1,6 +1,8 @@
+import ApexCharts from 'apexcharts';
 import Controller from '../Controllers/Controller';
 import { getChartData } from '../api/apiRequest';
 import { ChartData } from '../api/apiRequestTypes';
+import { ChartOption } from '../App/chartType';
 
 export default class Chart {
 
@@ -18,15 +20,17 @@ export default class Chart {
 
     public chartData: ChartData[];
 
-    constructor(controller: Controller) {
+    public chartObject: ApexCharts | undefined;
+
+    constructor(controller: Controller, cryptoCurrency = 'bitcoin') {
         this.controller = controller;
-        this.cryptoCurrency = 'bitcoin';
+        this.cryptoCurrency = cryptoCurrency;
         this.selectedDaysOption = '7';
         this.chartData = [];
         this.currentView = 'candlestick';
     }
 
-    getOptions() {
+    getOptions(): ChartOption {
         return {
             candlestick: {
                 chart: {
@@ -155,5 +159,15 @@ export default class Chart {
         return this.chartData;
     }
 
+    setSelectedDaysOption(selectedOption: string) {
+        this.selectedDaysOption = selectedOption;
+    }
 
+    setCurrentView(currentView: string) {
+        this.currentView = currentView;
+    }
+
+    setChartObject(chartObject: ApexCharts) {
+        this.chartObject = chartObject;
+    }
 }

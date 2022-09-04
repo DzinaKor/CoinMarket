@@ -107,7 +107,6 @@ export default class Header {
                 if (element.hasAttribute('data-curr')) {
                     this.controller.mainData.setSelectedCurrency(element.getAttribute('data-curr') as string);
                     this.controller.coinsUpdate();
-                    this.controller.chartView.redrawChart();
                     this.controller.drawRunningLine();
                 }
             });
