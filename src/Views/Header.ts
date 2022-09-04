@@ -30,7 +30,7 @@ export default class Header {
         const logoNameHeader: HTMLElement = createNewElement('div', ['logoname_container'], headerContainer);
         const logoHeader: HTMLImageElement = createNewElement('img', ['logo_header'], logoNameHeader) as HTMLImageElement;
         logoHeader.alt = 'logo';
-        logoHeader.src = ''; /// TODO add logo
+        logoHeader.src = '../assets/images/ava2.svg';
         const nameHeader: HTMLElement = createNewElement('h1', ['name_header'], logoNameHeader);
         nameHeader.textContent = 'CoinMarket';
 
@@ -58,7 +58,7 @@ export default class Header {
 
         controlHeader.appendChild(this.darkmodeHeader);
         this.darkmodeHeader.alt = 'light/dark mode switch';
-        this.darkmodeHeader.src = DATA_IMAGE;
+        this.darkmodeHeader.src = '../assets/images/moon_dark.svg';
 
         const authHeader: HTMLElement = createNewElement('div', ['auth_header'], controlHeader);
     }
