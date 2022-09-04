@@ -53,7 +53,7 @@ export default class CoinsListView {
         const numberCoinHeader = createNewElement('div', ['coin-number-header'], headerRow);
         numberCoinHeader.textContent = '#';
         numberCoinHeader.id = 'market-cap';
-        const watchListCoinHeader = createNewElement('div', ['coin-number-header'], headerRow);
+        const watchListCoinHeader = createNewElement('div', ['coin-watchlist-header'], headerRow);
         const nameCoinHeader = createNewElement('div', ['coin-name-header'], headerRow);
         nameCoinHeader.textContent = this.controller.getLangValue('coin_list_name');
         nameCoinHeader.id = 'coin-id';
