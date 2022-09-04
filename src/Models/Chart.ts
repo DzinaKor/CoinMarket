@@ -90,7 +90,7 @@ export default class Chart {
             },
             line: {
                 chart: {
-                    type: 'line',
+                    type: 'area',
                     zoom: {
                         autoScaleYaxis: true
                     }
@@ -129,6 +129,9 @@ export default class Chart {
                             day: 'dd MMM',
                             hour: 'HH:mm'
                         }
+                    },
+                    tooltip: {
+                        enabled: true
                     }
                 },
                 yaxis: {

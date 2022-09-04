@@ -135,16 +135,21 @@ export default class Controller {
 
     changePage(com: string) {
         if (com === 'calc') {
+            this.mainData.currentPage = 'calc';
             this.drawCalculator();
         } else if (com === 'news') {
+            this.mainData.currentPage = 'news';
             this.newsView.viewNews();
         } else if (com === 'chart') {
             //  this.chartView.viewChart();
         } else if (com === 'watchlist') {
+            this.mainData.currentPage = 'watchlist';
             this.watchlistViev.viewWatchList();
         } else if (com === 'portfolio') {
+            this.mainData.currentPage = 'portfolio';
             this.portfolioView.viewPortfolio();
-        } else {
+        } else if (com === 'main'){
+            this.mainData.currentPage = 'main';
             this.mainPageRedraw();
         }
     }
@@ -316,6 +321,8 @@ export default class Controller {
     }
 
     setCurrentLang(language: string) {
+        this.mainData.setSelectedLang(language);
+        this.changePage(language);
         this.user.setLang(language).then(() => {
             this.header.langHeader.innerText = this.getCurrentLang();
         });
@@ -326,6 +333,8 @@ export default class Controller {
     }
 
     setCurrentCurrency(currency: string) {
+        this.mainData.setSelectedCurrency(currency);
+        this.changePage(this.mainData.selectedLang);
         this.user.setCurrency(currency).then(() => {
             this.header.currencyChangeHeader.innerText = this.getCurrentCurrency();
         });
@@ -398,6 +407,7 @@ export default class Controller {
                     elParent = elParent.parentElement as HTMLElement;
                     if (elParent.classList.contains('popup_view')) {
                         closePopUp = false;
+                        break;
                     }
                 }
                 if (closePopUp) {
@@ -467,13 +477,11 @@ export default class Controller {
         chartViewButton.addEventListener('click', () => {
             if (chartModel.currentView === 'candlestick') {
                 chartModel.setCurrentView('line');
-                chartModel.chartObject!.updateOptions(chartModel.getOptions().line, true);
-                chartModel.chartModalObject!.updateOptions(chartModel.getOptions().line, true);
+                ChartView.redrawChart(chartModel);
                 chartViewButton.textContent = this.getLangValue('chart_candle_chart');
             } else {
                 chartModel.setCurrentView('candlestick');
-                chartModel.chartObject!.updateOptions(chartModel.getOptions().candlestick, true);
-                chartModel.chartModalObject!.updateOptions(chartModel.getOptions().candlestick, true);
+                ChartView.redrawChart(chartModel);
                 chartViewButton.textContent = this.getLangValue('chart_line_chart');
             }
         });

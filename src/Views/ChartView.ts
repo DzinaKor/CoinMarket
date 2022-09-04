@@ -4,7 +4,6 @@ import { createNewElement, createOptionElement } from './BasicView';
 import Chart from '../Models/Chart';
 import '../css/modalWindowChart.css';
 
-
 export default class ChartView {
     public controller: Controller;
 
@@ -24,7 +23,7 @@ export default class ChartView {
         daysCount.value = chartModel.selectedDaysOption;
         const modalBtn = createNewElement('button', ['btn-modal-window'], rootElement);
         modalBtn.id = 'btn_modal-window';
-        modalBtn.textContent = 'Open Modal';
+        modalBtn.textContent = 'Fullscreen mode';
         const chartElement = createNewElement('div', [], rootElement);
         chartElement.id = 'chart';
         chartModel.setChartObject(new ApexCharts(document.querySelector('#chart'), chartModel.getOptions().candlestick));
@@ -37,14 +36,23 @@ export default class ChartView {
 
     static redrawChart(chartModel: Chart) {
         chartModel.getData().then(() => {
-            chartModel.chartObject!.updateOptions(
-                (chartModel.currentView === 'candlestick')
-                    ? chartModel.getOptions().candlestick
-                    : chartModel.getOptions().line);
-            chartModel.chartModalObject!.updateOptions(
-                (chartModel.currentView === 'candlestick')
-                    ? chartModel.getOptions().candlestick
-                    : chartModel.getOptions().line);
+            if (chartModel.currentView === 'candlestick') {
+                chartModel.chartObject?.destroy();
+                chartModel.setChartObject(new ApexCharts(document.querySelector('#chart'), chartModel.getOptions().candlestick));
+                chartModel.chartObject?.render();
+
+                chartModel.chartModalObject?.destroy();
+                chartModel.setChartModalObject(new ApexCharts(document.querySelector('#modal_chart'), chartModel.getOptions().candlestick));
+                chartModel.chartModalObject?.render();
+            } else {
+                chartModel.chartObject?.destroy();
+                chartModel.setChartObject(new ApexCharts(document.querySelector('#chart'), chartModel.getOptions().line));
+                chartModel.chartObject?.render();
+
+                chartModel.chartModalObject?.destroy();
+                chartModel.setChartModalObject(new ApexCharts(document.querySelector('#modal_chart'), chartModel.getOptions().line));
+                chartModel.chartModalObject?.render();
+            }
         });
     }
 
@@ -58,7 +66,6 @@ export default class ChartView {
 
         chartModel.setChartModalObject(new ApexCharts(document.querySelector('#modal_chart'), chartModel.getOptions().candlestick));
         chartModel.chartModalObject!.render();
-
         modalBtn.addEventListener('click', () => {
             chartModal.style.display = 'block';
         });
