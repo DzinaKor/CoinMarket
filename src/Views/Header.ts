@@ -91,7 +91,6 @@ export default class Header {
                 const element = event.target as HTMLElement;
                 if (element.hasAttribute('data-lang')) {
                     this.controller.setCurrentLang(element.getAttribute('data-lang') as string);
-                    //TODO update header this.viewHeader();
                     this.updateHeaderLanguage();
                     this.controller.tabsView.createButtons();
                     this.controller.changePage(this.controller.mainData.currentPage);
