@@ -37,7 +37,13 @@ const lang: LangType = {
         port_add: 'add',
         port_buy: 'buy',
         port_sell: 'sell',
-        port_delete: 'delete'
+        port_delete: 'delete',
+        onecoin_rank: 'Rank:',
+        onecoin_price: 'Price',
+        onecoin_change_price: 'Change price:',
+        onecoin_market_cup: 'Market cup:',
+        onecoin_total_volume: 'Total volume:',
+        onecoin_supply: 'Circulating supply:'
     },
     'ru': {
         calc_header: 'Калькулятор и конвертер криптовалют',
@@ -73,7 +79,13 @@ const lang: LangType = {
         port_add: 'Добавить',
         port_buy: 'Купить',
         port_sell: 'Продать',
-        port_delete: 'Удалить'
+        port_delete: 'Удалить',
+        onecoin_rank: 'Ранг:',
+        onecoin_price: 'Цена:',
+        onecoin_change_price: 'Изменение цены:',
+        onecoin_market_cup: 'Рыночная капитализация:',
+        onecoin_total_volume: 'Объём сделок:',
+        onecoin_supply: 'Циркулирующее предложение:'
     },
     'by': {
         calc_header: 'Калькулятар і канвэртар крыптавалют',
@@ -108,9 +120,13 @@ const lang: LangType = {
         port_add: 'Дадаць',
         port_buy: 'Купіць',
         port_sell: 'Прадаць',
-        port_delete: 'Выдаліць'
-
-
+        port_delete: 'Выдаліць',
+        onecoin_rank: 'Ранг:',
+        onecoin_price: 'Бягучы кошт:',
+        onecoin_change_price: 'Изменение цены:',
+        onecoin_market_cup: 'Рынкавая капіталізацыя:',
+        onecoin_total_volume: 'Агульны аб`ё:',
+        onecoin_supply: 'Абаротнае забеспячэнне:'
     }
 };
 
