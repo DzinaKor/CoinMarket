@@ -81,6 +81,7 @@ export default class Portfolio {
                 searchParams.append(k, v);
             });
             queryURL = `?${searchParams}`;
+            // console.log('request OK')
         }
 
         const res: Response = await fetch(`${URL_BACKEND}/portfolio${queryURL}`, requestParams);

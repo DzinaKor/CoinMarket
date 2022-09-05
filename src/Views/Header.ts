@@ -1,4 +1,3 @@
-import { DATA_IMAGE } from '../constants';
 import Controller from '../Controllers/Controller';
 import { createNewElement, createPopUp } from './BasicView';
 import '../css/searchSuggestions.css';
