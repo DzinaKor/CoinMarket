@@ -1,0 +1,70 @@
+.calc_container {
+    background-color: rgb(241, 233, 228);
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.calc_container h2 {
+    text-align: center;
+    margin: 50px auto 50px;
+}
+
+.calc-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.calc-amount,
+.calc-control {
+    height: 50px;
+    width: 300px;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 15px;
+    text-indent: 10px
+}
+
+.calc-exchange-btn {
+    border: 1px solid rgba(180, 156, 141, .5);
+}
+
+.calc-exchange-btn:hover {
+    background-color: white;
+}
+
+.calc-flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    gap: 10px;
+}
+
+.calc-exchange-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.exchange-pair,
+.calc-exchange-btn,
+.calc-control {
+    cursor: pointer;
+}
+
+
+
+
+
+
+

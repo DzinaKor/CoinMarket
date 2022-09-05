@@ -23,7 +23,7 @@ export default class ChartView {
         daysCount.value = chartModel.selectedDaysOption;
         const modalBtn = createNewElement('button', ['btn-modal-window'], rootElement);
         modalBtn.id = 'btn_modal-window';
-        modalBtn.textContent = 'Fullscreen mode';
+        modalBtn.textContent = this.controller.getLangValue('chart_fullscreen');
         const chartElement = createNewElement('div', [], rootElement);
         chartElement.id = 'chart';
         chartModel.setChartObject(new ApexCharts(document.querySelector('#chart'), chartModel.getOptions().candlestick));

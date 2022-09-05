@@ -284,7 +284,7 @@ h1 {
     column-gap: 10px;
 }
 
-.portfolio_coin_container>* {
+.portfolio_coin_container > * {
     flex-grow: 1;
 }
 
@@ -340,20 +340,17 @@ h1 {
     flex-grow: 999;
 }
 
-.footer {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    height: 50px;
-    margin-bottom: 30px;
+.main > div:first-child {
+    height: 80px;
 }
 
 .tabs_container {
     background-color: rgb(251, 249, 246);
+    display: flex;
+    flex-direction: row;
 }
 
 .pages_container {
-    background-color: darkgreen;
     flex-grow: 999;
     display: flex;
     flex-direction: column;
@@ -361,14 +358,14 @@ h1 {
 }
 
 .mainpage_container {
-    background-color: darkolivegreen;
+    background-color: rgb(252, 250, 247);
     flex-grow: 999;
     display: grid;
+    grid-row-gap: 10px;
     grid-template-columns: 1.5fr 0.5fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 'list list gr'
         'list list news';
-    /*max-height: 70vh;*/
 }
 
 /* news ======================================== */
@@ -429,33 +426,44 @@ h1 {
 }
 
 .calculator_container {
-    background-color: tomato;
+    background-color: rgb(241, 233, 228);
     flex-grow: 999;
 }
 
+/*  chart-main ======================================== */
 .chart_container {
-    background-color: #d2d0d2;
     flex-grow: 999;
     color: #2a2929;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-left: none;
 }
 
 .chart_main_container {
-    background-color: darkslateblue;
     grid-area: gr;
 }
 
-.coins_list_container {
-    background-color: dodgerblue;
-    grid-area: list;
-    overflow-y: auto;
-    max-height: calc(100vh - 260px);
+.chart-btn,
+.btn-modal-window {
+    margin: 10px;
+    color: #3a3939;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 15px;
 }
 
-.one_coin_container,
+.btn-modal-window {
+    margin-left: 100px;
+}
+
+.days-count {
+    width: 70px;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .header_container,
 .panel-block,
-.pagination-block,
-.footer-container {
+.pagination-block {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -486,12 +494,6 @@ h1 {
     font-size: larger;
     font-weight: bold;
 
-}
-
-#market-cap,
-#coin-id,
-#total-volume-header {
-    cursor: pointer;
 }
 
 .coin_image {
@@ -545,7 +547,59 @@ button:hover {
     background-color: rgb(255, 255, 255);
 }
 
-.footer-git-container {
+footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 15px;
+    gap: 20px;
+    padding: 10px;
+    background-color: rgb(241, 233, 228);
+}
+
+footer .footer-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+    gap: 50px;
+}
+
+footer .footer-git-container {
     display: flex;
     flex-direction: column;
+    gap: 5px;
+}
+
+
+footer .logo,
+footer .github {
+    font-size: 16px;
+    color: #B59988;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+}
+
+footer a {
+    color: #000000;
+}
+
+footer a:hover {
+    color: rgb(238, 238, 238);
+}
+
+footer .copyright:before {
+    content: '©';
+    gap: 0;
+}
+
+footer .rs-logo {
+    width: 80px;
 }

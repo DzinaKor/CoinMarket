@@ -23,6 +23,11 @@ export default class Header {
         this.viewHeader();
     }
 
+    updateHeaderLanguage() {
+        const searchInput = document.querySelector('#search-input') as HTMLElement;
+        searchInput.setAttribute('placeholder', this.controller.getLangValue('placeholder_searchInput'));
+    }
+
     viewHeader() {
         this.headerHTML.innerHTML = '';
         const headerContainer: HTMLElement = createNewElement('div', ['header_container'], this.headerHTML);
@@ -86,6 +91,9 @@ export default class Header {
                 const element = event.target as HTMLElement;
                 if (element.hasAttribute('data-lang')) {
                     this.controller.setCurrentLang(element.getAttribute('data-lang') as string);
+                    //TODO update header this.viewHeader();
+                    this.updateHeaderLanguage();
+                    this.controller.tabsView.createButtons();
                     this.controller.changePage(this.controller.mainData.currentPage);
                 }
             });

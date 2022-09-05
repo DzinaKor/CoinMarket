@@ -1,11 +1,12 @@
-
 .trend-coin {
+    width: 400px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     gap: 10px;
     align-items: center;
     justify-content: center;
-    border: 1px solid gray;
+   /* border: 1px solid rgba(180, 156, 141, .5);*/
     padding: 5px;
 }
 
@@ -18,13 +19,12 @@
 }
 
 .running-line {
-    width: 800px;
-    height: 75px;
-    margin: 0 auto;
+    width: 1200px;
+    height: 80px;
     white-space: nowrap;
     overflow: hidden;
     box-sizing: border-box;
-    margin-top: 10px;
+    margin: 10px auto 0;
 }
 
 .marquee-line {
@@ -32,7 +32,7 @@
     flex-direction: row;
     gap: 100px;
     padding-left: 100%;
-    animation: running-line 15s linear infinite;
+    animation: running-line 40s linear infinite;
 }
 
 .marquee-line:hover {

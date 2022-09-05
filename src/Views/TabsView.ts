@@ -15,15 +15,24 @@ export default class TabsView {
     }
 
     createButtons() {
+        this.tabsContainerHTML.innerHTML = '';
         const mainButton: HTMLButtonElement = this.addButton('tab_mainPage', 'main');
-        mainButton.classList.add('tab_button_select');
         this.tabsContainerHTML.appendChild(mainButton);
-        // this.tabsContainerHTML.appendChild(this.addButton('tab_mainPage', 'main'));
-        this.tabsContainerHTML.appendChild(this.addButton('tab_calcPage', 'calc'));
-        this.tabsContainerHTML.appendChild(this.addButton('tab_newsPage', 'news'));
-        this.tabsContainerHTML.appendChild(this.addButton('tab_chartPage', 'chart'));
-        this.tabsContainerHTML.appendChild(this.addButton('tab_watchPage', 'watchlist'));
-        this.tabsContainerHTML.appendChild(this.addButton('tab_portfolioPage', 'portfolio'));
+        const calcButton: HTMLButtonElement = this.tabsContainerHTML.appendChild(this.addButton('tab_calcPage', 'calc'));
+        const newsButton: HTMLButtonElement = this.tabsContainerHTML.appendChild(this.addButton('tab_newsPage', 'news'));
+        const watchButton: HTMLButtonElement = this.tabsContainerHTML.appendChild(this.addButton('tab_watchPage', 'watchlist'));
+        const portfolioButton: HTMLButtonElement = this.tabsContainerHTML.appendChild(this.addButton('tab_portfolioPage', 'portfolio'));
+        if (this.controller.mainData.currentPage === 'calc') {
+            calcButton.classList.add('tab_button_select');
+        } else if (this.controller.mainData.currentPage === 'news') {
+            newsButton.classList.add('tab_button_select');
+        } else if (this.controller.mainData.currentPage === 'watchlist') {
+            watchButton.classList.add('tab_button_select');
+        } else if (this.controller.mainData.currentPage === 'portfolio') {
+            portfolioButton.classList.add('tab_button_select');
+        } else if (this.controller.mainData.currentPage === 'main') {
+            mainButton.classList.add('tab_button_select');
+        }
     }
 
     addButton(name: string, com: string): HTMLButtonElement {

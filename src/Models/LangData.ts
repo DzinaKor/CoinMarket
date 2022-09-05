@@ -9,6 +9,7 @@ const lang: LangType = {
         calc_popular_exchanges: 'Popular options for converting cryptocurrencies',
         chart_line_chart: 'Line Chart',
         chart_candle_chart: 'Candlestick Chart',
+        chart_fullscreen: 'Full mode',
         chart_price: 'Price',
         coin_list_name: 'Name',
         coin_list_price: 'Price',
@@ -25,7 +26,7 @@ const lang: LangType = {
         tab_watchPage: 'Watchlist',
         tab_portfolioPage: 'Portfolio',
         auth_signin: 'Sign In',
-        auth_signup: 'Sign Un',
+        auth_signup: 'Sign Up',
         auth_savebutton: 'Save',
         auth_username: 'Name',
         auth_email: 'Email',
@@ -36,9 +37,7 @@ const lang: LangType = {
         port_add: 'add',
         port_buy: 'buy',
         port_sell: 'sell',
-        port_delete: 'delete',
-
-
+        port_delete: 'delete'
     },
     'ru': {
         calc_header: 'Калькулятор и конвертер криптовалют',
@@ -46,6 +45,7 @@ const lang: LangType = {
         calc_popular_exchanges: 'Популярные варианты конвертации криптовалют',
         chart_line_chart: 'Линейный график',
         chart_candle_chart: 'Свечной график',
+        chart_fullscreen: 'Развернуть',
         chart_price: 'Цена:',
         coin_list_name: 'Наименование',
         coin_list_price: 'Текущая цена',
@@ -61,23 +61,19 @@ const lang: LangType = {
         tab_chartPage: 'График',
         tab_watchPage: 'Избранное',
         tab_portfolioPage: 'Портфолио',
-        auth_signin: 'Регистрация',
-        auth_signup: 'Войти',
+        auth_signin: 'Войти',
+        auth_signup: 'Регистрация',
         auth_savebutton: 'Сохранить',
         auth_username: 'Имя',
-        auth_email: 'Емэйл',
+        auth_email: 'email',
         auth_password: 'Пароль',
         auth_password_placeholder: 'Пароль должен быть более 6 символов',
-        auth_your_email: 'Ваш емэйл',
+        auth_your_email: 'Ваш email',
         auth_your_password: 'Ваш пароль',
         port_add: 'Добавить',
         port_buy: 'Купить',
         port_sell: 'Продать',
-        port_delete: 'Удалить',
-
-
-
-
+        port_delete: 'Удалить'
     },
     'by': {
         calc_header: 'Калькулятар і канвэртар крыптавалют',
@@ -85,6 +81,7 @@ const lang: LangType = {
         calc_popular_exchanges: 'Папулярныя варыянты канвертавання крыптавалют',
         chart_line_chart: 'Лінейны графік',
         chart_candle_chart: 'Свячны графік',
+        chart_fullscreen: 'Pазгарнуць',
         chart_price: 'Кошт',
         coin_list_name: 'Назва',
         coin_list_price: 'Бягучы кошт',
@@ -99,19 +96,19 @@ const lang: LangType = {
         tab_newsPage: 'Навіны',
         tab_watchPage: 'Абранае',
         tab_portfolioPage: 'Партфоліо',
-        auth_signin: 'Зарэгістравацца',
-        auth_signup: 'Уваход',
+        auth_signin: 'Уваход',
+        auth_signup: 'Зарэгістравацца',
         auth_savebutton: 'Захаваць',
         auth_username: 'Імя',
-        auth_email: 'Емэйл',
+        auth_email: 'email',
         auth_password: 'Пароль',
         auth_password_placeholder: 'Пароль павінен быць больш за 6 сімвалаў',
-        auth_your_email: 'Ваш емэйл',
+        auth_your_email: 'Ваш email',
         auth_your_password: 'Ваш пароль',
         port_add: 'Дадаць',
         port_buy: 'Купіць',
         port_sell: 'Прадаць',
-        port_delete: 'Выдаліць',
+        port_delete: 'Выдаліць'
 
 
     }

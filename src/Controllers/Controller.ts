@@ -136,8 +136,6 @@ export default class Controller {
         } else if (com === 'news') {
             this.mainData.currentPage = 'news';
             this.newsView.viewNews();
-        } else if (com === 'chart') {
-            //  this.chartView.viewChart();
         } else if (com === 'watchlist') {
             this.mainData.currentPage = 'watchlist';
             this.watchlistViev.viewWatchList();
@@ -147,6 +145,9 @@ export default class Controller {
         } else if (com === 'main') {
             this.mainData.currentPage = 'main';
             this.mainPageRedraw();
+        } else if (com === 'oneCoin') {
+            this.mainData.currentPage = 'oneCoin';
+            this.drawOneCoinView(this.mainData.currentOneCoin);
         }
     }
 
@@ -296,8 +297,13 @@ export default class Controller {
                         coinImage.setAttribute('alt', 'coin-logo');
                         const text = createNewElement('div', [], element);
                         text.textContent = `${suggestion.name} - ${suggestion.id.toUpperCase()}`;
-                        element.addEventListener('click', () => {
-                            // TODO add link to one coin with coin-id attribute
+                        element.addEventListener('click', (event) => {
+                            const el = (event.target as HTMLElement).closest('.suggestion') as HTMLElement;
+                            if (el.hasAttribute('coin-id')) {
+                                this.mainData.setCurrentOneCoin(el.getAttribute('coin-id') as string);
+                                this.mainData.currentPage = 'oneCoin';
+                                this.drawOneCoinView(this.mainData.currentOneCoin);
+                            }
                             Controller.closeAllLists();
                         });
                     });
@@ -318,7 +324,7 @@ export default class Controller {
 
     setCurrentLang(language: string) {
         this.mainData.setSelectedLang(language);
-        this.changePage(language);
+        this.changePage(this.mainData.currentPage);
         this.user.setLang(language).then(() => {
             this.header.langHeader.innerText = this.getCurrentLang();
         });
@@ -330,7 +336,7 @@ export default class Controller {
 
     setCurrentCurrency(currency: string) {
         this.mainData.setSelectedCurrency(currency);
-        this.changePage(this.mainData.selectedLang);
+        this.changePage(this.mainData.currentPage);
         this.user.setCurrency(currency).then(() => {
             this.header.currencyChangeHeader.innerText = this.getCurrentCurrency();
         });
@@ -415,6 +421,8 @@ export default class Controller {
     }
 
     drawOneCoinView(coinId: string) {
+        this.mainData.currentPage = 'oneCoin';
+        this.tabsView.reSetTabCSS();
         this.oneCoinView.viewOneCoin(coinId);
     }
 
@@ -463,9 +471,9 @@ export default class Controller {
 
     drawChart(rootElement: HTMLElement, chartModel: Chart) {
         chartModel.getData().then(() => {
-            this.chartView.drawChart(rootElement, chartModel);
-            this.setChartListeners(chartModel);
-        }
+                this.chartView.drawChart(rootElement, chartModel);
+                this.setChartListeners(chartModel);
+            }
         );
     }
 

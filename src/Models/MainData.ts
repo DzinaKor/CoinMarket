@@ -12,10 +12,13 @@ export default class MainData {
 
     public currentPage: string;
 
+    public currentOneCoin: string;
+
     constructor() {
         this.selectedCurrency = { id: 'USD', symbol: '$' };
         this.selectedLang = 'EN';
         this.currentPage = 'main';
+        this.currentOneCoin = 'bitcoin'
     }
 
     setSelectedCurrency(currency: string) {
@@ -24,5 +27,9 @@ export default class MainData {
 
     setSelectedLang(lang: string) {
         this.selectedLang = this.langList.find(el => el === lang.toUpperCase()) as string;
+    }
+
+    setCurrentOneCoin(coin: string) {
+        this.currentOneCoin = coin;
     }
 }
