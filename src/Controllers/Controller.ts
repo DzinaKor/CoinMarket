@@ -360,7 +360,8 @@ export default class Controller {
         let newPortfolio: Map<string, number> = new Map();
         switch (command) {
             case 'add':
-                newPortfolio = this.portfolio.addPortfolio(coinId, value);
+                await this.portfolio.addPortfolio(coinId, value);
+                newPortfolio = this.portfolio.portArray;
                 break;
 
             case 'delete':
