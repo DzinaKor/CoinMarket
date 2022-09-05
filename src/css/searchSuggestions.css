@@ -40,6 +40,21 @@
     flex-direction: row;
 }
 
+#search-input {
+    height: 40px;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 15px;
+    color: #B59988;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+#search-input:hover {
+    background-color: #F4E9E4;
+    border-color: rgba(255,139,52);
+    transition: all .5s ease;
+}
+
 
 .dark-mode .autocomplete-items {
     background-color: var(--dm-element-color);

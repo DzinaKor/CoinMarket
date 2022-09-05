@@ -28,7 +28,7 @@ export default class WatchListView {
             coinRow.addEventListener('click', () => {
                 this.controller.drawOneCoinView(oneCoin.id);
             });
-            addCoinDescriptionHTML((oneCoin.market_cap_rank) ? oneCoin.market_cap_rank : '-', coinRow, '');
+            addCoinDescriptionHTML((oneCoin.market_cap_rank) ? oneCoin.market_cap_rank : '-', coinRow, 'coin_desc');
             
             const coinTitleBlock = createNewElement('div', ['coin_description'], coinRow);
             const coinImage = createNewElement('img', ['coin-logo-img'], coinTitleBlock);
