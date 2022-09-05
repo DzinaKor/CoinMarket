@@ -676,9 +676,15 @@ body.dark-mode {
 }
 
 .dark-mode .auth_button_disable {
-    color: red;
-    background-color: gray;
+    color: var(--dm-text-main-color);
+    background-color: var(--dm-element-color);
 }
+
+.dark-mode .auth_button_disable:hover {
+    color: var(--dm-pink-color);
+    background-color: var(--dm-element-hover-color);
+}
+
 
 .dark-mode .auth_button_save {
     border-color: var(--dm-element-color);
@@ -692,7 +698,7 @@ body.dark-mode {
 }
 
 .dark-mode .signin_link {
-    color: white;
+    color: var(--dm-text-main-color);
 }
 
 .dark-mode .signin_link:hover {
@@ -818,13 +824,15 @@ body.dark-mode {
     color: var(--dm-pink-color);
 }
 
-.dark-mode #search-input {
+.dark-mode #search-input,
+.dark-mode .auth_container input {
     border-color: var(--dm-pink-color);
     background-color: var(--dm-element-color);
     color: var(--dm-text-main-color);
 }
 
-.dark-mode #search-input:hover {
+.dark-mode #search-input:hover,
+.dark-mode .auth_container input:hover {
     border-color: var(--dm-pink-color);
     background-color: var(--dm-element-hover-color);
     color: var(--dm-pink-color);
