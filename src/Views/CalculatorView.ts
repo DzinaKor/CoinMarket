@@ -25,17 +25,11 @@ export default class CalculatorView {
         currentAmount.setAttribute('min', '0');
 
         const currencyBlock = createNewElement('div', ['calc-flex-row'], calcWrapper);
-        const originalCurrencyLabel = createNewElement('label', [], currencyBlock);
-        originalCurrencyLabel.setAttribute('for', 'select-original-currency');
-
         const originalCurrencySelect = createNewElement('select', ['calc-control'], currencyBlock);
         originalCurrencySelect.setAttribute('id', 'select-original-currency');
         const exchangeCurrencyButton = createNewElement('button', ['calc-exchange-btn'], currencyBlock);
         exchangeCurrencyButton.setAttribute('type', 'button');
         exchangeCurrencyButton.textContent = '⇆';
-
-        const receivedCurrencyLabel = createNewElement('label', [], currencyBlock);
-        receivedCurrencyLabel.setAttribute('for', 'select-received-currency');
         const receivedCurrencySelect = createNewElement('select', ['calc-control'], currencyBlock);
         receivedCurrencySelect.setAttribute('id', 'select-received-currency');
 

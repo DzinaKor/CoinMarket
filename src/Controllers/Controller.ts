@@ -301,8 +301,13 @@ export default class Controller {
                         coinImage.setAttribute('alt', 'coin-logo');
                         const text = createNewElement('div', [], element);
                         text.textContent = `${suggestion.name} - ${suggestion.id.toUpperCase()}`;
-                        element.addEventListener('click', () => {
-                            // TODO add link to one coin with coin-id attribute
+                        element.addEventListener('click', ( event) => {
+                            const el = (event.target as HTMLElement).closest('.suggestion') as HTMLElement;
+                            if (el.hasAttribute('coin-id')) {
+                                this.mainData.setCurrentOneCoin(el.getAttribute('coin-id') as string);
+                                this.mainData.currentPage = 'oneCoin';
+                                this.drawOneCoinView(this.mainData.currentOneCoin);
+                            }
                             Controller.closeAllLists();
                         });
                     });

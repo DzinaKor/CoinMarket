@@ -9,6 +9,7 @@ const lang: LangType = {
         calc_popular_exchanges: 'Popular options for converting cryptocurrencies',
         chart_line_chart: 'Line Chart',
         chart_candle_chart: 'Candlestick Chart',
+        chart_fullscreen: 'Full mode',
         chart_price: 'Price',
         coin_list_name: 'Name',
         coin_list_price: 'Price',
@@ -21,10 +22,8 @@ const lang: LangType = {
         tab_mainPage: 'Main Page',
         tab_calcPage: 'Calculator',
         tab_newsPage: 'News Page',
-        tab_chartPage: 'Chart Page',
         tab_watchPage: 'Watch Page',
         tab_portfolioPage: 'Portfolio',
-
 
     },
     'ru': {
@@ -33,6 +32,7 @@ const lang: LangType = {
         calc_popular_exchanges: 'Популярные варианты конвертации криптовалют',
         chart_line_chart: 'Линейный график',
         chart_candle_chart: 'Свечной график',
+        chart_fullscreen: 'Развернуть',
         chart_price: 'Цена:',
         coin_list_name: 'Наименование',
         coin_list_price: 'Текущая цена',
@@ -45,13 +45,8 @@ const lang: LangType = {
         tab_mainPage: 'Главная',
         tab_calcPage: 'Калькулятор валют',
         tab_newsPage: 'Новости',
-        tab_chartPage: 'График',
         tab_watchPage: 'Просмотренные валюты',
         tab_portfolioPage: 'Портфолио',
-
-
-
-
 
     },
     'by': {
@@ -60,6 +55,7 @@ const lang: LangType = {
         calc_popular_exchanges: 'Папулярныя варыянты канвертавання крыптавалют',
         chart_line_chart: 'Лінейны графік',
         chart_candle_chart: 'Свячны графік',
+        chart_fullscreen: 'Pазгарнуць',
         chart_price: 'Кошт',
         coin_list_name: '',
         coin_list_price: '',
@@ -74,8 +70,6 @@ const lang: LangType = {
         tab_chartPage: '',
         tab_watchPage: '',
         tab_portfolioPage: '',
-
-
 
     }
 };

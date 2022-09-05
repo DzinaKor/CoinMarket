@@ -33,11 +33,6 @@
     cursor: pointer;
 }
 
-button#coins-next:hover,
-button#coins-prev:hover {
-    background-color: rgb(241, 233, 228);
-}
-
 .coins-count {
     width: 70px;
     padding: 10px;

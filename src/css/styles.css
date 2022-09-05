@@ -247,12 +247,17 @@ h1 {
     flex-grow: 999;
 }
 
+.main>div:first-child {
+    height: 80px;
+}
+
 .tabs_container {
     background-color: rgb(251, 249, 246);
+    display: flex;
+    flex-direction: row;
 }
 
 .pages_container {
-    background-color: darkgreen;
     flex-grow: 999;
     display: flex;
     flex-direction: column;
@@ -325,10 +330,9 @@ h1 {
 }
 
 .calculator_container {
-    background-color: tomato;
+    background-color: rgb(241, 233, 228);
     flex-grow: 999;
 }
-
 
 /*  chart-main ======================================== */
 .chart_container {
@@ -336,6 +340,7 @@ h1 {
     flex-grow: 999;
     color: #2a2929;
     border: 1px solid rgba(180, 156, 141, .5);
+     border-left: none;
 }
 
 .chart_main_container {
@@ -350,7 +355,7 @@ h1 {
 }
 
 .btn-modal-window {
-    margin-left: 150px;
+    margin-left: 100px;
 }
 
 .days-count {
@@ -375,7 +380,6 @@ h1 {
 .coin_description {
     display: flex;
 }
-
 
 .one_news_container {}
 
