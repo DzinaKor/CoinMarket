@@ -41,9 +41,19 @@ export default class CoinsListView {
             coinImage.setAttribute('alt', 'coin-logo');
             addCoinDescriptionHTML(`${oneCoin.name} - ${oneCoin.symbol.toUpperCase()}`, coinTitleBlock, 'coin-list_coin-name');
             addCoinDescriptionHTML(`${symbol} ${oneCoin.current_price.toLocaleString()}`, coinRow, 'coin-list_current-price');
-            addCoinDescriptionHTML((oneCoin.price_change_percentage_24h) ? `${oneCoin.price_change_percentage_24h}%` : '-', coinRow, 'coin-list_percentage');
+            const priceChange = addCoinDescriptionHTML((oneCoin.price_change_percentage_24h) ? `${oneCoin.price_change_percentage_24h}%` : '-', coinRow, 'coin-list_percentage');
+            if (oneCoin.price_change_percentage_24h >= 0 && oneCoin.price_change_percentage_24h) {
+                priceChange.style.color = 'green';
+            } else if (oneCoin.price_change_percentage_24h < 0 && oneCoin.price_change_percentage_24h) {
+                priceChange.style.color = 'red';
+            }
             addCoinDescriptionHTML(`${symbol} ${oneCoin.market_cap.toLocaleString()}`, coinRow, 'coin-list_market-cup');
-            addCoinDescriptionHTML((oneCoin.market_cap_change_percentage_24h) ? `${oneCoin.market_cap_change_percentage_24h}%` : '-', coinRow, 'coin-list_percentage24h');
+            const marketChange = addCoinDescriptionHTML((oneCoin.market_cap_change_percentage_24h) ? `${oneCoin.market_cap_change_percentage_24h}%` : '-', coinRow, 'coin-list_percentage24h');
+            if (oneCoin.market_cap_change_percentage_24h >= 0 && oneCoin.market_cap_change_percentage_24h) {
+                marketChange.style.color = 'green';
+            } else if (oneCoin.market_cap_change_percentage_24h < 0 && oneCoin.market_cap_change_percentage_24h) {
+                marketChange.style.color = 'red';
+            }
             addCoinDescriptionHTML(`${symbol} ${oneCoin.total_volume.toLocaleString()}`, coinRow, 'coin-list_volume');
             addCoinDescriptionHTML(`${symbol} ${oneCoin.circulating_supply.toLocaleString()}`, coinRow, 'coin-list_supply');
         });
@@ -102,7 +112,7 @@ export default class CoinsListView {
         const coinWatchImg: HTMLImageElement = createNewElement('img', ['coin_list_watch_img'], imageBox) as HTMLImageElement;
         coinWatchImg.alt = '';
         coinWatchImg.setAttribute('data-watch-coin-id', coinId);
-        if(this.controller.checkCoinWatchList(coinId)) {
+        if (this.controller.checkCoinWatchList(coinId)) {
             coinWatchImg.setAttribute('data-watch', '1');
             coinWatchImg.src = IMG_FAV;
         } else {
@@ -112,13 +122,13 @@ export default class CoinsListView {
         coinWatchImg.addEventListener('click', (event) => {
             event.stopPropagation();
             this.toggleWatchCoinHTML(coinWatchImg, coinId);
-        })
+        });
 
         return imageBox;
     }
 
     toggleWatchCoinHTML(coinWatchImg: HTMLImageElement, coinId: string) {
-        if(coinWatchImg.getAttribute('data-watch') === '-1') {
+        if (coinWatchImg.getAttribute('data-watch') === '-1') {
             coinWatchImg.setAttribute('data-watch', '1');
             coinWatchImg.setAttribute('src', IMG_FAV);
             this.controller.addToWatchList(coinId);
@@ -131,10 +141,10 @@ export default class CoinsListView {
 
     reSetWatchCoinList(watchCoinArray: Array<string>) {
         // document.querySelectorAll('[data-watch]').forEach((coinWatchImg: HTMLImageElement) => {
-        if(this.controller !== undefined) {
+        if (this.controller !== undefined) {
             watchCoinArray.forEach((coinId: string) => {
-                const coinWatchImg: HTMLImageElement|null = document.querySelector(`[data-watch-coin-id=${coinId}]`);
-                if(coinWatchImg !== null) {
+                const coinWatchImg: HTMLImageElement | null = document.querySelector(`[data-watch-coin-id=${coinId}]`);
+                if (coinWatchImg !== null) {
                     coinWatchImg.setAttribute('data-watch', '1');
                     coinWatchImg.setAttribute('src', IMG_FAV);
                 }

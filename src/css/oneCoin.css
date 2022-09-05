@@ -1,7 +1,7 @@
 .onecoin_container {
     background-color: rgb(241, 233, 228);
-    border : 1px solid rgba(180, 156, 141, .5);
-    border-radius:  0 0 15px 15px;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 0 0 15px 15px;
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -23,7 +23,6 @@
 }
 
 
-
 .onecoin-row {
     display: flex;
     flex-direction: row;
@@ -31,7 +30,7 @@
     align-items: center;
     gap: 10px;
     font-size: 25px;
-    font-weight: bolder ;
+    font-weight: bolder;
 }
 
 .onecoin-links,
@@ -52,7 +51,7 @@ onecoin-price-row {
 }
 
 .onecoin-price-row {
-     display: flex;
+    display: flex;
     flex-direction: column;
     gap: 10px;
 }
@@ -64,4 +63,10 @@ onecoin-price-row {
 .one_coin_chart {
     width: 80%;
     margin-bottom: 50px;
+}
+
+.onecoin-change-price {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
