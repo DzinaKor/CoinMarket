@@ -448,6 +448,7 @@ h1 {
     color: #3a3939;
     border: 1px solid rgba(180, 156, 141, .5);
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .btn-modal-window {
@@ -459,6 +460,12 @@ h1 {
     border: 1px solid rgba(180, 156, 141, .5);
     border-radius: 5px;
     padding: 10px;
+    cursor: pointer;
+}
+
+.days-count:hover {
+    transition: all .5s ease;
+    border-color: rgba(255, 139, 55);
 }
 
 .header_container,
