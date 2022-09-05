@@ -547,6 +547,140 @@ button:hover {
     background-color: rgb(255, 255, 255);
 }
 
+/* watchlist=====================================*/
+.watchlist_container {
+    background-color: rgb(241, 233, 228);
+    grid-area: list;
+    overflow-y: auto;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 0 0 15px 15px;
+}
+
+.panel-block {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+
+.coins-count {
+    width: 70px;
+    padding: 10px;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 5px;
+}
+
+.coins_list_container .header_container {
+    height: 50px;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.coin-number-header,
+.coin-name-header,
+.coin-price-header,
+.coin-change-price-header,
+.coin-market-cup-header,
+.coin-change-market-cup-header,
+.coin-total-volume-header,
+.coin-circulating-supply-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+.coin-number-header,
+.market_cap_rank {
+    width: 3%;
+    margin-left: 10px;
+}
+
+.coin-watchlist-header,
+.coin_list_watch {
+    width: 3%;
+}
+
+.coin-name-header,
+.coin-list_header {
+    width: 20%;
+}
+
+.coin-price-header,
+.coin-list_current-price {
+    width: 11%;
+}
+
+.coin-change-price-header,
+.coin-list_percentage {
+    width: 10%;
+}
+
+.coin-market-cup-header,
+.coin-list_market-cup {
+    width: 12%;
+}
+
+.coin-change-market-cup-header,
+.coin-list_percentage24h {
+    width: 12%;
+}
+
+.coin-total-volume-header,
+.coin-list_volume {
+    width: 12%;
+}
+
+.coin-circulating-supply-header,
+.coin-list_supply {
+    width: 16%;
+}
+
+
+.one_coin_container {
+    display: flex;
+    flex-direction: row;
+    transition: all .5s ease;
+}
+
+.one_coin_container:hover {
+    background-color: white;
+}
+
+.coin-list_header {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.coin_list_watch {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.coin-logo-img {
+    width: 25px;
+    height: 25px;
+}
+
+#market-cap,
+#coin-id,
+#total-volume-header {
+    cursor: pointer;
+}
+
+.coin_image {
+    width: 25px;
+    height: 25px;
+}
+
+/* footer========================================*/
 footer {
     width: 100%;
     display: flex;
