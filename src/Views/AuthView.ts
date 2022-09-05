@@ -44,7 +44,7 @@ export default class AuthView {
             this.avatar = this.controller.getUserData().avatar;
             this.setLoginAvatar(true);
         } else {
-            this.loginHTML.textContent = 'LangJSON.signin';
+            this.loginHTML.textContent = this.controller.getLangValue('auth_signin');
             this.loginHTML.classList.add('auth_sign_in');
             this.avatar = 'ava1';
             this.setLoginAvatar(false);
@@ -61,13 +61,14 @@ export default class AuthView {
     setLogin() {
         if(this.controller.user !== null && this.controller.user !== undefined) {
             const login: string = this.controller.getUserData().name;
-            if(login && login.length > 0) {
+            // if(login && login.length > 0) {
+            if(this.controller.user.isAuth) {
                 this.loginHTML.textContent = login;
                 this.loginHTML.classList.remove('auth_sign_in');
                 this.loginHTML.classList.add('auth_login');
                 this.setLoginAvatar(true);
             } else {
-                this.loginHTML.textContent = 'LangJSON.signin';
+                this.loginHTML.textContent = this.controller.getLangValue('auth_signin');
                 this.loginHTML.classList.remove('auth_login');
                 this.loginHTML.classList.add('auth_sign_in');
                 this.setLoginAvatar(false);
@@ -107,13 +108,13 @@ export default class AuthView {
 
         changeCont.appendChild(this.avatarView());
 
-        addAuthTextHTML('LangJSON.username', changeCont);
+        addAuthTextHTML(this.controller.getLangValue('auth_username'), changeCont);
         this.userNameHTML = createNewElement('input', ['auth_user_name'], changeCont) as HTMLInputElement;
         this.userNameHTML.type = 'text';
         this.userNameHTML.value = this.controller.getUserData().name;
 
         const signUpButton: HTMLElement = createNewElement('div', ['auth_button', 'auth_button_save'], changeCont);
-        signUpButton.textContent = 'LangJSON.savebutton';
+        signUpButton.textContent = this.controller.getLangValue('auth_savebutton');
         signUpButton.addEventListener('click', () => {
             this.saveUserData('savedata');
         });
@@ -135,7 +136,7 @@ export default class AuthView {
 
         const signInCont: HTMLElement = createNewElement('div', ['auth_container'], this.signInHTML);
 
-        addAuthTextHTML('LangJSON.email', signInCont);
+        addAuthTextHTML(this.controller.getLangValue('auth_email'), signInCont);
         this.emailHTML = createNewElement('input', ['auth_email'], signInCont) as HTMLInputElement;
         this.emailHTML.type = 'email';
         this.emailHTML.placeholder = 'email@mail.com';
@@ -143,23 +144,23 @@ export default class AuthView {
             this.validateSignUp();
         });
 
-        addAuthTextHTML('LangJSON.password', signInCont);
+        addAuthTextHTML(this.controller.getLangValue('auth_password'), signInCont);
         this.passHTML = createNewElement('input', ['auth_pass'], signInCont) as HTMLInputElement;
         this.passHTML.type = 'password';
-        this.passHTML.placeholder = 'LangJSON.password_placeholder: больше 6 символов';
+        this.passHTML.placeholder = this.controller.getLangValue('auth_password_placeholder');
         this.passHTML.addEventListener('keyup', () => {
             this.validateSignUp();
         });
 
         const signInButton: HTMLElement = createNewElement('div', ['auth_button', 'auth_button_save'], signInCont);
-        signInButton.textContent = 'LangJSON.signin';
+        signInButton.textContent = this.controller.getLangValue('auth_signin');
         signInButton.addEventListener('click', () => {
             this.signIn();
         });
 
         addAuthTextHTML(' ', signInCont);
         const signUpButton: HTMLElement = createNewElement('div', ['signin_link'], signInCont);
-        signUpButton.textContent = 'LangJSON.signup';
+        signUpButton.textContent = this.controller.getLangValue('auth_signup');
         signUpButton.addEventListener('click', () => {
             this.controller.closePopUp();
             this.signUpView();
@@ -190,7 +191,7 @@ export default class AuthView {
         addAuthTextHTML('LangJSON.email', signUpCont);
         this.emailHTML = createNewElement('input', ['auth_email'], signUpCont) as HTMLInputElement;
         this.emailHTML.type = 'email';
-        this.emailHTML.placeholder = 'email@mail.com';
+        this.emailHTML.placeholder = this.controller.getLangValue('auth_your_email');
         this.emailHTML.addEventListener('keyup', () => {
             this.validateSignUp();
         });
@@ -198,13 +199,13 @@ export default class AuthView {
         addAuthTextHTML('LangJSON.password', signUpCont);
         this.passHTML = createNewElement('input', ['auth_pass'], signUpCont) as HTMLInputElement;
         this.passHTML.type = 'password';
-        this.passHTML.placeholder = 'LangJSON.password_placeholder: больше 6 символов';
+        this.passHTML.placeholder = this.controller.getLangValue('auth_your_password');
         this.passHTML.addEventListener('keyup', () => {
             this.validateSignUp();
         });
 
         const signUpButton: HTMLElement = createNewElement('div', ['auth_button', 'auth_button_disable'], signUpCont);
-        signUpButton.textContent = 'LangJSON.signup';
+        signUpButton.textContent = this.controller.getLangValue('auth_signup');
         signUpButton.id = 'auth_sign_up_btn';
         signUpButton.addEventListener('click', () => {
             this.signUp();

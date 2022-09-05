@@ -162,3 +162,9 @@ export type ChartData = {
     low: number;
     close: number
 }
+
+export type CoinsNameList = {
+    id: string,
+    symbol: string,
+    name: string
+}

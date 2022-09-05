@@ -9,7 +9,6 @@ import CoinsListView from '../Views/CoinsListView';
 import Footer from '../Views/Footer';
 import Header from '../Views/Header';
 import MainView from '../Views/MainView';
-import NewsMainView from '../Views/NewsMainView';
 import NewsView from '../Views/NewsView';
 import TabsView from '../Views/TabsView';
 import { createNewElement } from '../Views/BasicView';
@@ -27,7 +26,7 @@ import WatchList from '../Models/WatchList';
 import Portfolio from '../Models/Portfolio';
 import WatchListView from '../Views/WatchListView';
 import PortfolioView from '../Views/PortfolioView';
-import { NewsData } from '../api/apiRequestTypes';
+import { NewsData, CoinsNameList } from '../api/apiRequestTypes';
 import lang, { LangType } from '../Models/LangData';
 
 export default class Controller {
@@ -66,8 +65,6 @@ export default class Controller {
     public footer: Footer;
 
     public pagesContainerHTML: HTMLElement;
-
-    public newsMainPageView: NewsMainView;
 
     public newsView: NewsView;
 
@@ -111,7 +108,6 @@ export default class Controller {
         this.tabsView = new TabsView(this);
         this.pagesContainerHTML = this.mainView.addPagesContainer();
 
-        this.newsMainPageView = new NewsMainView(this);
         this.runningLineView = new RunningLineView(this);
         this.newsView = new NewsView(this);
         this.calculatorView = new CalculatorView(this);
@@ -146,7 +142,7 @@ export default class Controller {
         } else if (com === 'portfolio') {
             this.mainData.currentPage = 'portfolio';
             this.portfolioView.viewPortfolio();
-        } else if (com === 'main'){
+        } else if (com === 'main') {
             this.mainData.currentPage = 'main';
             this.mainPageRedraw();
         } else if (com === 'oneCoin') {
@@ -167,7 +163,7 @@ export default class Controller {
             mainPageContainer.appendChild(chartHTML);
             this.drawChart(chartHTML, this.mainChart);
 
-            this.newsMainPageView.viewNewsMain();
+            this.newsView.viewNewsMain();
             this.drawRunningLine();
 
             // after all set user name
@@ -366,6 +362,35 @@ export default class Controller {
         return this.watchlist.checkCoinWatchList(coin);
     }
 
+    async changePortfolio(command: string, coinId = '', value = 0): Promise<Map<string, number>> {
+        let newPortfolio: Map<string, number> = new Map();
+        switch (command) {
+            case 'add':
+                await this.portfolio.addPortfolio(coinId, value);
+                newPortfolio = this.portfolio.portArray;
+                break;
+
+            case 'delete':
+                newPortfolio = this.portfolio.deletePortfolio(coinId);
+                break;
+
+            case 'set':
+                newPortfolio = this.portfolio.setPortfolio(coinId, value);
+                break;
+
+            default:
+                newPortfolio = await this.portfolio.getPortfolio();
+                break;
+        }
+        return newPortfolio;
+    }
+
+    async getAllCoinsList(): Promise<Array<CoinsNameList>> {
+        const portCoinList: Array<CoinsNameList> = await this.portfolio.getCoinsList();
+        return portCoinList;
+    }
+
+
     closePopUp() {
         const popUpView: HTMLElement | null = document.querySelector('.popup_view');
         if (popUpView !== null) {
@@ -406,6 +431,12 @@ export default class Controller {
         });
     }
 
+    drawNewsMainView() {
+        this.newsModel.apiReqNews().then((news: NewsData) => {
+            this.newsView.drawNewsMainView(news);
+        });
+    }
+
     setAuth(command: string, userData: TypeUser | null) {
         if (command === 'signup' && userData !== null) {
             this.user.data = userData;
@@ -439,9 +470,9 @@ export default class Controller {
 
     drawChart(rootElement: HTMLElement, chartModel: Chart) {
         chartModel.getData().then(() => {
-                this.chartView.drawChart(rootElement, chartModel);
-                this.setChartListeners(chartModel);
-            }
+            this.chartView.drawChart(rootElement, chartModel);
+            this.setChartListeners(chartModel);
+        }
         );
     }
 
