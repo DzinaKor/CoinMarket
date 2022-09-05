@@ -9,7 +9,6 @@ import CoinsListView from '../Views/CoinsListView';
 import Footer from '../Views/Footer';
 import Header from '../Views/Header';
 import MainView from '../Views/MainView';
-import NewsMainView from '../Views/NewsMainView';
 import NewsView from '../Views/NewsView';
 import TabsView from '../Views/TabsView';
 import { createNewElement } from '../Views/BasicView';
@@ -67,8 +66,6 @@ export default class Controller {
 
     public pagesContainerHTML: HTMLElement;
 
-    public newsMainPageView: NewsMainView;
-
     public newsView: NewsView;
 
     public calculatorView: CalculatorView;
@@ -111,7 +108,6 @@ export default class Controller {
         this.tabsView = new TabsView(this);
         this.pagesContainerHTML = this.mainView.addPagesContainer();
 
-        this.newsMainPageView = new NewsMainView(this);
         this.runningLineView = new RunningLineView(this);
         this.newsView = new NewsView(this);
         this.calculatorView = new CalculatorView(this);
@@ -148,7 +144,7 @@ export default class Controller {
         } else if (com === 'portfolio') {
             this.mainData.currentPage = 'portfolio';
             this.portfolioView.viewPortfolio();
-        } else if (com === 'main'){
+        } else if (com === 'main') {
             this.mainData.currentPage = 'main';
             this.mainPageRedraw();
         }
@@ -166,7 +162,7 @@ export default class Controller {
             mainPageContainer.appendChild(chartHTML);
             this.drawChart(chartHTML, this.mainChart);
 
-            this.newsMainPageView.viewNewsMain();
+            this.newsView.viewNewsMain();
             this.drawRunningLine();
 
             // after all set user name
@@ -424,6 +420,12 @@ export default class Controller {
     drawNewsView() {
         this.newsModel.apiReqNews().then((news: NewsData) => {
             this.newsView.drawNewsView(news);
+        });
+    }
+
+    drawNewsMainView() {
+        this.newsModel.apiReqNews().then((news: NewsData) => {
+            this.newsView.drawNewsMainView(news);
         });
     }
 

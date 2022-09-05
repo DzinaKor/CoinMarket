@@ -8,14 +8,17 @@ export default class TabsView {
 
     constructor(controller: Controller) {
         this.controller = controller;
-        const {mainHTML} = this.controller.mainView;
+        const { mainHTML } = this.controller.mainView;
         this.tabsContainerHTML = createNewElement('div', ['tabs_container'], mainHTML);
         this.tabsContainerHTML.innerHTML = '';
         this.createButtons();
     }
 
     createButtons() {
-        this.tabsContainerHTML.appendChild(this.addButton('tab_mainPage', 'main'));
+        const mainButton: HTMLButtonElement = this.addButton('tab_mainPage', 'main');
+        mainButton.classList.add('tab_button_select');
+        this.tabsContainerHTML.appendChild(mainButton);
+        // this.tabsContainerHTML.appendChild(this.addButton('tab_mainPage', 'main'));
         this.tabsContainerHTML.appendChild(this.addButton('tab_calcPage', 'calc'));
         this.tabsContainerHTML.appendChild(this.addButton('tab_newsPage', 'news'));
         this.tabsContainerHTML.appendChild(this.addButton('tab_chartPage', 'chart'));
@@ -28,7 +31,18 @@ export default class TabsView {
         button.innerText = this.controller.getLangValue(name);
         button.addEventListener('click', () => {
             this.controller.changePage(com);
+            this.reSetTabCSS();
+            button.classList.add('tab_button_select');
         });
         return button;
     }
+
+    reSetTabCSS() {
+        if (this.controller !== null) {
+            document.querySelectorAll('.tab_button').forEach((tab) => {
+                tab.classList.remove('tab_button_select');
+            });
+        }
+    }
+
 }

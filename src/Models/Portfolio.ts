@@ -14,8 +14,14 @@ export default class Portfolio {
         this.portArray = new Map();
     }
 
-    addPortfolio(coinId: string, value: number): Map<string, number> {
-
+    async addPortfolio(coinId: string, value: number): Promise<Map<string, number>> {
+        if (coinId !== '' && coinId.length > 0 && value >= 0) {
+            console.log(` ${this.portArray}`);
+            this.portArray.set(coinId, value);
+        }
+        console.log('check 10');
+        await this.putPortfolioDB();
+        console.log(`add portfolio ${this.portArray}`);
         return this.portArray;
     }
 
@@ -54,10 +60,10 @@ export default class Portfolio {
         if (response.ok) {
             console.log(`GET portfolio is OK! ${response.body}`);
             this.portArray = response.body;
-            this.portArray = new Map(Object.entries({ 'bitcoin': 9, 'dogecoin': 90, 'shiba-inu': 900 }));
+            // this.portArray = new Map(Object.entries({ 'bitcoin': 9, 'dogecoin': 90, 'shiba-inu': 900 }));
             return this.portArray;
         }
-        return new Map(Object.entries({ 'Bitcoin': 9, 'Dogecoin': 90, 'Shiba Inu': 900 }));
+        return new Map(Object.entries({}));
     }
 
     async makeRequest(method: string, body: Collect | null = null, params: Collect | null = null): Promise<BackResPort> {
@@ -78,7 +84,6 @@ export default class Portfolio {
                 searchParams.append(k, v);
             });
             queryURL = `?${searchParams}`;
-            // console.log('request OK')
         }
 
         const res: Response = await fetch(`${URL_BACKEND}/portfolio${queryURL}`, requestParams);
