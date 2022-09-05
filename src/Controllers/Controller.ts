@@ -310,6 +310,18 @@ export default class Controller {
                 });
             }
         });
+
+        window.addEventListener('click', (event) => {
+            const list = document.querySelectorAll('.autocomplete-items');
+            if(list.length > 0) {
+                const element = event.target as HTMLElement;
+                if (!element.classList.contains('autocomplete-items')) {
+                    list.forEach(item => {
+                        item.remove();
+                    });
+                }
+            }
+        });
     }
 
     static closeAllLists() {
