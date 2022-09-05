@@ -284,7 +284,7 @@ h1 {
     column-gap: 10px;
 }
 
-.portfolio_coin_container>* {
+.portfolio_coin_container > * {
     flex-grow: 1;
 }
 
@@ -340,7 +340,7 @@ h1 {
     flex-grow: 999;
 }
 
-.main>div:first-child {
+.main > div:first-child {
     height: 80px;
 }
 
@@ -361,6 +361,7 @@ h1 {
     background-color: rgb(252, 250, 247);
     flex-grow: 999;
     display: grid;
+    grid-row-gap: 10px;
     grid-template-columns: 1.5fr 0.5fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 'list list gr'
@@ -431,15 +432,13 @@ h1 {
 
 /*  chart-main ======================================== */
 .chart_container {
-    background-color: #d2d0d2;
     flex-grow: 999;
     color: #2a2929;
     border: 1px solid rgba(180, 156, 141, .5);
-     border-left: none;
+    border-left: none;
 }
 
 .chart_main_container {
-    background-color: #d2d0d2; ;
     grid-area: gr;
 }
 
@@ -447,6 +446,8 @@ h1 {
 .btn-modal-window {
     margin: 10px;
     color: #3a3939;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 15px;
 }
 
 .btn-modal-window {
@@ -455,7 +456,7 @@ h1 {
 
 .days-count {
     width: 70px;
-    border: 1px solid  #d2d0d2;
+    border: 1px solid rgba(180, 156, 141, .5);
     border-radius: 5px;
     padding: 10px;
 }

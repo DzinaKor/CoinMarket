@@ -297,7 +297,7 @@ export default class Controller {
                         coinImage.setAttribute('alt', 'coin-logo');
                         const text = createNewElement('div', [], element);
                         text.textContent = `${suggestion.name} - ${suggestion.id.toUpperCase()}`;
-                        element.addEventListener('click', ( event) => {
+                        element.addEventListener('click', (event) => {
                             const el = (event.target as HTMLElement).closest('.suggestion') as HTMLElement;
                             if (el.hasAttribute('coin-id')) {
                                 this.mainData.setCurrentOneCoin(el.getAttribute('coin-id') as string);
@@ -421,7 +421,8 @@ export default class Controller {
     }
 
     drawOneCoinView(coinId: string) {
-        this.mainData.currentPage = 'oneCoin'
+        this.mainData.currentPage = 'oneCoin';
+        this.tabsView.reSetTabCSS();
         this.oneCoinView.viewOneCoin(coinId);
     }
 
@@ -470,9 +471,9 @@ export default class Controller {
 
     drawChart(rootElement: HTMLElement, chartModel: Chart) {
         chartModel.getData().then(() => {
-            this.chartView.drawChart(rootElement, chartModel);
-            this.setChartListeners(chartModel);
-        }
+                this.chartView.drawChart(rootElement, chartModel);
+                this.setChartListeners(chartModel);
+            }
         );
     }
 

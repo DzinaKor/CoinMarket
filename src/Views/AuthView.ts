@@ -1,7 +1,7 @@
-import { TypeUser } from "../App/types";
-import Controller from "../Controllers/Controller";
+import { TypeUser } from '../App/types';
+import Controller from '../Controllers/Controller';
 import { createNewElement, addAuthTextHTML, createPopUp, createPopUpMove } from './BasicView';
-import { USER_AVATAR } from "../constants";
+import { USER_AVATAR } from '../constants';
 
 export default class AuthView {
     public controller: Controller;
@@ -38,7 +38,7 @@ export default class AuthView {
         const loginCont: HTMLElement = createNewElement('div', ['login_container'], this.authHeader);
         this.avatarHTML = createNewElement('img', ['login_avatar'], loginCont) as HTMLImageElement;
         this.loginHTML = createNewElement('div', ['login_button'], loginCont);
-        if(this.controller.user.isAuth) {
+        if (this.controller.user.isAuth) {
             this.loginHTML.textContent = this.controller.user.getUserName();
             this.loginHTML.classList.add('auth_login');
             this.avatar = this.controller.getUserData().avatar;
@@ -59,10 +59,10 @@ export default class AuthView {
     }
 
     setLogin() {
-        if(this.controller.user !== null && this.controller.user !== undefined) {
+        if (this.controller.user !== null && this.controller.user !== undefined) {
             const login: string = this.controller.getUserData().name;
             // if(login && login.length > 0) {
-            if(this.controller.user.isAuth) {
+            if (this.controller.user.isAuth) {
                 this.loginHTML.textContent = login;
                 this.loginHTML.classList.remove('auth_sign_in');
                 this.loginHTML.classList.add('auth_login');
@@ -77,7 +77,7 @@ export default class AuthView {
     }
 
     setLoginAvatar(isSet: boolean) {
-        if(isSet) {
+        if (isSet) {
             this.avatarHTML.alt = this.avatar;
             this.avatarHTML.src = String(USER_AVATAR.get(this.avatar));
             this.avatarHTML.width = 50;
@@ -90,8 +90,8 @@ export default class AuthView {
     }
 
     changeUserDataView() {
-        if(!this.controller.isPopUp) {
-            if(!this.controller.user.isAuth) {
+        if (!this.controller.isPopUp) {
+            if (!this.controller.user.isAuth) {
                 this.signInView();
             } else {
                 this.changeUserData();
@@ -184,11 +184,11 @@ export default class AuthView {
 
         signUpCont.appendChild(this.avatarView());
 
-        addAuthTextHTML('LangJSON.username', signUpCont);
+        addAuthTextHTML(this.controller.getLangValue('auth_username'), signUpCont);
         this.userNameHTML = createNewElement('input', ['auth_user_name'], signUpCont) as HTMLInputElement;
         this.userNameHTML.type = 'text';
 
-        addAuthTextHTML('LangJSON.email', signUpCont);
+        addAuthTextHTML(this.controller.getLangValue('auth_email'), signUpCont);
         this.emailHTML = createNewElement('input', ['auth_email'], signUpCont) as HTMLInputElement;
         this.emailHTML.type = 'email';
         this.emailHTML.placeholder = this.controller.getLangValue('auth_your_email');
@@ -196,7 +196,7 @@ export default class AuthView {
             this.validateSignUp();
         });
 
-        addAuthTextHTML('LangJSON.password', signUpCont);
+        addAuthTextHTML(this.controller.getLangValue('auth_password'), signUpCont);
         this.passHTML = createNewElement('input', ['auth_pass'], signUpCont) as HTMLInputElement;
         this.passHTML.type = 'password';
         this.passHTML.placeholder = this.controller.getLangValue('auth_your_password');
@@ -228,8 +228,8 @@ export default class AuthView {
             const imgAva: HTMLImageElement = createNewElement('img', ['avatar_image'], avaContainer) as HTMLImageElement;
             imgAva.alt = k;
             imgAva.src = v;
-                // console.log(this.avatar);
-            if(this.avatar === k) {
+            // console.log(this.avatar);
+            if (this.avatar === k) {
                 imgAva.classList.add('avatar_image_select');
             }
             imgAva.addEventListener('click', () => {
@@ -251,19 +251,19 @@ export default class AuthView {
 
     validateSignUp() {
         let isValid = false;
-        if(this.controller.isPopUp) {
+        if (this.controller.isPopUp) {
             // const okHTML: HTMLElement|null = document.querySelector('.auth_button');
-            const okHTML: HTMLElement|null = document.getElementById('auth_sign_up_btn');
-            if(this.emailHTML !== null && this.passHTML !== null && okHTML !== null) {
+            const okHTML: HTMLElement | null = document.getElementById('auth_sign_up_btn');
+            if (this.emailHTML !== null && this.passHTML !== null && okHTML !== null) {
                 const email: string = this.emailHTML.value;
                 const pass: string = this.passHTML.value;
                 const emailMatch: boolean = /^([-_A-Za-z0-9]+)@([A-Za-z]+)\.([A-Za-z]+)$/.test(email);
                 const passMatch: boolean = (pass.length >= 6);
 
-                if(emailMatch) {
+                if (emailMatch) {
                     this.emailHTML.classList.add('match');
                     this.emailHTML.classList.remove('no_match');
-                } else if(email === '') {
+                } else if (email === '') {
                     this.emailHTML.classList.remove('no_match');
                     this.emailHTML.classList.remove('match');
                 } else {
@@ -271,10 +271,10 @@ export default class AuthView {
                     this.emailHTML.classList.add('no_match');
                 }
 
-                if(passMatch) {
+                if (passMatch) {
                     this.passHTML.classList.add('match');
                     this.passHTML.classList.remove('no_match');
-                } else if(pass === '') {
+                } else if (pass === '') {
                     this.passHTML.classList.remove('no_match');
                     this.passHTML.classList.remove('match');
                 } else {
@@ -282,7 +282,7 @@ export default class AuthView {
                     this.passHTML.classList.add('no_match');
                 }
 
-                if(emailMatch && passMatch) {
+                if (emailMatch && passMatch) {
                     okHTML.classList.remove('auth_button_disable');
                     isValid = true;
                 } else {
@@ -298,14 +298,14 @@ export default class AuthView {
     }
 
     signUp() {
-        if(this.validateSignUp()) {
+        if (this.validateSignUp()) {
             this.saveUserData('signup');
         } else {
             // TODO No valid data
             console.log('Authorization data is not valid!');
         }
     }
-    
+
     saveUserData(com: string) {
         const userData: TypeUser = {
             id: -1,
@@ -315,7 +315,7 @@ export default class AuthView {
             lang: this.controller.getCurrentLang(),
             currency: this.controller.getCurrentCurrency(),
             avatar: this.avatar
-        }
+        };
         this.controller.setAuth(com, userData);
     }
 }

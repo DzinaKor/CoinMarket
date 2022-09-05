@@ -1,7 +1,7 @@
 .calc_container {
     background-color: rgb(241, 233, 228);
-    border : 1px solid rgba(180, 156, 141, .5);
-    border-radius:  0 0 15px 15px;
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 0 0 15px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +18,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap:  20px;
+    gap: 20px;
 }
 
 .calc-amount,
@@ -33,6 +33,11 @@
 .calc-exchange-btn {
     border: 1px solid rgba(180, 156, 141, .5);
 }
+
+.calc-exchange-btn:hover {
+    background-color: white;
+}
+
 .calc-flex-row {
     display: flex;
     flex-direction: row;
