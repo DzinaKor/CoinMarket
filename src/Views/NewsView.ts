@@ -8,9 +8,12 @@ export default class NewsView {
 
     public newsHTML: HTMLElement;
 
+    public newsMainHTML: HTMLElement;
+
     constructor(controller: Controller) {
         this.controller = controller;
         this.newsHTML = createNewElement('div', ['news_container']);
+        this.newsMainHTML = createNewElement('div', ['newsmain_container']);
     }
 
     viewNews() {
@@ -18,6 +21,15 @@ export default class NewsView {
         this.controller.pagesContainerHTML.innerHTML = '';
         this.controller.pagesContainerHTML.appendChild(this.newsHTML);
         this.controller.drawNewsView();
+    }
+
+    viewNewsMain() {
+        const mainPage: HTMLElement = document.querySelector('.mainpage_container') as HTMLElement;
+        if (mainPage) {
+            this.newsMainHTML.innerHTML = '';
+            mainPage.appendChild(this.newsMainHTML);
+            this.controller.drawNewsMainView();
+        }
     }
 
     drawNewsView(news: NewsData) {
@@ -32,6 +44,25 @@ export default class NewsView {
             NewsView.addNewsDescHTML(newsArticle.title, newsHTML, 'news_title');
             NewsView.addNewsDescHTML(newsArticle.body, newsHTML);
             NewsView.addNewsDescHTML(newsArticle.date, newsHTML);
+        });
+    }
+
+    drawNewsMainView(news: NewsData) {
+        let maxNews = 10;
+        news.articles.results.forEach((newsArticle: Result) => {
+            if (maxNews > 0) {
+                const newsHTML: HTMLAnchorElement = createNewElement('a', ['one_main_news_container'], this.newsMainHTML) as HTMLAnchorElement;
+
+                newsHTML.href = newsArticle.url;
+                newsHTML.target = '_blank';
+                const newsImg: HTMLImageElement = createNewElement('img', ['news_img', 'news_image'], newsHTML) as HTMLImageElement;
+                newsImg.src = newsArticle.image;
+
+                NewsView.addNewsDescHTML(newsArticle.title, newsHTML, 'news_title');
+                // NewsView.addNewsDescHTML(newsArticle.body, newsHTML);
+                // NewsView.addNewsDescHTML(newsArticle.date, newsHTML);
+                maxNews -= 1;
+            }
         });
     }
 

@@ -368,12 +368,15 @@ h1 {
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 'list list gr'
         'list list news';
+    /*max-height: 70vh;*/
 }
 
 /* news ======================================== */
 .newsmain_container {
     background-color: rgb(252, 250, 247);
     grid-area: news;
+    overflow-y: auto;
+    max-height: 35vh;
 }
 
 .news_container {
@@ -471,7 +474,9 @@ h1 {
     height: 25px;
 }
 
-.one_news_container {}
+.one_news_container {
+    min-width: 100px;
+}
 
 .news_image {
     width: 50%;
@@ -521,6 +526,7 @@ button:hover {
 }
 
 .tab_button {
+    cursor: pointer;
     width: 200px;
     height: 80px;
     border-top-right-radius: 15px;
@@ -530,6 +536,11 @@ button:hover {
 }
 
 .tab_button:hover {
+    color: rgb(255, 139, 52);
+    background-color: rgb(255, 255, 255);
+}
+
+.tab_button_select {
     color: rgb(255, 139, 52);
     background-color: rgb(255, 255, 255);
 }

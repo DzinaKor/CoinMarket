@@ -38,14 +38,14 @@ export default class PortfolioView {
         const mainEditHTML = createNewElement('div', ['portfolio_coin_edit'], mainRow);
 
         const coinAddHTML = createNewElement('div', ['portfolio_coin_add'], mainRow);
-            coinAddHTML.textContent = this.controller.getLangValue('port_add');
-            coinAddHTML.addEventListener('click', () => {
-                this.editMain(mainEditHTML);
-            });
+        coinAddHTML.textContent = this.controller.getLangValue('port_add');
+        coinAddHTML.addEventListener('click', () => {
+            this.editMain(mainEditHTML);
+        });
 
         this.controller.changePortfolio('').then((tempPort: Map<string, number>) => {
             this.portData = tempPort;
-                console.log(tempPort.size);
+            console.log(tempPort.size);
             this.portData.forEach((value, coinId) => {
                 this.controller.coin.apiReqOneCoin(coinId).then((oneCoin: CoinData) => {
                     const coinRow: HTMLElement = createNewElement('div', ['portfolio_coin_container'], this.portHTML);
@@ -79,7 +79,7 @@ export default class PortfolioView {
                     });
                 });
             });
-        }); 
+        });
     }
 
     editCoin(coinId: string, isAdd: boolean): HTMLElement {
@@ -89,24 +89,32 @@ export default class PortfolioView {
         valueHTML.value = '0';
         const saveHTML: HTMLElement = createNewElement('div', ['portfolio_save'], this.portEditHTML);
         saveHTML.addEventListener('click', () => {
-            
+
         });
         return this.portEditHTML;
     }
 
     editMain(mainEditHTML: HTMLElement): HTMLElement {
-        const coinSelectInp = createNewElement('input', ['portfolio_coin_select'], mainEditHTML);
+        const coinSelectInp: HTMLInputElement = createNewElement('input', ['portfolio_coin_select'], mainEditHTML) as HTMLInputElement;
         coinSelectInp.setAttribute('list', 'CoinNameList');
         coinSelectInp.setAttribute('name', 'CoinNameList');
+
+        const valueHTML: HTMLInputElement = createNewElement('input', ['portfolio_value'], mainEditHTML) as HTMLInputElement;
+        valueHTML.type = 'number';
+        valueHTML.value = '0';
+        valueHTML.min = '0';
+
         const coinSelectDList = createNewElement('datalist', ['portfolio_coin_select'], mainEditHTML);
         coinSelectDList.id = 'CoinNameList';
         this.arrCoinsList.forEach((item) => {
-            createOptionElement(item.name, item.name, coinSelectDList);
+            createOptionElement(item.id, item.name, coinSelectDList);
         });
         const saveHTML: HTMLElement = createNewElement('div', ['portfolio_save'], mainEditHTML);
         saveHTML.textContent = this.controller.getLangValue('auth_savebutton');
         saveHTML.addEventListener('click', () => {
-            
+            const newCoin: string = coinSelectInp.value;
+            const newValue = Number(valueHTML.value);
+            this.controller.changePortfolio('add', newCoin, newValue);
         });
         return this.portEditHTML;
     }
