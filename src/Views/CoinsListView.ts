@@ -108,24 +108,23 @@ export default class CoinsListView {
     }
 
     addWatchCoinHTML(coinId: string): HTMLImageElement {
-        const imageBox: HTMLImageElement = createNewElement('div', ['coin_list_watch']) as HTMLImageElement;
-
-        const coinWatchImg: HTMLImageElement = createNewElement('img', ['coin_list_watch_img'], imageBox) as HTMLImageElement;
+        const coinWatchImg: HTMLImageElement = createNewElement('img', ['coin_list_watch_img']) as HTMLImageElement;
         coinWatchImg.alt = '';
-        coinWatchImg.setAttribute('data-watch-coin-id', coinId);
-        if (this.controller.checkCoinWatchList(coinId)) {
-            coinWatchImg.setAttribute('data-watch', '1');
-            coinWatchImg.src = IMG_FAV;
-        } else {
-            coinWatchImg.setAttribute('data-watch', '-1');
-            coinWatchImg.src = IMG_NOFAV;
+        if (this.controller.user.isAuth) {
+            coinWatchImg.setAttribute('data-watch-coin-id', coinId);
+            if (this.controller.checkCoinWatchList(coinId)) {
+                coinWatchImg.setAttribute('data-watch', '1');
+                coinWatchImg.src = IMG_FAV;
+            } else {
+                coinWatchImg.setAttribute('data-watch', '-1');
+                coinWatchImg.src = IMG_NOFAV;
+            }
+            coinWatchImg.addEventListener('click', (event) => {
+                event.stopPropagation();
+                this.toggleWatchCoinHTML(coinWatchImg, coinId);
+            })
         }
-        coinWatchImg.addEventListener('click', (event) => {
-            event.stopPropagation();
-            this.toggleWatchCoinHTML(coinWatchImg, coinId);
-        });
-
-        return imageBox;
+        return coinWatchImg;
     }
 
     toggleWatchCoinHTML(coinWatchImg: HTMLImageElement, coinId: string) {
@@ -141,8 +140,10 @@ export default class CoinsListView {
     }
 
     reSetWatchCoinList(watchCoinArray: Array<string>) {
-        // document.querySelectorAll('[data-watch]').forEach((coinWatchImg: HTMLImageElement) => {
-        if (this.controller !== undefined) {
+        // if(watchCoinArray.length <= 0) {
+        // watchCoinArray = this.controller.watchlist.watchArray;
+        // }
+        if (this.controller.user.isAuth) {
             watchCoinArray.forEach((coinId: string) => {
                 const coinWatchImg: HTMLImageElement | null = document.querySelector(`[data-watch-coin-id=${coinId}]`);
                 if (coinWatchImg !== null) {

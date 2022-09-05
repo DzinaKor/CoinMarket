@@ -26,14 +26,13 @@ export default class PortfolioView {
     }
 
     viewPortfolio() {
-        this.portHTML.innerHTML = '';
         this.controller.pagesContainerHTML.innerHTML = '';
         this.controller.pagesContainerHTML.appendChild(this.portHTML);
-
         this.reDrawList();
     }
 
     reDrawList() {
+        this.portHTML.innerHTML = '';
         const mainRow: HTMLElement = createNewElement('div', ['portfolio_main_container'], this.portHTML);
         const mainEditHTML = createNewElement('div', ['portfolio_coin_edit'], mainRow);
 
@@ -110,11 +109,15 @@ export default class PortfolioView {
             createOptionElement(item.id, item.name, coinSelectDList);
         });
         const saveHTML: HTMLElement = createNewElement('div', ['portfolio_save'], mainEditHTML);
-        saveHTML.textContent = this.controller.getLangValue('auth_savebutton');
+        saveHTML.textContent = this.controller.getLangValue('port_ok');
         saveHTML.addEventListener('click', () => {
             const newCoin: string = coinSelectInp.value;
             const newValue = Number(valueHTML.value);
-            this.controller.changePortfolio('add', newCoin, newValue);
+            this.controller.changePortfolio('add', newCoin, newValue).then((newPort: Map<string, number>) => {
+                this.portData = newPort;
+                this.reDrawList();
+            });
+            mainEditHTML.remove();
         });
         return this.portEditHTML;
     }

@@ -455,12 +455,16 @@ export default class Controller {
             this.user.data = userData;
             this.user.signUp().then((isOk: boolean) => {
                 this.authView.setLogin();
+                this.tabsView.reDrawButtons();
+                this.mainPageRedraw();
                 this.closePopUp();
             });
 
         } else if (command === 'signin' && userData !== null) {
             this.user.signIn(userData).then((isOk: boolean) => {
                 this.authView.setLogin();
+                this.tabsView.reDrawButtons();
+                this.mainPageRedraw();
                 this.closePopUp();
             });
 

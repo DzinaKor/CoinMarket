@@ -112,10 +112,10 @@ const lang: LangType = {
         auth_signup: 'Зарэгістравацца',
         auth_savebutton: 'Захаваць',
         auth_username: 'Імя',
-        auth_email: 'email',
+        auth_email: 'Емэйл',
         auth_password: 'Пароль',
         auth_password_placeholder: 'Пароль павінен быць больш за 6 сімвалаў',
-        auth_your_email: 'Ваш email',
+        auth_your_email: 'Ваш емэйл',
         auth_your_password: 'Ваш пароль',
         port_add: 'Дадаць',
         port_buy: 'Купіць',
@@ -123,9 +123,9 @@ const lang: LangType = {
         port_delete: 'Выдаліць',
         onecoin_rank: 'Ранг:',
         onecoin_price: 'Бягучы кошт:',
-        onecoin_change_price: 'Изменение цены:',
+        onecoin_change_price: 'Змяненне кошта:',
         onecoin_market_cup: 'Рынкавая капіталізацыя:',
-        onecoin_total_volume: 'Агульны аб`ё:',
+        onecoin_total_volume: 'Агульны аб`ём:',
         onecoin_supply: 'Абаротнае забеспячэнне:'
     }
 };
