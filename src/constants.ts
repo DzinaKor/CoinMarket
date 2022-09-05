@@ -20,7 +20,7 @@ export const enum SortOrder {
 export const USER_AVATAR: Map<string, string> = new Map(
     Object.entries({
         ava1: './assets/avatars/ava1.svg',
-        ava2: './assets/avatars/ava2.svg',
+        ava2: './assets/avatars/ava4.svg',
         ava3: './assets/avatars/ava3.svg'
     }));
 

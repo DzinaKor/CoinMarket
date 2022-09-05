@@ -27,7 +27,7 @@ import WatchList from '../Models/WatchList';
 import Portfolio from '../Models/Portfolio';
 import WatchListView from '../Views/WatchListView';
 import PortfolioView from '../Views/PortfolioView';
-import { NewsData } from '../api/apiRequestTypes';
+import { NewsData, CoinsNameList } from '../api/apiRequestTypes';
 import lang, { LangType } from '../Models/LangData';
 
 export default class Controller {
@@ -360,6 +360,34 @@ export default class Controller {
         return this.watchlist.checkCoinWatchList(coin);
     }
 
+    async changePortfolio(command: string, coinId = '', value = 0): Promise<Map<string, number>> {
+        let newPortfolio: Map<string, number> = new Map();
+        switch (command) {
+            case 'add':
+                newPortfolio = this.portfolio.addPortfolio(coinId, value);
+                break;
+
+            case 'delete':
+                newPortfolio = this.portfolio.deletePortfolio(coinId);
+                break;
+
+            case 'set':
+                newPortfolio = this.portfolio.setPortfolio(coinId, value);
+                break;
+
+            default:
+                newPortfolio = await this.portfolio.getPortfolio();
+                break;
+        }
+        return newPortfolio;
+    }
+
+    async getAllCoinsList(): Promise<Array<CoinsNameList>> {
+        const portCoinList: Array<CoinsNameList> = await this.portfolio.getCoinsList();
+        return portCoinList;
+    }
+
+
     closePopUp() {
         const popUpView: HTMLElement | null = document.querySelector('.popup_view');
         if (popUpView !== null) {
@@ -432,9 +460,9 @@ export default class Controller {
 
     drawChart(rootElement: HTMLElement, chartModel: Chart) {
         chartModel.getData().then(() => {
-                this.chartView.drawChart(rootElement, chartModel);
-                this.setChartListeners(chartModel);
-            }
+            this.chartView.drawChart(rootElement, chartModel);
+            this.setChartListeners(chartModel);
+        }
         );
     }
 

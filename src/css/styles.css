@@ -45,8 +45,8 @@ body {
 }
 
 .logo_header {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
 }
 
 .lang_container,
@@ -100,7 +100,7 @@ h1 {
     background-color: transparent;
     padding: 10px;
     outline: none;
-    border-radius: 4px;
+    border-radius: 15px;
 }
 
 .login_button:hover {
@@ -111,8 +111,11 @@ h1 {
 /* popup start ======================================== */
 .popup_view {
     position: absolute;
-    background-color: black;
+    background-color: rgb(241, 233, 228);
+    color: rgb(181, 153, 136);
     z-index: 99;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .login_container {
@@ -147,6 +150,7 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    border-radius: 15px;
 }
 
 .signin_container {
@@ -173,10 +177,12 @@ h1 {
     justify-content: center;
     align-items: center;
     background-color: azure;
+    border-radius: 15px;
 }
 
 .auth_button {
     color: green;
+    border-radius: 15px;
 }
 
 .match {
@@ -194,6 +200,25 @@ h1 {
 
 .auth_button_save {
     width: 40%;
+    transition: all .5s ease;
+    /*color: rgb(51, 51, 51);*/
+    border: 1px solid white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 17px;
+    /*background-color: transparent;*/
+    background-color: rgb(241, 233, 228);
+    color: rgb(181, 153, 136);
+    padding: 10px;
+    outline: none;
+    border-radius: 15px;
+}
+
+.auth_button_save:hover {
+    color: rgb(255, 139, 52);
+    background-color: rgb(255, 255, 255);
 }
 
 .signin_link {
@@ -223,7 +248,8 @@ h1 {
 
 /* watchlist ===================================*/
 .watchlist_container {
-    background-color: darksalmon;
+    color: rgb(51, 51, 51);
+    background-color: rgb(251, 249, 246);
     flex-grow: 999;
 }
 
@@ -234,8 +260,75 @@ h1 {
 
 /* portfolio ===================================*/
 .portfolio_container {
-    background-color: silver;
+    color: rgb(51, 51, 51);
+    background-color: rgb(251, 249, 246);
     flex-grow: 999;
+}
+
+.portfolio_main_container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: antiquewhite;
+}
+
+.portfolio_coin_add {
+    cursor: pointer;
+    width: 210px;
+}
+
+.portfolio_coin_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    column-gap: 10px;
+}
+
+.portfolio_coin_container>* {
+    flex-grow: 1;
+}
+
+.portfolio_coin_edit {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 10px;
+}
+
+.portfolio_coin_buy {
+    width: 90px;
+}
+
+.portfolio_coin_sell {
+    width: 90px;
+}
+
+.portfolio_coin_delete {
+    width: 90px;
+}
+
+.portfolio_coin_edit {
+    flex-grow: 7;
+    min-width: 320px;
+}
+
+.portfolio_edit {
+    display: flex;
+    justify-content: space-around;
+    row-gap: 50px;
+    background-color: aquamarine;
+}
+
+.portfolio_value {
+    width: 110px;
+}
+
+.portfolio_save {
+    cursor: pointer;
+    width: 60px;
+}
+
+.portfolio_coin_select {
+    width: 210px;
 }
 
 /* main ========================================*/

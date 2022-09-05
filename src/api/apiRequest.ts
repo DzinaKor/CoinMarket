@@ -1,5 +1,5 @@
 import {
-    SearchCoinsData, CoinMarketData, MarketChartData, TrendCoins, NewsData, ExchangeRates, ChartData
+    SearchCoinsData, CoinMarketData, MarketChartData, TrendCoins, NewsData, ExchangeRates, ChartData, CoinsNameList
 } from './apiRequestTypes';
 import { CoinData } from './coinDataType';
 import {
@@ -105,5 +105,14 @@ export const getNewsData = async (): Promise<NewsData> => {
         accept: 'application/json'
     };
     return await makeRequest(url, 'GET', headers) as NewsData;
+};
+
+export const getCoinsNameList = async (
+): Promise<Array<CoinsNameList>> => {
+    const url = `${URL_COIN_DATA}/coins/list`;
+    const headers: HeadersInit = {
+        accept: 'application/json'
+    };
+    return await makeRequest(url, 'GET', headers) as Array<CoinsNameList>;
 };
 
