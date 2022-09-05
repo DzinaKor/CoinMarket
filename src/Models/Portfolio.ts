@@ -16,12 +16,9 @@ export default class Portfolio {
 
     async addPortfolio(coinId: string, value: number): Promise<Map<string, number>> {
         if (coinId !== '' && coinId.length > 0 && value >= 0) {
-            console.log(` ${this.portArray}`);
             this.portArray.set(coinId, value);
         }
-        console.log('check 10');
         await this.putPortfolioDB();
-        console.log(`add portfolio ${this.portArray}`);
         return this.portArray;
     }
 
@@ -36,14 +33,14 @@ export default class Portfolio {
     }
 
     async getPortfolio(): Promise<Map<string, number>> {
-        this.portArray = await this.getPortfolioDB();
+        await this.getPortfolioDB();
         return this.portArray;
     }
 
     async putPortfolioDB(): Promise<boolean> {
         const pars: Collect = {
             email: this.controller.getUserData().email,
-            portfolio: JSON.stringify(this.portArray)
+            portfolio: JSON.stringify(Object.fromEntries(this.portArray))
         }
         const response: BackResPort = await this.makeRequest('PUT', null, pars);
         if (response.ok) {
@@ -59,7 +56,7 @@ export default class Portfolio {
         const response: BackResPort = await this.makeRequest('GET', null, pars);
         if (response.ok) {
             console.log(`GET portfolio is OK! ${response.body}`);
-            this.portArray = response.body;
+            this.portArray = new Map(Object.entries(response.body));
             // this.portArray = new Map(Object.entries({ 'bitcoin': 9, 'dogecoin': 90, 'shiba-inu': 900 }));
             return this.portArray;
         }
