@@ -603,3 +603,233 @@ footer .copyright:before {
 footer .rs-logo {
     width: 80px;
 }
+
+:root {
+    --dm-background-color: #1f1e2a;
+    --dm-element-color: #262431;
+    --dm-element-hover-color: #3f3c4f;
+    --dm-text-color: #a5a3ac;
+    --dm-text-main-color: white;
+    --dm-blue-color: #41a7f5;
+    --dm-pink-color: #fd789f;
+}
+
+body.dark-mode {
+    color: var(--dm-text-main-color);
+    background-color: var(--dm-background-color);
+}
+
+/* header ========================================*/
+.dark-mode .header {
+    color: var(--dm-text-main-color);
+    background-color: var(--dm-background-color);
+}
+
+.dark-mode .header_container {
+    color: var(--dm-text-main-color);
+    background-color: var(--dm-background-color);
+}
+
+.dark-mode .lang_li:hover,
+.dark-mode .currency_li:hover {
+    color: var(--dm-pink-color);
+}
+
+.dark-mode .login_button {
+    color: var(--dm-text-main-color);
+    background-color: var(--dm-background-color);
+}
+
+.dark-mode .login_button:hover {
+    color: var(--dm-pink-color);
+    background-color: var(--dm-element-color);
+}
+
+/* popup start ======================================== */
+.dark-mode .popup_view {
+    color: var(--dm-text-main-color);
+    background-color: var(--dm-element-color);
+}
+
+.dark-mode .auth_sign_in {
+    color: var(--dm-text-main-color);
+}
+
+.dark-mode .auth_login {
+    color: var(--dm-text-main-color);
+}
+
+.dark-mode .auth_button {
+    background-color: var(--dm-element-color);
+}
+
+.dark-mode .auth_button {
+    color: var(--dm-text-main-color);
+}
+
+.dark-mode .match {
+    background-color: var(--dm-blue-color);
+}
+
+.dark-mode .no_match {
+    background-color: var(--dm-pink-color);
+}
+
+.dark-mode .auth_button_disable {
+    color: red;
+    background-color: gray;
+}
+
+.dark-mode .auth_button_save {
+    border-color: var(--dm-element-color);
+    background-color: var(--dm-element-color);
+    color: var(--dm-text-main-color);
+}
+
+.dark-mode .auth_button_save:hover {
+    background-color: var(--dm-element-hover-color);
+    color: var(--dm-pink-color);
+}
+
+.dark-mode .signin_link {
+    color: white;
+}
+
+.dark-mode .signin_link:hover {
+    color: var(--dm-pink-color);
+}
+
+.dark-mode .avatar_image_select {
+    border-color: var(--dm-pink-color);
+}
+
+/* watchlist ===================================*/
+.dark-mode .watchlist_container {
+    color: var(--dm-text-color);
+    background-color: var(--dm-element-color);
+}
+
+/* portfolio ===================================*/
+.dark-mode .portfolio_container {
+    color: var(--dm-text-color);
+    background-color: var(--dm-element-color);
+}
+
+.dark-mode .portfolio_main_container {
+    background-color: var(--dm-element-color);
+}
+
+.dark-mode .portfolio_edit {
+    background-color: var(--dm-element-hover-color);
+}
+
+/* main ========================================*/
+
+.dark-mode .tabs_container {
+    background-color: var(--dm-background-color);
+}
+
+.dark-mode .mainpage_container {
+    background-color: var(--dm-background-color);
+}
+
+/* news ======================================== */
+.dark-mode .newsmain_container {
+    background-color: var(--dm-background-color);
+}
+
+.dark-mode .news_container {
+    background-color: var(--dm-element-color);
+}
+
+.dark-mode .one_news_container {
+    color: var(--dm-text-main-color);
+    border-color: var(--dm-element-hover-color);
+}
+
+.dark-mode .news_title {
+    color: var(--dm-text-main-color);
+}
+
+/*  chart-main ======================================== */
+.dark-mode .chart_container {
+    color: var(--dm-text-main-color);
+    border-color: var(--dm-background-color);
+}
+
+.dark-mode .chart-btn,
+.dark-mode .btn-modal-window {
+    color: var(--dm-text-main-color);
+    border-color: var(--dm-pink-color);
+}
+
+.dark-mode .days-count {
+    border-color: var(--dm-pink-color);
+    background-color: var(--dm-element-color);
+    color: var(--dm-blue-color);
+}
+
+.dark-mode .days-count:hover {
+    background-color: var(--dm-element-hover-color);
+    color: var(--dm-pink-color);
+}
+
+.dark-mode button {
+    color: var(--dm-blue-color);
+    border-color: var(--dm-element-color);
+}
+
+.dark-mode button:hover {
+    color: var(--dm-pink-color);
+    background-color: var(--dm-element-hover-color);
+}
+
+.dark-mode .tab_button {
+    background-color: var(--dm-element-color);
+    color: var(--dm-text-main-color);
+}
+
+.dark-mode .tab_button:hover {
+    background-color: var(--dm-element-hover-color);
+    color: var(--dm-pink-color);
+}
+
+.dark-mode .tab_button_select {
+    color: var(--dm-pink-color);
+    background-color: var(--dm-element-hover-color);
+}
+
+.dark-mode footer {
+    background-color: var(--dm-element-color);
+    color: var(--dm-text-color);
+    border-color: var(--dm-element-color);
+}
+
+.dark-mode footer .logo,
+.dark-mode footer .github {
+    color: var(--dm-text-main-color);
+}
+
+.dark-mode footer a {
+    color: var(--dm-text-main-color);
+}
+
+.dark-mode footer a:hover {
+    color: var(--dm-pink-color);
+}
+
+.dark-mode #search-input {
+    border-color: var(--dm-pink-color);
+    background-color: var(--dm-element-color);
+    color: var(--dm-text-main-color);
+}
+
+.dark-mode #search-input:hover {
+    border-color: var(--dm-pink-color);
+    background-color: var(--dm-element-hover-color);
+    color: var(--dm-pink-color);
+}
+
+.dark-mode .apexcharts-canvas {
+    background-color: var(--dm-element-hover-color);
+}
