@@ -6,7 +6,7 @@
     gap: 10px;
     align-items: center;
     justify-content: center;
-   /* border: 1px solid rgba(180, 156, 141, .5);*/
+    /* border: 1px solid rgba(180, 156, 141, .5);*/
     padding: 5px;
 }
 
@@ -40,6 +40,18 @@
 }
 
 @keyframes running-line {
-    0%   { transform: translate(0, 0); }
-    100% { transform: translate(-300%, 0); }
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-300%, 0);
+    }
+}
+
+.dark-mode .trend-coin {
+    color: var(--dm-text-main-color);
+}
+
+.dark-mode .trend-coin:hover {
+    color: var(--dm-pink-color);
 }

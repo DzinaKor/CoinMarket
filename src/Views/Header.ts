@@ -64,7 +64,22 @@ export default class Header {
         this.darkmodeHeader.alt = 'light/dark mode switch';
         this.darkmodeHeader.src = './assets/images/moon_dark.svg';
 
-        const authHeader: HTMLElement = createNewElement('div', ['auth_header'], controlHeader);
+        this.darkmodeHeader.addEventListener('click', () => {
+            const body = document.querySelector('body') as HTMLElement;
+            if (this.controller.mainData.isDarkMode) {
+                this.darkmodeHeader.src = './assets/images/moon_dark.svg';
+                this.controller.mainData.setDarkMode(false);
+                body.classList.remove('dark-mode');
+                this.controller.changePage(this.controller.mainData.currentPage);
+            } else {
+                this.darkmodeHeader.src = './assets/images/sun_light.svg';
+                this.controller.mainData.setDarkMode(true);
+                body.classList.add('dark-mode');
+                this.controller.changePage(this.controller.mainData.currentPage);
+            }
+        });
+
+        createNewElement('div', ['auth_header'], controlHeader);
     }
 
     drawPopUpLang(target: HTMLElement) {

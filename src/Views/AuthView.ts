@@ -1,6 +1,6 @@
 import { TypeUser } from '../App/types';
 import Controller from '../Controllers/Controller';
-import { createNewElement, addAuthTextHTML, createPopUp, createPopUpMove } from './BasicView';
+import { createNewElement, addAuthTextHTML, createPopUpMove } from './BasicView';
 import { USER_AVATAR } from '../constants';
 
 export default class AuthView {

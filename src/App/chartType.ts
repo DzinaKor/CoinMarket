@@ -4,6 +4,9 @@ export type ChartDataRow = (number | number[])[]
 
 export type ChartOption = {
     candlestick: {
+        theme: {
+            mode: string
+        },
         plotOptions: {
             candlestick: {
                 wick: {
@@ -44,6 +47,7 @@ export type ChartOption = {
         };
         chart: {
             type: string;
+            background: string;
         };
         stroke: {
             width: number;
@@ -58,6 +62,9 @@ export type ChartOption = {
         }
     };
     line: {
+        theme: {
+            mode: string;
+        },
         xaxis: {
             fillColor: string;
             borderColor: string;
@@ -102,6 +109,7 @@ export type ChartOption = {
                 autoScaleYaxis: boolean;
             };
             type: string;
+            background: string;
         };
         stroke: {
             curve: string;

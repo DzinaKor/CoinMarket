@@ -13,6 +13,16 @@ export default class RunningLineView {
         this.controller = controller;
         this.runningLineHTML = createNewElement('div', ['marquee-line'], this.controller.mainView.runningLine);
         this.runningLineHTML.innerHTML = '';
+        this.addListeners();
+    }
+
+    addListeners() {
+        this.runningLineHTML.addEventListener('click', (event) => {
+            const el = (event.target as HTMLElement).closest('.trend-coin') as HTMLElement;
+            if (el.hasAttribute('coin-id')) {
+                this.controller.drawOneCoinView(el.getAttribute('coin-id') as string);
+            }
+        })
     }
 
     viewRunningLine(coins: TrendCoin[], exchangeRate: number) {
@@ -20,6 +30,7 @@ export default class RunningLineView {
 
         coins.forEach((coin) => {
             const trendCoin = createNewElement('div', ['trend-coin'], this.runningLineHTML);
+            trendCoin.setAttribute('coin-id', coin.item.id)
             const coinScore = createNewElement('div', ['coin-score'], trendCoin);
             coinScore.textContent = `${coin.item.score + 1}`;
             const coinImg = createNewElement('img', ['coin-img'], trendCoin);

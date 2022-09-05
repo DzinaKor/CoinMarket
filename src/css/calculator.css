@@ -62,6 +62,39 @@
     cursor: pointer;
 }
 
+.dark-mode .calc_container {
+    background-color: var(--dm-element-color);
+    border-color: var(--dm-element-color);
+}
+
+.dark-mode .calc-amount,
+.dark-mode .calc-control,
+.dark-mode .calc-exchange-btn {
+    border-color: var(--dm-pink-color);
+    background-color: var(--dm-element-color);
+    color: var(--dm-text-main-color);
+}
+
+.dark-mode .calc-amount:hover,
+.dark-mode .calc-control:hover,
+.dark-mode .calc-exchange-btn:hover {
+    border-color: var(--dm-pink-color);
+    background-color: var(--dm-element-hover-color);
+    color: var(--dm-pink-color);
+}
+
+.dark-mode .exchange-pair:hover {
+    color: var(--dm-pink-color);
+}
+
+
+
+
+
+
+
+
+
 
 
 
