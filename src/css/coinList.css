@@ -45,6 +45,7 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
 .coins-count:hover {
     transition: all .5s ease;
     border-color: rgba(255, 139, 55);
@@ -69,7 +70,6 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
 }
 
 .coin-number-header,
@@ -187,4 +187,17 @@
 
 .dark-mode .one_coin_container:hover {
     background-color: var(--dm-element-hover-color);
+}
+
+.coin-number-header:hover,
+.coin-name-header:hover,
+.coin-total-volume-header:hover {
+    transition: all .5s ease;
+    color: #B59988;
+}
+
+.dark-mode .coin-number-header:hover,
+.dark-mode .coin-name-header:hover,
+.dark-mode .coin-total-volume-header:hover {
+    color: var(--dm-pink-color);
 }

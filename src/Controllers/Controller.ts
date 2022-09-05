@@ -202,7 +202,7 @@ export default class Controller {
             this.coinsList.coinsPerPage = parseInt(coinsCount.value, 10);
             this.coinsUpdate();
         });
-        (document.querySelector('.header_container') as HTMLElement).addEventListener('click', (event) => {
+        (document.querySelector('.coins_list_container .header_container') as HTMLElement).addEventListener('click', (event) => {
             const element = event.target as HTMLElement;
             if (element.id === 'market-cap') {
                 this.setSortAndOrder(CoinOrder.MARKET_CAP);
