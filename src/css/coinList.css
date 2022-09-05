@@ -152,3 +152,34 @@
     width: 25px;
     height: 25px;
 }
+
+.dark-mode .coins_list_container {
+    background-color: var(--dm-element-color);
+    border-color: var(--dm-element-hover-color);
+}
+
+.dark-mode .pagination-btn-prev,
+.dark-mode .pagination-btn-next {
+    border-color: var(--dm-pink-color);
+}
+
+.dark-mode .pagination-btn-prev:hover,
+.dark-mode .pagination-btn-next:hover {
+    background-color: var(--dm-element-hover-color);
+}
+
+.dark-mode .coins-count {
+    border-color: var(--dm-pink-color);
+    background-color: var(--dm-element-color);
+    color: var(--dm-blue-color);
+}
+
+.dark-mode .coins-count:hover {
+    border-color: var(--dm-pink-color);
+    background-color: var(--dm-element-hover-color);
+    color: var(--dm-pink-color);
+}
+
+.dark-mode .one_coin_container:hover {
+    background-color: var(--dm-element-hover-color);
+}

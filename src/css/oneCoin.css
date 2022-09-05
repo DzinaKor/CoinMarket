@@ -70,3 +70,16 @@ onecoin-price-row {
     flex-direction: row;
     gap: 10px;
 }
+
+.dark-mode .onecoin_container {
+    background-color: var(--dm-element-color);
+    border-color: var(--dm-pink-color);
+}
+
+.dark-mode .onecoin_container a {
+    color: var(--dm-blue-color);
+}
+
+.dark-mode .onecoin_container a:hover {
+    color: var(--dm-pink-color);
+}

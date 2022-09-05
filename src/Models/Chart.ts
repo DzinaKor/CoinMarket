@@ -36,7 +36,11 @@ export default class Chart {
         return {
             candlestick: {
                 chart: {
-                    type: 'candlestick'
+                    type: 'candlestick',
+                    background: (this.controller.mainData.isDarkMode) ? '#1f1e2a' : 'rgb(251, 249, 246)'
+                },
+                theme: {
+                    mode: (this.controller.mainData.isDarkMode) ? 'dark' : 'light'
                 },
                 stroke: {
                     width: 1
@@ -52,8 +56,8 @@ export default class Chart {
                 xaxis: {
                     type: 'datetime',
                     tickPlacement: 'on',
-                    borderColor: '#c2c2c2',
-                    fillColor: '#c2c2c2',
+                    borderColor: (this.controller.mainData.isDarkMode) ? '#41a7f5' : '#c2c2c2',
+                    fillColor: (this.controller.mainData.isDarkMode) ? '#41a7f5' : '#c2c2c2',
                     opacity: 0.3,
                     labels: {
                         hideOverlappingLabels: true,
@@ -79,8 +83,8 @@ export default class Chart {
                 plotOptions: {
                     candlestick: {
                         colors: {
-                            upward: '#428ae7',
-                            downward: '#5e5f62'
+                            upward: (this.controller.mainData.isDarkMode) ? '#41a7f5' : '#428ae7',
+                            downward: (this.controller.mainData.isDarkMode) ? '#fd789f' : '#5e5f62'
                         },
                         wick: {
                             useFillColor: true
@@ -89,11 +93,15 @@ export default class Chart {
                 }
             },
             line: {
+                theme: {
+                    mode: (this.controller.mainData.isDarkMode) ? 'dark' : 'light'
+                },
                 chart: {
                     type: 'area',
                     zoom: {
                         autoScaleYaxis: true
-                    }
+                    },
+                    background: (this.controller.mainData.isDarkMode) ? '#1f1e2a' : 'rgb(251, 249, 246)'
                 },
                 markers: {
                     size: 0,
@@ -118,8 +126,8 @@ export default class Chart {
                 xaxis: {
                     type: 'datetime',
                     tickPlacement: 'on',
-                    borderColor: '#c2c2c2',
-                    fillColor: '#c2c2c2',
+                    borderColor: (this.controller.mainData.isDarkMode) ? '#41a7f5' : '#c2c2c2',
+                    fillColor: (this.controller.mainData.isDarkMode) ? '#41a7f5' : '#c2c2c2',
                     opacity: 0.3,
                     labels: {
                         hideOverlappingLabels: true,

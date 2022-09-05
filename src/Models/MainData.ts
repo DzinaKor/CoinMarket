@@ -14,11 +14,18 @@ export default class MainData {
 
     public currentOneCoin: string;
 
+    public isDarkMode: boolean;
+
     constructor() {
         this.selectedCurrency = { id: 'USD', symbol: '$' };
         this.selectedLang = 'EN';
         this.currentPage = 'main';
-        this.currentOneCoin = 'bitcoin'
+        this.currentOneCoin = 'bitcoin';
+        this.isDarkMode = false;
+    }
+
+    setDarkMode(isDarkMode: boolean) {
+        this.isDarkMode = isDarkMode;
     }
 
     setSelectedCurrency(currency: string) {

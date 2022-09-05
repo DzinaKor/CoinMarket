@@ -27,7 +27,7 @@ export default class ChartView {
         const chartElement = createNewElement('div', [], rootElement);
         chartElement.id = 'chart';
         chartModel.setChartObject(new ApexCharts(document.querySelector('#chart'), chartModel.getOptions().candlestick));
-        chartModel.chartObject!.render();
+        chartModel.chartObject?.render();
 
         const chartModalRoot = createNewElement('div', ['modal-chart'], rootElement);
         chartModalRoot.id = 'chart_modal';
@@ -65,7 +65,7 @@ export default class ChartView {
         modalChart.id = 'modal_chart';
 
         chartModel.setChartModalObject(new ApexCharts(document.querySelector('#modal_chart'), chartModel.getOptions().candlestick));
-        chartModel.chartModalObject!.render();
+        chartModel.chartModalObject?.render();
         modalBtn.addEventListener('click', () => {
             chartModal.style.display = 'block';
         });

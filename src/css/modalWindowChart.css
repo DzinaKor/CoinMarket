@@ -13,6 +13,7 @@
 }
 
 .modal-chart .modal-content {
+    border-radius: 15px;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -30,5 +31,23 @@
 }
 
 #modal_chart {
-    margin: 40px 10px 10px 10px;
+    margin: 70px 10px 10px 10px;
+}
+
+.dark-mode .modal-chart {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.dark-mode .modal-chart .modal-content {
+    background-color: var(--dm-element-color);
+    border-color: var(--dm-pink-color);
+}
+
+.dark-mode .modal-chart .modal-content .close-modal-window {
+    color: var(--dm-blue-color);
+}
+
+.dark-mode .modal-chart .modal-content .close-modal-window:hover {
+    color: var(--dm-pink-color);
+    background-color: var(--dm-element-color);
 }

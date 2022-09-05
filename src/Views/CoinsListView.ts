@@ -43,16 +43,17 @@ export default class CoinsListView {
             addCoinDescriptionHTML(`${symbol} ${oneCoin.current_price.toLocaleString()}`, coinRow, 'coin-list_current-price');
             const priceChange = addCoinDescriptionHTML((oneCoin.price_change_percentage_24h) ? `${oneCoin.price_change_percentage_24h}%` : '-', coinRow, 'coin-list_percentage');
             if (oneCoin.price_change_percentage_24h >= 0 && oneCoin.price_change_percentage_24h) {
-                priceChange.style.color = 'green';
+                priceChange.style.color = (this.controller.mainData.isDarkMode) ? '#41a7f5' : 'green';
             } else if (oneCoin.price_change_percentage_24h < 0 && oneCoin.price_change_percentage_24h) {
-                priceChange.style.color = 'red';
+                priceChange.style.color = (this.controller.mainData.isDarkMode) ? '#fd789f' : 'red';
             }
+
             addCoinDescriptionHTML(`${symbol} ${oneCoin.market_cap.toLocaleString()}`, coinRow, 'coin-list_market-cup');
             const marketChange = addCoinDescriptionHTML((oneCoin.market_cap_change_percentage_24h) ? `${oneCoin.market_cap_change_percentage_24h}%` : '-', coinRow, 'coin-list_percentage24h');
             if (oneCoin.market_cap_change_percentage_24h >= 0 && oneCoin.market_cap_change_percentage_24h) {
-                marketChange.style.color = 'green';
+                marketChange.style.color = (this.controller.mainData.isDarkMode) ? '#41a7f5' : 'green';
             } else if (oneCoin.market_cap_change_percentage_24h < 0 && oneCoin.market_cap_change_percentage_24h) {
-                marketChange.style.color = 'red';
+                marketChange.style.color = (this.controller.mainData.isDarkMode) ? '#fd789f' : 'red';
             }
             addCoinDescriptionHTML(`${symbol} ${oneCoin.total_volume.toLocaleString()}`, coinRow, 'coin-list_volume');
             addCoinDescriptionHTML(`${symbol} ${oneCoin.circulating_supply.toLocaleString()}`, coinRow, 'coin-list_supply');
