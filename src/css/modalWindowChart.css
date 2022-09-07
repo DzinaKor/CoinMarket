@@ -1,0 +1,53 @@
+.modal-chart {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.modal-chart .modal-content {
+    border-radius: 15px;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    z-index: 99999;
+}
+
+.modal-chart .modal-content .close-modal-window {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modal_chart {
+    margin: 70px 10px 10px 10px;
+}
+
+.dark-mode .modal-chart {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.dark-mode .modal-chart .modal-content {
+    background-color: var(--dm-element-color);
+    border-color: var(--dm-pink-color);
+}
+
+.dark-mode .modal-chart .modal-content .close-modal-window {
+    color: var(--dm-blue-color);
+}
+
+.dark-mode .modal-chart .modal-content .close-modal-window:hover {
+    color: var(--dm-pink-color);
+    background-color: var(--dm-element-color);
+}

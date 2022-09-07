@@ -5,7 +5,7 @@
     "main": "src/index.ts",
     "scripts": {
         "start": "webpack serve --open --config ./webpack.config.js --env mode=dev",
-        "build": "webpack --config ./webpack.config.js --env mode=prod",
+        "build": "webpack watch --config ./webpack.config.js --env mode=prod",
         "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx"
     },
     "repository": {
@@ -43,5 +43,9 @@
     "bugs": {
         "url": "https://github.com/DzinaKor/CoinMarket/issues"
     },
-    "homepage": "https://github.com/DzinaKor/CoinMarket#readme"
+    "homepage": "https://github.com/DzinaKor/CoinMarket#readme",
+    "dependencies": {
+        "apexcharts": "^3.35.5",
+        "trading-vue-js": "^1.0.2"
+    }
 }

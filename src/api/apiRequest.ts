@@ -1,5 +1,5 @@
 import {
-    SearchCoinsData, CoinMarketData, MarketChartData, TrendCoins, NewsData, ExchangeRates
+    SearchCoinsData, CoinMarketData, MarketChartData, TrendCoins, NewsData, ExchangeRates, ChartData, CoinsNameList
 } from './apiRequestTypes';
 import { CoinData } from './coinDataType';
 import {
@@ -87,6 +87,18 @@ export const getExchangeData = async (): Promise<ExchangeRates> => {
     return await makeRequest(url, 'GET', headers) as ExchangeRates;
 };
 
+export const getChartData = async (
+    coinId = 'bitcoin',
+    vsCurrency = 'usd',
+    days = '7'
+): Promise<ChartData[]> => {
+    const url = `${URL_COIN_DATA}/coins/${coinId}/ohlc?vs_currency=${vsCurrency}&days=${days}`;
+    const headers: HeadersInit = {
+        accept: 'application/json'
+    };
+    return await makeRequest(url, 'GET', headers) as ChartData[];
+};
+
 export const getNewsData = async (): Promise<NewsData> => {
     const url = `${URL_NEWS_DATA}apiKey=${NEWS_API_KEY}&keyword=crypto`;
     const headers: HeadersInit = {
@@ -94,3 +106,13 @@ export const getNewsData = async (): Promise<NewsData> => {
     };
     return await makeRequest(url, 'GET', headers) as NewsData;
 };
+
+export const getCoinsNameList = async (
+): Promise<Array<CoinsNameList>> => {
+    const url = `${URL_COIN_DATA}/coins/list`;
+    const headers: HeadersInit = {
+        accept: 'application/json'
+    };
+    return await makeRequest(url, 'GET', headers) as Array<CoinsNameList>;
+};
+

@@ -1,0 +1,92 @@
+.onecoin_container {
+    background-color: rgb(241, 233, 228);
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 0 0 15px 15px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.one-coin-container,
+.onecoin-container {
+    flex: 0 0 40%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.onecoin_container a {
+    cursor: pointer;
+}
+
+.onecoin_container a:hover {
+    color: #B59988;
+}
+
+.onecoin-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.onecoin-links,
+.one_coin_desc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+onecoin-price-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.onecoin-price {
+    font-size: 20px;
+
+}
+
+.onecoin-price-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.onecoin-descript {
+    padding: 10px;
+}
+
+.one_coin_chart {
+    width: 80%;
+    margin-bottom: 50px;
+}
+
+.onecoin-change-price {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.dark-mode .onecoin_container {
+    background-color: var(--dm-element-color);
+    border-color: var(--dm-pink-color);
+}
+
+.dark-mode .onecoin_container a {
+    color: var(--dm-blue-color);
+}
+
+.dark-mode .onecoin_container a:hover {
+    color: var(--dm-pink-color);
+}
