@@ -303,6 +303,7 @@ export default class Controller {
                                 this.mainData.setCurrentOneCoin(el.getAttribute('coin-id') as string);
                                 this.mainData.currentPage = 'oneCoin';
                                 this.drawOneCoinView(this.mainData.currentOneCoin);
+                                input.value = '';
                             }
                             Controller.closeAllLists();
                         });
