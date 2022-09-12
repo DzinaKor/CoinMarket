@@ -303,7 +303,6 @@ export default class Controller {
                                 this.mainData.setCurrentOneCoin(el.getAttribute('coin-id') as string);
                                 this.mainData.currentPage = 'oneCoin';
                                 this.drawOneCoinView(this.mainData.currentOneCoin);
-                                input.value = '';
                             }
                             Controller.closeAllLists();
                         });
@@ -383,12 +382,14 @@ export default class Controller {
                 newPortfolio = this.portfolio.portArray;
                 break;
 
-            case 'delete':
-                newPortfolio = this.portfolio.deletePortfolio(coinId);
+            case 'set':
+                await this.portfolio.setPortfolio(coinId, value);
+                newPortfolio = this.portfolio.portArray;
                 break;
 
-            case 'set':
-                newPortfolio = this.portfolio.setPortfolio(coinId, value);
+            case 'delete':
+                await this.portfolio.deletePortfolio(coinId);
+                newPortfolio = this.portfolio.portArray;
                 break;
 
             default:
