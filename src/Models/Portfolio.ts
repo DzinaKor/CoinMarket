@@ -23,7 +23,7 @@ export default class Portfolio {
     }
 
     async setPortfolio(coinId: string, value: number): Promise<Map<string, number>> {
-        if (coinId !== '' && coinId.length > 0 && value >= 0) {
+        if (coinId !== '' && coinId.length > 0) {
             const oldVal = Number(this.portArray.get(coinId));
             const newVal = oldVal + value;
             if(newVal > 0) {
