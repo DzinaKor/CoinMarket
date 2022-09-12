@@ -11,10 +11,10 @@ export default class TabsView {
         const { mainHTML } = this.controller.mainView;
         this.tabsContainerHTML = createNewElement('div', ['tabs_container'], mainHTML);
         this.tabsContainerHTML.innerHTML = '';
-        this.createButtons();
+        this.reDrawButtons();
     }
 
-    createButtons() {
+    reDrawButtons() {
         this.tabsContainerHTML.innerHTML = '';
         const mainButton: HTMLButtonElement = this.addButton('tab_mainPage', 'main');
         this.tabsContainerHTML.appendChild(mainButton);

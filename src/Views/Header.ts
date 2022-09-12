@@ -106,7 +106,7 @@ export default class Header {
                 if (element.hasAttribute('data-lang')) {
                     this.controller.setCurrentLang(element.getAttribute('data-lang') as string);
                     this.updateHeaderLanguage();
-                    this.controller.tabsView.createButtons();
+                    this.controller.tabsView.reDrawButtons();
                     this.controller.changePage(this.controller.mainData.currentPage);
                 }
             });

@@ -279,8 +279,8 @@ h1 {
 
 .portfolio_coin_container {
     width: 100%;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 25px 60px 1fr repeat(3, 80px);
     column-gap: 10px;
 }
 
@@ -288,34 +288,55 @@ h1 {
     flex-grow: 1;
 }
 
+.port-coin-logo-img {
+    width: 25px;
+    height: 25px;
+}
 .portfolio_coin_edit {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 7;
+    min-width: 300px;
+    margin-right: 25px;
+}
+
+.portfolio_edit {
     display: flex;
     justify-content: flex-end;
     column-gap: 10px;
 }
 
+.portfolio_button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(51, 51, 51);
+    background-color: rgb(241, 233, 228);
+}
+
+.portfolio_button:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+.portfolio_coin_edit input {
+    height: 22px;
+}
+
+.portfolio_coin_add {
+    width: 70px;
+}
+
 .portfolio_coin_buy {
-    width: 90px;
+    width: 80px;
 }
 
 .portfolio_coin_sell {
-    width: 90px;
+    width: 80px;
 }
 
 .portfolio_coin_delete {
-    width: 90px;
-}
-
-.portfolio_coin_edit {
-    flex-grow: 7;
-    min-width: 320px;
-}
-
-.portfolio_edit {
-    display: flex;
-    justify-content: space-around;
-    row-gap: 50px;
-    background-color: aquamarine;
+    width: 80px;
 }
 
 .portfolio_value {
@@ -323,7 +344,6 @@ h1 {
 }
 
 .portfolio_save {
-    cursor: pointer;
     width: 60px;
 }
 
