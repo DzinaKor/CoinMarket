@@ -36,7 +36,7 @@ export default class PortfolioView {
         const mainRow: HTMLElement = createNewElement('div', ['portfolio_main_container'], this.portHTML);
         const mainEditHTML = createNewElement('div', ['portfolio_coin_edit'], mainRow);
 
-        const coinAddHTML = createNewElement('div', ['portfolio_button', 'portfolio_coin_add'], mainRow);
+        const coinAddHTML = createNewElement('div', ['portfolio_button', 'portfolio_coin_add', 'portfolio_main_button'], mainRow);
             coinAddHTML.textContent = this.controller.getLangValue('port_add');
             coinAddHTML.addEventListener('click', () => {
                 mainEditHTML.innerHTML = '';
@@ -45,13 +45,15 @@ export default class PortfolioView {
 
         this.controller.changePortfolio('').then((tempPort: Map<string, number>) => {
             this.portData = tempPort;
-                console.log(tempPort.size);
             this.portData.forEach((value, coinId) => {
                 this.controller.coin.apiReqOneCoin(coinId).then((oneCoin: CoinData) => {
                     const coinRow: HTMLElement = createNewElement('div', ['portfolio_coin_container'], this.portHTML);
                     const coinImage = createNewElement('img', ['port-coin-logo-img'], coinRow);
                     coinImage.setAttribute('src', oneCoin.image.small);
                     coinImage.setAttribute('alt', 'coin-logo');
+
+                    const coinNameHTML = createNewElement('div', ['portfolio_coin_name'], coinRow);
+                    coinNameHTML.textContent = oneCoin.name;
 
                     const coinValueHTML = createNewElement('div', ['portfolio_coin_value'], coinRow);
                     coinValueHTML.textContent = String(value);
@@ -75,7 +77,10 @@ export default class PortfolioView {
                     const coinDelHTML = createNewElement('div', ['portfolio_button', 'portfolio_coin_delete'], coinRow);
                     coinDelHTML.textContent = this.controller.getLangValue('port_delete');
                     coinDelHTML.addEventListener('click', () => {
-                        this.controller.changePortfolio('delete', coinId);
+                        this.controller.changePortfolio('delete', coinId).then((newPort: Map<string, number>) => {
+                            this.portData = newPort;
+                            this.reDrawList();
+                        });
                     });
                 });
             });
@@ -88,15 +93,25 @@ export default class PortfolioView {
         valueHTML.type = 'number';
         valueHTML.value = '0';
         valueHTML.min = '0';
+        setTimeout(() => {
+            valueHTML.focus();
+            valueHTML.select();
+        }, 300);
         const saveHTML: HTMLElement = createNewElement('div', ['portfolio_button', 'portfolio_save'], this.portEditHTML);
         saveHTML.textContent = this.controller.getLangValue('port_ok');
         saveHTML.addEventListener('click', () => {
             const value = Number(valueHTML.value);
             if(value > 0 && isAdd) {
-                this.controller.changePortfolio('set', coinId, value);
+                this.controller.changePortfolio('set', coinId, value).then((newPort: Map<string, number>) => {
+                    this.portData = newPort;
+                    this.reDrawList();
+                });
                 this.portEditHTML.innerHTML = '';
             }else if(value > 0 && !isAdd) {
-                this.controller.changePortfolio('set', coinId, -1 * value);
+                this.controller.changePortfolio('set', coinId, -1 * value).then((newPort: Map<string, number>) => {
+                    this.portData = newPort;
+                    this.reDrawList();
+                });
                 this.portEditHTML.innerHTML = '';
             }
         });
@@ -118,7 +133,7 @@ export default class PortfolioView {
         this.arrCoinsList.forEach((item) => {
             createOptionElement(item.id, item.name, coinSelectDList);
         });
-        const saveHTML: HTMLElement = createNewElement('div', ['portfolio_button', 'portfolio_save'], mainEditHTML);
+        const saveHTML: HTMLElement = createNewElement('div', ['portfolio_button', 'portfolio_save', 'portfolio_main_button'], mainEditHTML);
         saveHTML.textContent = this.controller.getLangValue('port_ok');
         saveHTML.addEventListener('click', () => {
             const newCoin: string = coinSelectInp.value;

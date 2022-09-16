@@ -88,7 +88,7 @@ h1 {
 }
 
 .login_button {
-    min-width: 300px;
+    min-width: 120px;
     transition: all .5s ease;
     color: rgb(51, 51, 51);
     border: 1px solid white;
@@ -96,7 +96,7 @@ h1 {
     text-transform: uppercase;
     text-align: center;
     line-height: 1;
-    font-size: 17px;
+    font-size: 14px;
     background-color: transparent;
     padding: 10px;
     outline: none;
@@ -269,7 +269,6 @@ h1 {
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    background-color: antiquewhite;
 }
 
 .portfolio_coin_add {
@@ -280,8 +279,13 @@ h1 {
 .portfolio_coin_container {
     width: 100%;
     display: grid;
-    grid-template-columns: 25px 60px 1fr repeat(3, 80px);
+    grid-template-columns: 25px 1fr 60px 3fr 50px 50px 70px;
     column-gap: 10px;
+    background-color: rgb(241, 233, 228);
+    border: 1px solid rgba(180, 156, 141, .5);
+    border-radius: 10px;
+    margin-bottom: 4px;
+    padding: 0px 8px;
 }
 
 .portfolio_coin_container > * {
@@ -297,13 +301,14 @@ h1 {
     justify-content: flex-end;
     flex-grow: 7;
     min-width: 300px;
-    margin-right: 25px;
+    margin-right: 10px;
+    gap: 8px;
 }
 
 .portfolio_edit {
     display: flex;
     justify-content: flex-end;
-    column-gap: 10px;
+    gap: 10px;
 }
 
 .portfolio_button {
@@ -324,19 +329,23 @@ h1 {
 }
 
 .portfolio_coin_add {
-    width: 70px;
+    width: 60px;
 }
 
 .portfolio_coin_buy {
-    width: 80px;
+    width: 50px;
 }
 
 .portfolio_coin_sell {
-    width: 80px;
+    width: 50px;
 }
 
 .portfolio_coin_delete {
-    width: 80px;
+    width: 70px;
+}
+
+.portfolio_coin_name {
+    color: rgb(51, 51, 51);
 }
 
 .portfolio_value {
@@ -345,6 +354,10 @@ h1 {
 
 .portfolio_save {
     width: 60px;
+}
+
+.portfolio_main_button {
+    border-radius: 4px;
 }
 
 .portfolio_coin_select {

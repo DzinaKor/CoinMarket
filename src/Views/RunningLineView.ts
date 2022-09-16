@@ -42,7 +42,7 @@ export default class RunningLineView {
             const marketCapRank = createNewElement('div', ['market-cap-rank'], coinInfo);
             marketCapRank.textContent = `${this.controller.getLangValue('marketCup_rank')} ${coin.item.market_cap_rank}`;
             const priceBtc = createNewElement('div', ['price-btc'], coinInfo);
-            priceBtc.textContent = `${this.controller.mainData.selectedCurrency.symbol + (coin.item.price_btc * exchangeRate).toFixed(8)}`;
+            priceBtc.textContent = `${this.controller.mainData.selectedCurrency.symbol + (coin.item.price_btc * exchangeRate).toFixed(4)}`;
         });
     }
 }

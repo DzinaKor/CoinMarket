@@ -44,9 +44,12 @@ export function createPopUp(popUpBody: HTMLElement, popUpParent: HTMLElement): H
 export function createPopUpMove(popUpBody: HTMLElement, popUpParent: HTMLElement, deltaLeft: number, deltaTop = 0): HTMLElement {
     const popUp: HTMLElement = createPopUp(popUpBody, popUpParent);
     const rect = popUp.getBoundingClientRect();
-    const newLeft: number = rect.left + deltaLeft;
+    // const newLeft: number = rect.left + deltaLeft;
+    // const newRight: number = rect.right + deltaLeft;
+    // popUp.style.right = `${String(newRight)}px`;
+    popUp.style.right = `0px`;
     const newTop: number = rect.top + deltaTop;
-    popUp.style.left = `${String(newLeft)}px`;
+    // popUp.style.left = `${String(newLeft)}px`;
     popUp.style.top = `${String(newTop)}px`;
     return popUp;
 }

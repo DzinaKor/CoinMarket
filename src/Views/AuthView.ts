@@ -211,7 +211,7 @@ export default class AuthView {
             this.signUp();
         });
 
-        const popUpView: HTMLElement = createPopUpMove(this.signUpHTML, this.authHeader, -20);
+        const popUpView: HTMLElement = createPopUpMove(this.signUpHTML, this.authHeader, 0);
         popUpView.style.width = '320px';
 
         setTimeout(() => {

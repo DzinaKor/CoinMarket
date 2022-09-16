@@ -17,18 +17,28 @@ export default class Portfolio {
     async addPortfolio(coinId: string, value: number): Promise<Map<string, number>> {
         if (coinId !== '' && coinId.length > 0 && value >= 0) {
             this.portArray.set(coinId, value);
+            await this.putPortfolioDB();
         }
-        await this.putPortfolioDB();
         return this.portArray;
     }
 
-    deletePortfolio(coinId: string): Map<string, number> {
-
+    async setPortfolio(coinId: string, value: number): Promise<Map<string, number>> {
+        if (coinId !== '' && coinId.length > 0) {
+            const oldVal = Number(this.portArray.get(coinId));
+            const newVal = oldVal + value;
+            if(newVal > 0) {
+                this.portArray.set(coinId, Math.round(newVal*10000)/10000);
+                await this.putPortfolioDB();
+            }
+        }
         return this.portArray;
     }
 
-    setPortfolio(coinId: string, value: number): Map<string, number> {
-
+    async deletePortfolio(coinId: string): Promise<Map<string, number>> {
+        if (coinId !== '' && coinId.length > 0 ) {
+            this.portArray.delete(coinId);
+            await this.putPortfolioDB();
+        }
         return this.portArray;
     }
 
@@ -44,7 +54,7 @@ export default class Portfolio {
         }
         const response: BackResPort = await this.makeRequest('PUT', null, pars);
         if (response.ok) {
-            console.log(`PUT portfolio is OK! ${response.body}`);
+            // this.portArray = new Map(Object.entries({ 'bitcoin': 9, 'dogecoin': 90, 'shiba-inu': 900 }));
         }
         return response.ok;
     }
@@ -55,9 +65,7 @@ export default class Portfolio {
         }
         const response: BackResPort = await this.makeRequest('GET', null, pars);
         if (response.ok) {
-            console.log(`GET portfolio is OK! ${response.body}`);
             this.portArray = new Map(Object.entries(response.body));
-            // this.portArray = new Map(Object.entries({ 'bitcoin': 9, 'dogecoin': 90, 'shiba-inu': 900 }));
             return this.portArray;
         }
         return new Map(Object.entries({}));
@@ -81,7 +89,6 @@ export default class Portfolio {
                 searchParams.append(k, v);
             });
             queryURL = `?${searchParams}`;
-            // console.log('request OK')
         }
 
         const res: Response = await fetch(`${URL_BACKEND}/portfolio${queryURL}`, requestParams);
