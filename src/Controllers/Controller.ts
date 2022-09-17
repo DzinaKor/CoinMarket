@@ -308,6 +308,7 @@ export default class Controller {
                                 this.mainData.setCurrentOneCoin(el.getAttribute('coin-id') as string);
                                 this.mainData.currentPage = 'oneCoin';
                                 this.drawOneCoinView(this.mainData.currentOneCoin);
+                                input.value = '';
                             }
                             Controller.closeAllLists();
                         });
@@ -318,7 +319,7 @@ export default class Controller {
 
         window.addEventListener('click', (event) => {
             const list = document.querySelectorAll('.autocomplete-items');
-            if(list.length > 0) {
+            if (list.length > 0) {
                 const element = event.target as HTMLElement;
                 if (!element.classList.contains('autocomplete-items')) {
                     list.forEach(item => {
