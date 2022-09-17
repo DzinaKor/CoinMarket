@@ -65,7 +65,7 @@ export default class CoinsListView {
         const numberCoinHeader = createNewElement('div', ['coin-number-header'], headerRow);
         numberCoinHeader.textContent = '#';
         numberCoinHeader.id = 'market-cap';
-        const watchListCoinHeader = createNewElement('div', ['coin-watchlist-header'], headerRow);
+
         const nameCoinHeader = createNewElement('div', ['coin-name-header'], headerRow);
         nameCoinHeader.textContent = this.controller.getLangValue('coin_list_name');
         nameCoinHeader.id = 'coin-id';
@@ -108,23 +108,25 @@ export default class CoinsListView {
     }
 
     addWatchCoinHTML(coinId: string): HTMLImageElement {
-        const coinWatchImg: HTMLImageElement = createNewElement('img', ['coin_list_watch_img']) as HTMLImageElement;
+        const imageBox: HTMLImageElement = createNewElement('div', ['coin_list_watch']) as HTMLImageElement;
+
+        const coinWatchImg: HTMLImageElement = createNewElement('img', ['coin_list_watch_img'], imageBox) as HTMLImageElement;
         coinWatchImg.alt = '';
-        if (this.controller.user.isAuth) {
-            coinWatchImg.setAttribute('data-watch-coin-id', coinId);
-            if (this.controller.checkCoinWatchList(coinId)) {
-                coinWatchImg.setAttribute('data-watch', '1');
-                coinWatchImg.src = IMG_FAV;
-            } else {
-                coinWatchImg.setAttribute('data-watch', '-1');
-                coinWatchImg.src = IMG_NOFAV;
-            }
-            coinWatchImg.addEventListener('click', (event) => {
-                event.stopPropagation();
-                this.toggleWatchCoinHTML(coinWatchImg, coinId);
-            })
+    if(this.controller.user.isAuth) {
+        coinWatchImg.setAttribute('data-watch-coin-id', coinId);
+        if (this.controller.checkCoinWatchList(coinId)) {
+            coinWatchImg.setAttribute('data-watch', '1');
+            coinWatchImg.src = IMG_FAV;
+        } else {
+            coinWatchImg.setAttribute('data-watch', '-1');
+            coinWatchImg.src = IMG_NOFAV;
         }
-        return coinWatchImg;
+        coinWatchImg.addEventListener('click', (event) => {
+            event.stopPropagation();
+            this.toggleWatchCoinHTML(coinWatchImg, coinId);
+        });
+    };
+        return imageBox;
     }
 
     toggleWatchCoinHTML(coinWatchImg: HTMLImageElement, coinId: string) {

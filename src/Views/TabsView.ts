@@ -17,11 +17,12 @@ export default class TabsView {
     reDrawButtons() {
         this.tabsContainerHTML.innerHTML = '';
         const mainButton: HTMLButtonElement = this.addButton('tab_mainPage', 'main');
+        mainButton.classList.add('tab_button_select');
         this.tabsContainerHTML.appendChild(mainButton);
-        const calcButton: HTMLButtonElement = this.tabsContainerHTML.appendChild(this.addButton('tab_calcPage', 'calc'));
-        const newsButton: HTMLButtonElement = this.tabsContainerHTML.appendChild(this.addButton('tab_newsPage', 'news'));
-        const watchButton: HTMLButtonElement = this.tabsContainerHTML.appendChild(this.addButton('tab_watchPage', 'watchlist'));
-        const portfolioButton: HTMLButtonElement = this.tabsContainerHTML.appendChild(this.addButton('tab_portfolioPage', 'portfolio'));
+        const calcButton: HTMLButtonElement = this.addButton('tab_calcPage', 'calc');
+        const newsButton: HTMLButtonElement = this.addButton('tab_newsPage', 'news');
+        const watchButton: HTMLButtonElement = this.addButton('tab_watchPage', 'watchlist');
+        const portfolioButton: HTMLButtonElement = this.addButton('tab_portfolioPage', 'portfolio');
         if (this.controller.mainData.currentPage === 'calc') {
             calcButton.classList.add('tab_button_select');
         } else if (this.controller.mainData.currentPage === 'news') {
@@ -32,6 +33,11 @@ export default class TabsView {
             portfolioButton.classList.add('tab_button_select');
         } else if (this.controller.mainData.currentPage === 'main') {
             mainButton.classList.add('tab_button_select');
+        }
+        if(this.controller.user.isAuth) {
+            this.tabsContainerHTML.append(calcButton, newsButton, watchButton, portfolioButton);
+        } else {
+            this.tabsContainerHTML.append(calcButton, newsButton);
         }
     }
 
