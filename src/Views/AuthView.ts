@@ -61,7 +61,6 @@ export default class AuthView {
     setLogin() {
         if (this.controller.user !== null && this.controller.user !== undefined) {
             const login: string = this.controller.getUserData().name;
-            // if(login && login.length > 0) {
             if (this.controller.user.isAuth) {
                 this.loginHTML.textContent = login;
                 this.loginHTML.classList.remove('auth_sign_in');
@@ -95,7 +94,6 @@ export default class AuthView {
                 this.signInView();
             } else {
                 this.changeUserData();
-                // this.signInView();
             }
         } else {
             this.controller.closePopUp();
@@ -128,7 +126,6 @@ export default class AuthView {
             this.controller.isPopUp = true;
         }, 100);
         this.changeUserDataHTML.style.display = 'flex';
-        // console.log('change login name');
     }
 
     signInView() {
@@ -252,12 +249,12 @@ export default class AuthView {
     validateSignUp() {
         let isValid = false;
         if (this.controller.isPopUp) {
-            // const okHTML: HTMLElement|null = document.querySelector('.auth_button');
+
             const okHTML: HTMLElement | null = document.getElementById('auth_sign_up_btn');
             if (this.emailHTML !== null && this.passHTML !== null && okHTML !== null) {
                 const email: string = this.emailHTML.value;
                 const pass: string = this.passHTML.value;
-                const emailMatch: boolean = /^([-_A-Za-z0-9]+)@([A-Za-z]+)\.([A-Za-z]+)$/.test(email);
+                const emailMatch: boolean = /^([-_A-Za-z0-9]+)@([A-Za-z0-9]+)\.([A-Za-z]+)$/.test(email);
                 const passMatch: boolean = (pass.length >= 6);
 
                 if (emailMatch) {
@@ -302,7 +299,6 @@ export default class AuthView {
             this.saveUserData('signup');
         } else {
             // TODO No valid data
-            console.log('Authorization data is not valid!');
         }
     }
 

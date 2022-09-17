@@ -123,10 +123,7 @@ export default class Controller {
 
         this.closePopUpForClick();
 
-        // run read data for WatchList from DB and redraw mainPage (once at app startup)
-        this.watchlist.getWatchList().then((coinIdArray: Array<string>) => {
-            this.coinsListView.reSetWatchCoinList(coinIdArray);
-        });
+        this.mainPageWatchListRedraw();
     }
 
     changePage(com: string) {
@@ -170,6 +167,14 @@ export default class Controller {
             setTimeout(() => {
                 this.setAuth('login', null);
             }, 2000);
+            this.mainPageWatchListRedraw();
+        });
+    }
+
+    // run read data for WatchList from DB and redraw mainPage
+    mainPageWatchListRedraw() {
+        this.watchlist.getWatchList().then((coinIdArray: Array<string>) => {
+            this.coinsListView.reSetWatchCoinList(coinIdArray);
         });
     }
 
@@ -455,7 +460,7 @@ export default class Controller {
     setAuth(command: string, userData: TypeUser | null) {
         if (command === 'signup' && userData !== null) {
             this.user.data = userData;
-            this.user.signUp().then((isOk: boolean) => {
+            this.user.signUp().then(() => {
                 this.authView.setLogin();
                 this.tabsView.reDrawButtons();
                 this.mainPageRedraw();
@@ -463,7 +468,7 @@ export default class Controller {
             });
 
         } else if (command === 'signin' && userData !== null) {
-            this.user.signIn(userData).then((isOk: boolean) => {
+            this.user.signIn(userData).then(() => {
                 this.authView.setLogin();
                 this.tabsView.reDrawButtons();
                 this.mainPageRedraw();
@@ -489,9 +494,9 @@ export default class Controller {
 
     drawChart(rootElement: HTMLElement, chartModel: Chart) {
         chartModel.getData().then(() => {
-                this.chartView.drawChart(rootElement, chartModel);
-                this.setChartListeners(chartModel);
-            }
+            this.chartView.drawChart(rootElement, chartModel);
+            this.setChartListeners(chartModel);
+        }
         );
     }
 
